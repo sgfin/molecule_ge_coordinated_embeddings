@@ -47,7 +47,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 fh = logging.FileHandler(os.path.join(config['exp_dir'], "logger_output.txt"))
 fh.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter('\n%(asctime)s - %(levelname)s -\n %(message)s')
 fh.setFormatter(formatter)
 logger.addHandler(fh)
 
@@ -99,9 +99,6 @@ print('Val Drugs not in Train:  {} (N)  {:.1f} (Percent)'
               100*np.mean([x not in uniq_train_perts for x in set(val_dataset.pert_smiles)])
               ))
 print("")
-
-
-
 
 
 ###################################################

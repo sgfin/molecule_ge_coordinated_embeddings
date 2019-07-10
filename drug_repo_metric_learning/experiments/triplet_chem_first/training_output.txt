@@ -23,3 +23,983 @@ Val (Not in Train):     median_rank: 1067.500    MRR: 0.003    H@10: 0.003    H@
 Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:52    Epoch (Evaluation): 0:03:07    Total: 0:14:14
 Current time: 2019-07-09 21:22:07 EDT-0400
 
+Epoch 3
+Train:    Avg loss: 0.224    Percent Correct: 66.781
+Val  :    Avg loss: 0.268    Percent Correct: 45.149
+Train (All):            median_rank: 1338.500    MRR: 0.014    H@10: 0.026    H@100: 0.105    H@500: 0.291
+Val (All):              median_rank: 747.500    MRR: 0.020    H@10: 0.031    H@100: 0.125    H@500: 0.377
+Val (In Train):         median_rank: 729.000    MRR: 0.022    H@10: 0.035    H@100: 0.134    H@500: 0.392
+Val (Not in Train):     median_rank: 915.000    MRR: 0.003    H@10: 0.003    H@100: 0.058    H@500: 0.269
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:04:08    Epoch (Evaluation): 0:03:13    Total: 0:21:36
+Current time: 2019-07-09 21:29:28 EDT-0400
+
+Epoch 4
+Train:    Avg loss: 0.214    Percent Correct: 69.807
+Val  :    Avg loss: 0.294    Percent Correct: 39.204
+Train (All):            median_rank: 1137.500    MRR: 0.017    H@10: 0.030    H@100: 0.123    H@500: 0.322
+Val (All):              median_rank: 704.000    MRR: 0.021    H@10: 0.036    H@100: 0.139    H@500: 0.401
+Val (In Train):         median_rank: 659.500    MRR: 0.023    H@10: 0.040    H@100: 0.151    H@500: 0.421
+Val (Not in Train):     median_rank: 994.500    MRR: 0.004    H@10: 0.003    H@100: 0.042    H@500: 0.247
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:48    Epoch (Evaluation): 0:03:07    Total: 0:28:30
+Current time: 2019-07-09 21:36:23 EDT-0400
+
+Epoch 5
+Train:    Avg loss: 0.217    Percent Correct: 70.883
+Val  :    Avg loss: 0.264    Percent Correct: 45.932
+Train (All):            median_rank: 1057.000    MRR: 0.019    H@10: 0.035    H@100: 0.137    H@500: 0.342
+Val (All):              median_rank: 623.500    MRR: 0.026    H@10: 0.044    H@100: 0.158    H@500: 0.433
+Val (In Train):         median_rank: 561.000    MRR: 0.028    H@10: 0.048    H@100: 0.175    H@500: 0.464
+Val (Not in Train):     median_rank: 1228.500    MRR: 0.004    H@10: 0.006    H@100: 0.032    H@500: 0.195
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:49    Epoch (Evaluation): 0:03:05    Total: 0:35:24
+Current time: 2019-07-09 21:43:17 EDT-0400
+
+Epoch 6
+Train:    Avg loss: 0.207    Percent Correct: 73.164
+Val  :    Avg loss: 0.255    Percent Correct: 47.624
+Train (All):            median_rank: 903.000    MRR: 0.023    H@10: 0.040    H@100: 0.147    H@500: 0.369
+Val (All):              median_rank: 632.500    MRR: 0.024    H@10: 0.043    H@100: 0.162    H@500: 0.427
+Val (In Train):         median_rank: 580.000    MRR: 0.027    H@10: 0.048    H@100: 0.177    H@500: 0.455
+Val (Not in Train):     median_rank: 1126.000    MRR: 0.003    H@10: 0.003    H@100: 0.049    H@500: 0.214
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:54    Epoch (Evaluation): 0:03:06    Total: 0:42:24
+Current time: 2019-07-09 21:50:17 EDT-0400
+
+Epoch 7
+Train:    Avg loss: 0.201    Percent Correct: 74.463
+Val  :    Avg loss: 0.264    Percent Correct: 50.031
+Train (All):            median_rank: 880.000    MRR: 0.021    H@10: 0.040    H@100: 0.150    H@500: 0.377
+Val (All):              median_rank: 624.500    MRR: 0.021    H@10: 0.035    H@100: 0.138    H@500: 0.440
+Val (In Train):         median_rank: 573.500    MRR: 0.023    H@10: 0.039    H@100: 0.147    H@500: 0.460
+Val (Not in Train):     median_rank: 898.500    MRR: 0.006    H@10: 0.003    H@100: 0.068    H@500: 0.289
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:50    Epoch (Evaluation): 0:03:06    Total: 0:49:20
+Current time: 2019-07-09 21:57:13 EDT-0400
+
+Epoch 8
+Train:    Avg loss: 0.196    Percent Correct: 76.279
+Val  :    Avg loss: 0.256    Percent Correct: 48.406
+Train (All):            median_rank: 725.000    MRR: 0.027    H@10: 0.049    H@100: 0.172    H@500: 0.417
+Val (All):              median_rank: 586.000    MRR: 0.027    H@10: 0.044    H@100: 0.168    H@500: 0.452
+Val (In Train):         median_rank: 550.000    MRR: 0.029    H@10: 0.049    H@100: 0.180    H@500: 0.471
+Val (Not in Train):     median_rank: 867.000    MRR: 0.007    H@10: 0.006    H@100: 0.084    H@500: 0.305
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:50    Epoch (Evaluation): 0:03:07    Total: 0:56:17
+Current time: 2019-07-09 22:04:10 EDT-0400
+
+Epoch 9
+Train:    Avg loss: 0.195    Percent Correct: 78.243
+Val  :    Avg loss: 0.272    Percent Correct: 54.843
+Train (All):            median_rank: 744.000    MRR: 0.024    H@10: 0.046    H@100: 0.172    H@500: 0.415
+Val (All):              median_rank: 553.500    MRR: 0.029    H@10: 0.051    H@100: 0.188    H@500: 0.476
+Val (In Train):         median_rank: 508.000    MRR: 0.032    H@10: 0.057    H@100: 0.203    H@500: 0.495
+Val (Not in Train):     median_rank: 844.500    MRR: 0.005    H@10: 0.010    H@100: 0.078    H@500: 0.334
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:51    Epoch (Evaluation): 0:03:05    Total: 1:03:13
+Current time: 2019-07-09 22:11:05 EDT-0400
+
+Epoch 10
+Train:    Avg loss: 0.192    Percent Correct: 78.768
+Val  :    Avg loss: 0.238    Percent Correct: 50.770
+Train (All):            median_rank: 658.000    MRR: 0.027    H@10: 0.051    H@100: 0.183    H@500: 0.438
+Val (All):              median_rank: 506.000    MRR: 0.025    H@10: 0.050    H@100: 0.193    H@500: 0.495
+Val (In Train):         median_rank: 464.000    MRR: 0.028    H@10: 0.056    H@100: 0.211    H@500: 0.523
+Val (Not in Train):     median_rank: 925.500    MRR: 0.003    H@10: 0.003    H@100: 0.052    H@500: 0.282
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:49    Epoch (Evaluation): 0:03:04    Total: 1:10:06
+Current time: 2019-07-09 22:17:59 EDT-0400
+
+Epoch 11
+Train:    Avg loss: 0.191    Percent Correct: 78.769
+Val  :    Avg loss: 0.230    Percent Correct: 55.947
+Train (All):            median_rank: 611.000    MRR: 0.030    H@10: 0.055    H@100: 0.193    H@500: 0.454
+Val (All):              median_rank: 556.000    MRR: 0.031    H@10: 0.057    H@100: 0.191    H@500: 0.471
+Val (In Train):         median_rank: 500.000    MRR: 0.035    H@10: 0.064    H@100: 0.211    H@500: 0.501
+Val (Not in Train):     median_rank: 969.500    MRR: 0.003    H@10: 0.003    H@100: 0.042    H@500: 0.247
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:59    Epoch (Evaluation): 0:03:07    Total: 1:17:13
+Current time: 2019-07-09 22:25:05 EDT-0400
+
+Epoch 12
+Train:    Avg loss: 0.188    Percent Correct: 80.000
+Val  :    Avg loss: 0.239    Percent Correct: 55.403
+Train (All):            median_rank: 555.000    MRR: 0.032    H@10: 0.058    H@100: 0.207    H@500: 0.476
+Val (All):              median_rank: 526.500    MRR: 0.033    H@10: 0.059    H@100: 0.193    H@500: 0.486
+Val (In Train):         median_rank: 463.500    MRR: 0.037    H@10: 0.066    H@100: 0.213    H@500: 0.525
+Val (Not in Train):     median_rank: 1262.500    MRR: 0.004    H@10: 0.010    H@100: 0.045    H@500: 0.192
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:47    Epoch (Evaluation): 0:03:08    Total: 1:24:07
+Current time: 2019-07-09 22:32:00 EDT-0400
+
+Epoch 13
+Train:    Avg loss: 0.187    Percent Correct: 81.552
+Val  :    Avg loss: 0.233    Percent Correct: 55.549
+Train (All):            median_rank: 492.000    MRR: 0.033    H@10: 0.063    H@100: 0.221    H@500: 0.503
+Val (All):              median_rank: 447.000    MRR: 0.036    H@10: 0.063    H@100: 0.217    H@500: 0.537
+Val (In Train):         median_rank: 409.500    MRR: 0.040    H@10: 0.071    H@100: 0.238    H@500: 0.568
+Val (Not in Train):     median_rank: 883.500    MRR: 0.003    H@10: 0.000    H@100: 0.062    H@500: 0.305
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:50    Epoch (Evaluation): 0:03:06    Total: 1:31:03
+Current time: 2019-07-09 22:38:56 EDT-0400
+
+Epoch 14
+Train:    Avg loss: 0.185    Percent Correct: 81.653
+Val  :    Avg loss: 0.214    Percent Correct: 64.446
+Train (All):            median_rank: 481.000    MRR: 0.037    H@10: 0.072    H@100: 0.231    H@500: 0.509
+Val (All):              median_rank: 426.000    MRR: 0.037    H@10: 0.070    H@100: 0.220    H@500: 0.545
+Val (In Train):         median_rank: 402.500    MRR: 0.041    H@10: 0.076    H@100: 0.229    H@500: 0.560
+Val (Not in Train):     median_rank: 643.500    MRR: 0.013    H@10: 0.023    H@100: 0.149    H@500: 0.435
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:48    Epoch (Evaluation): 0:03:07    Total: 1:37:58
+Current time: 2019-07-09 22:45:51 EDT-0400
+
+Epoch 15
+Train:    Avg loss: 0.179    Percent Correct: 83.256
+Val  :    Avg loss: 0.251    Percent Correct: 59.248
+Train (All):            median_rank: 460.000    MRR: 0.034    H@10: 0.066    H@100: 0.233    H@500: 0.520
+Val (All):              median_rank: 434.500    MRR: 0.030    H@10: 0.062    H@100: 0.226    H@500: 0.538
+Val (In Train):         median_rank: 396.500    MRR: 0.034    H@10: 0.070    H@100: 0.248    H@500: 0.565
+Val (Not in Train):     median_rank: 885.500    MRR: 0.005    H@10: 0.006    H@100: 0.058    H@500: 0.331
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:51    Epoch (Evaluation): 0:03:07    Total: 1:44:56
+Current time: 2019-07-09 22:52:49 EDT-0400
+
+Epoch 16
+Train:    Avg loss: 0.181    Percent Correct: 83.299
+Val  :    Avg loss: 0.260    Percent Correct: 55.135
+Train (All):            median_rank: 386.000    MRR: 0.039    H@10: 0.078    H@100: 0.260    H@500: 0.561
+Val (All):              median_rank: 400.500    MRR: 0.038    H@10: 0.070    H@100: 0.241    H@500: 0.563
+Val (In Train):         median_rank: 364.500    MRR: 0.043    H@10: 0.078    H@100: 0.262    H@500: 0.589
+Val (Not in Train):     median_rank: 796.000    MRR: 0.005    H@10: 0.006    H@100: 0.081    H@500: 0.370
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:58    Epoch (Evaluation): 0:03:06    Total: 1:52:01
+Current time: 2019-07-09 22:59:53 EDT-0400
+
+Epoch 17
+Train:    Avg loss: 0.183    Percent Correct: 85.029
+Val  :    Avg loss: 0.230    Percent Correct: 61.574
+Train (All):            median_rank: 398.000    MRR: 0.040    H@10: 0.077    H@100: 0.254    H@500: 0.552
+Val (All):              median_rank: 389.000    MRR: 0.041    H@10: 0.075    H@100: 0.241    H@500: 0.560
+Val (In Train):         median_rank: 339.000    MRR: 0.046    H@10: 0.084    H@100: 0.263    H@500: 0.595
+Val (Not in Train):     median_rank: 873.500    MRR: 0.004    H@10: 0.006    H@100: 0.068    H@500: 0.299
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:46    Epoch (Evaluation): 0:03:04    Total: 1:58:50
+Current time: 2019-07-09 23:06:43 EDT-0400
+
+Epoch 18
+Train:    Avg loss: 0.179    Percent Correct: 84.835
+Val  :    Avg loss: 0.234    Percent Correct: 62.659
+Train (All):            median_rank: 356.000    MRR: 0.044    H@10: 0.082    H@100: 0.274    H@500: 0.580
+Val (All):              median_rank: 411.000    MRR: 0.039    H@10: 0.072    H@100: 0.234    H@500: 0.550
+Val (In Train):         median_rank: 372.500    MRR: 0.044    H@10: 0.081    H@100: 0.256    H@500: 0.575
+Val (Not in Train):     median_rank: 735.500    MRR: 0.004    H@10: 0.006    H@100: 0.068    H@500: 0.360
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:45    Epoch (Evaluation): 0:03:04    Total: 2:05:40
+Current time: 2019-07-09 23:13:32 EDT-0400
+
+Epoch 19
+Train:    Avg loss: 0.176    Percent Correct: 86.100
+Val  :    Avg loss: 0.245    Percent Correct: 59.302
+Train (All):            median_rank: 341.000    MRR: 0.046    H@10: 0.088    H@100: 0.281    H@500: 0.587
+Val (All):              median_rank: 357.500    MRR: 0.045    H@10: 0.082    H@100: 0.246    H@500: 0.589
+Val (In Train):         median_rank: 321.500    MRR: 0.049    H@10: 0.090    H@100: 0.266    H@500: 0.614
+Val (Not in Train):     median_rank: 687.500    MRR: 0.013    H@10: 0.019    H@100: 0.097    H@500: 0.399
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:48    Epoch (Evaluation): 0:03:03    Total: 2:12:31
+Current time: 2019-07-09 23:20:23 EDT-0400
+
+Epoch 20
+Train:    Avg loss: 0.176    Percent Correct: 85.861
+Val  :    Avg loss: 0.225    Percent Correct: 67.638
+Train (All):            median_rank: 316.000    MRR: 0.047    H@10: 0.089    H@100: 0.292    H@500: 0.606
+Val (All):              median_rank: 375.000    MRR: 0.046    H@10: 0.078    H@100: 0.252    H@500: 0.578
+Val (In Train):         median_rank: 332.500    MRR: 0.052    H@10: 0.087    H@100: 0.276    H@500: 0.613
+Val (Not in Train):     median_rank: 843.000    MRR: 0.004    H@10: 0.003    H@100: 0.068    H@500: 0.312
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:48    Epoch (Evaluation): 0:03:07    Total: 2:19:25
+Current time: 2019-07-09 23:27:18 EDT-0400
+
+Epoch 21
+Train:    Avg loss: 0.176    Percent Correct: 86.570
+Val  :    Avg loss: 0.232    Percent Correct: 62.700
+Train (All):            median_rank: 313.000    MRR: 0.049    H@10: 0.094    H@100: 0.296    H@500: 0.608
+Val (All):              median_rank: 360.500    MRR: 0.044    H@10: 0.088    H@100: 0.268    H@500: 0.588
+Val (In Train):         median_rank: 306.000    MRR: 0.049    H@10: 0.099    H@100: 0.292    H@500: 0.627
+Val (Not in Train):     median_rank: 918.000    MRR: 0.007    H@10: 0.006    H@100: 0.081    H@500: 0.295
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:46    Epoch (Evaluation): 0:03:04    Total: 2:26:16
+Current time: 2019-07-09 23:34:09 EDT-0400
+
+Epoch 22
+Train:    Avg loss: 0.171    Percent Correct: 87.391
+Val  :    Avg loss: 0.208    Percent Correct: 73.038
+Train (All):            median_rank: 288.000    MRR: 0.048    H@10: 0.094    H@100: 0.305    H@500: 0.629
+Val (All):              median_rank: 346.500    MRR: 0.043    H@10: 0.079    H@100: 0.266    H@500: 0.592
+Val (In Train):         median_rank: 303.500    MRR: 0.047    H@10: 0.088    H@100: 0.290    H@500: 0.629
+Val (Not in Train):     median_rank: 794.500    MRR: 0.008    H@10: 0.013    H@100: 0.088    H@500: 0.318
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:48    Epoch (Evaluation): 0:03:02    Total: 2:33:05
+Current time: 2019-07-09 23:40:58 EDT-0400
+
+Epoch 23
+Train:    Avg loss: 0.172    Percent Correct: 87.862
+Val  :    Avg loss: 0.245    Percent Correct: 63.834
+Train (All):            median_rank: 282.000    MRR: 0.052    H@10: 0.099    H@100: 0.314    H@500: 0.633
+Val (All):              median_rank: 330.000    MRR: 0.050    H@10: 0.087    H@100: 0.282    H@500: 0.611
+Val (In Train):         median_rank: 295.500    MRR: 0.056    H@10: 0.097    H@100: 0.305    H@500: 0.640
+Val (Not in Train):     median_rank: 667.500    MRR: 0.010    H@10: 0.016    H@100: 0.114    H@500: 0.396
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:47    Epoch (Evaluation): 0:03:03    Total: 2:39:56
+Current time: 2019-07-09 23:47:48 EDT-0400
+
+Epoch 24
+Train:    Avg loss: 0.173    Percent Correct: 88.296
+Val  :    Avg loss: 0.216    Percent Correct: 70.331
+Train (All):            median_rank: 250.500    MRR: 0.054    H@10: 0.104    H@100: 0.329    H@500: 0.660
+Val (All):              median_rank: 313.500    MRR: 0.048    H@10: 0.090    H@100: 0.277    H@500: 0.619
+Val (In Train):         median_rank: 278.000    MRR: 0.053    H@10: 0.099    H@100: 0.300    H@500: 0.645
+Val (Not in Train):     median_rank: 619.000    MRR: 0.011    H@10: 0.019    H@100: 0.104    H@500: 0.422
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:44    Epoch (Evaluation): 0:03:00    Total: 2:46:39
+Current time: 2019-07-09 23:54:32 EDT-0400
+
+Epoch 25
+Train:    Avg loss: 0.175    Percent Correct: 88.576
+Val  :    Avg loss: 0.221    Percent Correct: 72.447
+Train (All):            median_rank: 250.000    MRR: 0.053    H@10: 0.101    H@100: 0.330    H@500: 0.665
+Val (All):              median_rank: 316.000    MRR: 0.047    H@10: 0.087    H@100: 0.279    H@500: 0.611
+Val (In Train):         median_rank: 274.000    MRR: 0.052    H@10: 0.097    H@100: 0.302    H@500: 0.645
+Val (Not in Train):     median_rank: 716.000    MRR: 0.006    H@10: 0.013    H@100: 0.097    H@500: 0.357
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:40    Epoch (Evaluation): 0:03:04    Total: 2:53:23
+Current time: 2019-07-10 00:01:15 EDT-0400
+
+Epoch 26
+Train:    Avg loss: 0.173    Percent Correct: 88.587
+Val  :    Avg loss: 0.239    Percent Correct: 67.981
+Train (All):            median_rank: 251.000    MRR: 0.053    H@10: 0.103    H@100: 0.332    H@500: 0.658
+Val (All):              median_rank: 339.000    MRR: 0.047    H@10: 0.089    H@100: 0.279    H@500: 0.609
+Val (In Train):         median_rank: 306.500    MRR: 0.051    H@10: 0.099    H@100: 0.300    H@500: 0.633
+Val (Not in Train):     median_rank: 613.000    MRR: 0.015    H@10: 0.013    H@100: 0.117    H@500: 0.422
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:43    Epoch (Evaluation): 0:03:02    Total: 3:00:08
+Current time: 2019-07-10 00:08:01 EDT-0400
+
+Epoch 27
+Train:    Avg loss: 0.171    Percent Correct: 88.609
+Val  :    Avg loss: 0.228    Percent Correct: 69.080
+Train (All):            median_rank: 230.000    MRR: 0.059    H@10: 0.112    H@100: 0.344    H@500: 0.681
+Val (All):              median_rank: 351.500    MRR: 0.051    H@10: 0.095    H@100: 0.267    H@500: 0.596
+Val (In Train):         median_rank: 298.000    MRR: 0.057    H@10: 0.105    H@100: 0.292    H@500: 0.628
+Val (Not in Train):     median_rank: 732.000    MRR: 0.011    H@10: 0.019    H@100: 0.078    H@500: 0.357
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:42    Epoch (Evaluation): 0:03:00    Total: 3:06:50
+Current time: 2019-07-10 00:14:43 EDT-0400
+
+Epoch 28
+Train:    Avg loss: 0.167    Percent Correct: 88.919
+Val  :    Avg loss: 0.213    Percent Correct: 72.051
+Train (All):            median_rank: 232.000    MRR: 0.056    H@10: 0.110    H@100: 0.346    H@500: 0.684
+Val (All):              median_rank: 342.000    MRR: 0.048    H@10: 0.089    H@100: 0.264    H@500: 0.607
+Val (In Train):         median_rank: 301.500    MRR: 0.053    H@10: 0.100    H@100: 0.290    H@500: 0.639
+Val (Not in Train):     median_rank: 732.500    MRR: 0.006    H@10: 0.010    H@100: 0.071    H@500: 0.370
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:43    Epoch (Evaluation): 0:03:02    Total: 3:13:36
+Current time: 2019-07-10 00:21:28 EDT-0400
+
+Epoch 29
+Train:    Avg loss: 0.166    Percent Correct: 89.809
+Val  :    Avg loss: 0.207    Percent Correct: 73.290
+Train (All):            median_rank: 213.000    MRR: 0.059    H@10: 0.115    H@100: 0.356    H@500: 0.701
+Val (All):              median_rank: 296.500    MRR: 0.053    H@10: 0.100    H@100: 0.289    H@500: 0.636
+Val (In Train):         median_rank: 260.500    MRR: 0.059    H@10: 0.113    H@100: 0.315    H@500: 0.667
+Val (Not in Train):     median_rank: 668.500    MRR: 0.005    H@10: 0.006    H@100: 0.088    H@500: 0.406
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:41    Epoch (Evaluation): 0:03:03    Total: 3:20:20
+Current time: 2019-07-10 00:28:12 EDT-0400
+
+Epoch 30
+Train:    Avg loss: 0.173    Percent Correct: 88.974
+Val  :    Avg loss: 0.211    Percent Correct: 72.924
+Train (All):            median_rank: 209.000    MRR: 0.059    H@10: 0.112    H@100: 0.360    H@500: 0.704
+Val (All):              median_rank: 303.000    MRR: 0.046    H@10: 0.086    H@100: 0.293    H@500: 0.635
+Val (In Train):         median_rank: 258.000    MRR: 0.052    H@10: 0.097    H@100: 0.321    H@500: 0.674
+Val (Not in Train):     median_rank: 846.500    MRR: 0.004    H@10: 0.003    H@100: 0.078    H@500: 0.341
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:40    Epoch (Evaluation): 0:03:00    Total: 3:27:00
+Current time: 2019-07-10 00:34:53 EDT-0400
+
+Epoch 31
+Train:    Avg loss: 0.165    Percent Correct: 88.921
+Val  :    Avg loss: 0.201    Percent Correct: 75.740
+Train (All):            median_rank: 204.000    MRR: 0.064    H@10: 0.122    H@100: 0.366    H@500: 0.710
+Val (All):              median_rank: 279.000    MRR: 0.053    H@10: 0.101    H@100: 0.299    H@500: 0.657
+Val (In Train):         median_rank: 246.000    MRR: 0.059    H@10: 0.112    H@100: 0.322    H@500: 0.680
+Val (Not in Train):     median_rank: 539.500    MRR: 0.008    H@10: 0.016    H@100: 0.127    H@500: 0.484
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:40    Epoch (Evaluation): 0:03:04    Total: 3:33:43
+Current time: 2019-07-10 00:41:36 EDT-0400
+
+Epoch 32
+Train:    Avg loss: 0.165    Percent Correct: 90.180
+Val  :    Avg loss: 0.226    Percent Correct: 72.619
+Train (All):            median_rank: 179.000    MRR: 0.067    H@10: 0.130    H@100: 0.390    H@500: 0.730
+Val (All):              median_rank: 294.500    MRR: 0.057    H@10: 0.101    H@100: 0.295    H@500: 0.639
+Val (In Train):         median_rank: 252.500    MRR: 0.063    H@10: 0.113    H@100: 0.323    H@500: 0.670
+Val (Not in Train):     median_rank: 672.000    MRR: 0.009    H@10: 0.010    H@100: 0.084    H@500: 0.409
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:41    Epoch (Evaluation): 0:03:04    Total: 3:40:29
+Current time: 2019-07-10 00:48:21 EDT-0400
+
+Epoch 33
+Train:    Avg loss: 0.163    Percent Correct: 90.185
+Val  :    Avg loss: 0.210    Percent Correct: 76.345
+Train (All):            median_rank: 183.000    MRR: 0.064    H@10: 0.127    H@100: 0.388    H@500: 0.734
+Val (All):              median_rank: 307.500    MRR: 0.051    H@10: 0.095    H@100: 0.297    H@500: 0.619
+Val (In Train):         median_rank: 256.500    MRR: 0.056    H@10: 0.107    H@100: 0.326    H@500: 0.658
+Val (Not in Train):     median_rank: 758.500    MRR: 0.009    H@10: 0.010    H@100: 0.078    H@500: 0.325
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:39    Epoch (Evaluation): 0:03:01    Total: 3:47:09
+Current time: 2019-07-10 00:55:01 EDT-0400
+
+Epoch 34
+Train:    Avg loss: 0.159    Percent Correct: 91.355
+Val  :    Avg loss: 0.246    Percent Correct: 69.785
+Train (All):            median_rank: 170.000    MRR: 0.067    H@10: 0.129    H@100: 0.400    H@500: 0.751
+Val (All):              median_rank: 288.000    MRR: 0.055    H@10: 0.106    H@100: 0.302    H@500: 0.639
+Val (In Train):         median_rank: 250.000    MRR: 0.061    H@10: 0.118    H@100: 0.326    H@500: 0.667
+Val (Not in Train):     median_rank: 678.500    MRR: 0.009    H@10: 0.016    H@100: 0.114    H@500: 0.422
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:40    Epoch (Evaluation): 0:03:02    Total: 3:53:51
+Current time: 2019-07-10 01:01:43 EDT-0400
+
+Epoch 35
+Train:    Avg loss: 0.164    Percent Correct: 90.792
+Val  :    Avg loss: 0.207    Percent Correct: 74.752
+Train (All):            median_rank: 158.000    MRR: 0.070    H@10: 0.139    H@100: 0.410    H@500: 0.764
+Val (All):              median_rank: 266.000    MRR: 0.054    H@10: 0.106    H@100: 0.318    H@500: 0.667
+Val (In Train):         median_rank: 224.000    MRR: 0.060    H@10: 0.118    H@100: 0.347    H@500: 0.699
+Val (Not in Train):     median_rank: 579.500    MRR: 0.008    H@10: 0.016    H@100: 0.101    H@500: 0.425
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:41    Epoch (Evaluation): 0:03:02    Total: 4:00:34
+Current time: 2019-07-10 01:08:26 EDT-0400
+
+Epoch 36
+Train:    Avg loss: 0.161    Percent Correct: 91.663
+Val  :    Avg loss: 0.215    Percent Correct: 74.563
+Train (All):            median_rank: 155.000    MRR: 0.069    H@10: 0.134    H@100: 0.415    H@500: 0.773
+Val (All):              median_rank: 271.000    MRR: 0.050    H@10: 0.103    H@100: 0.313    H@500: 0.660
+Val (In Train):         median_rank: 236.000    MRR: 0.056    H@10: 0.116    H@100: 0.342    H@500: 0.703
+Val (Not in Train):     median_rank: 809.000    MRR: 0.005    H@10: 0.003    H@100: 0.094    H@500: 0.341
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:44    Epoch (Evaluation): 0:03:01    Total: 4:07:19
+Current time: 2019-07-10 01:15:12 EDT-0400
+
+Epoch 37
+Train:    Avg loss: 0.160    Percent Correct: 91.652
+Val  :    Avg loss: 0.206    Percent Correct: 78.039
+Train (All):            median_rank: 154.000    MRR: 0.070    H@10: 0.135    H@100: 0.416    H@500: 0.778
+Val (All):              median_rank: 252.000    MRR: 0.057    H@10: 0.104    H@100: 0.330    H@500: 0.676
+Val (In Train):         median_rank: 215.000    MRR: 0.063    H@10: 0.117    H@100: 0.354    H@500: 0.706
+Val (Not in Train):     median_rank: 563.500    MRR: 0.007    H@10: 0.010    H@100: 0.143    H@500: 0.448
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:41    Epoch (Evaluation): 0:03:02    Total: 4:14:03
+Current time: 2019-07-10 01:21:55 EDT-0400
+
+Epoch 38
+Train:    Avg loss: 0.163    Percent Correct: 91.916
+Val  :    Avg loss: 0.224    Percent Correct: 77.851
+Train (All):            median_rank: 153.000    MRR: 0.073    H@10: 0.142    H@100: 0.420    H@500: 0.778
+Val (All):              median_rank: 253.000    MRR: 0.057    H@10: 0.107    H@100: 0.320    H@500: 0.660
+Val (In Train):         median_rank: 218.500    MRR: 0.064    H@10: 0.120    H@100: 0.350    H@500: 0.697
+Val (Not in Train):     median_rank: 757.000    MRR: 0.005    H@10: 0.006    H@100: 0.091    H@500: 0.383
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:42    Epoch (Evaluation): 0:03:01    Total: 4:20:46
+Current time: 2019-07-10 01:28:38 EDT-0400
+
+Epoch 39
+Train:    Avg loss: 0.156    Percent Correct: 92.184
+Val  :    Avg loss: 0.219    Percent Correct: 76.619
+Train (All):            median_rank: 143.000    MRR: 0.075    H@10: 0.147    H@100: 0.432    H@500: 0.786
+Val (All):              median_rank: 288.500    MRR: 0.058    H@10: 0.101    H@100: 0.308    H@500: 0.615
+Val (In Train):         median_rank: 240.000    MRR: 0.065    H@10: 0.114    H@100: 0.338    H@500: 0.656
+Val (Not in Train):     median_rank: 944.000    MRR: 0.004    H@10: 0.000    H@100: 0.078    H@500: 0.305
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:42    Epoch (Evaluation): 0:03:01    Total: 4:27:29
+Current time: 2019-07-10 01:35:21 EDT-0400
+
+Epoch 40
+Train:    Avg loss: 0.162    Percent Correct: 91.790
+Val  :    Avg loss: 0.215    Percent Correct: 76.882
+Train (All):            median_rank: 135.000    MRR: 0.078    H@10: 0.148    H@100: 0.440    H@500: 0.795
+Val (All):              median_rank: 294.000    MRR: 0.053    H@10: 0.106    H@100: 0.310    H@500: 0.636
+Val (In Train):         median_rank: 246.500    MRR: 0.059    H@10: 0.118    H@100: 0.340    H@500: 0.681
+Val (Not in Train):     median_rank: 871.500    MRR: 0.007    H@10: 0.013    H@100: 0.084    H@500: 0.295
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:41    Epoch (Evaluation): 0:03:00    Total: 4:34:10
+Current time: 2019-07-10 01:42:02 EDT-0400
+
+Epoch 41
+Train:    Avg loss: 0.161    Percent Correct: 92.442
+Val  :    Avg loss: 0.213    Percent Correct: 77.678
+Train (All):            median_rank: 137.000    MRR: 0.079    H@10: 0.151    H@100: 0.441    H@500: 0.801
+Val (All):              median_rank: 274.000    MRR: 0.058    H@10: 0.115    H@100: 0.306    H@500: 0.648
+Val (In Train):         median_rank: 231.500    MRR: 0.065    H@10: 0.129    H@100: 0.338    H@500: 0.693
+Val (Not in Train):     median_rank: 819.000    MRR: 0.007    H@10: 0.010    H@100: 0.065    H@500: 0.305
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:41    Epoch (Evaluation): 0:03:03    Total: 4:40:53
+Current time: 2019-07-10 01:48:46 EDT-0400
+
+Epoch 42
+Train:    Avg loss: 0.153    Percent Correct: 92.881
+Val  :    Avg loss: 0.218    Percent Correct: 76.448
+Train (All):            median_rank: 133.000    MRR: 0.084    H@10: 0.158    H@100: 0.445    H@500: 0.803
+Val (All):              median_rank: 242.000    MRR: 0.065    H@10: 0.114    H@100: 0.332    H@500: 0.681
+Val (In Train):         median_rank: 207.000    MRR: 0.073    H@10: 0.127    H@100: 0.360    H@500: 0.715
+Val (Not in Train):     median_rank: 670.500    MRR: 0.007    H@10: 0.019    H@100: 0.120    H@500: 0.422
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:41    Epoch (Evaluation): 0:03:02    Total: 4:47:36
+Current time: 2019-07-10 01:55:28 EDT-0400
+
+Epoch 43
+Train:    Avg loss: 0.153    Percent Correct: 93.130
+Val  :    Avg loss: 0.219    Percent Correct: 76.926
+Train (All):            median_rank: 131.000    MRR: 0.075    H@10: 0.147    H@100: 0.446    H@500: 0.807
+Val (All):              median_rank: 260.000    MRR: 0.054    H@10: 0.104    H@100: 0.317    H@500: 0.655
+Val (In Train):         median_rank: 221.000    MRR: 0.061    H@10: 0.117    H@100: 0.350    H@500: 0.703
+Val (Not in Train):     median_rank: 865.500    MRR: 0.005    H@10: 0.010    H@100: 0.062    H@500: 0.292
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:41    Epoch (Evaluation): 0:03:04    Total: 4:54:20
+Current time: 2019-07-10 02:02:13 EDT-0400
+
+Epoch 44
+Train:    Avg loss: 0.157    Percent Correct: 92.945
+Val  :    Avg loss: 0.218    Percent Correct: 79.255
+Train (All):            median_rank: 125.000    MRR: 0.087    H@10: 0.160    H@100: 0.457    H@500: 0.817
+Val (All):              median_rank: 249.000    MRR: 0.061    H@10: 0.106    H@100: 0.317    H@500: 0.678
+Val (In Train):         median_rank: 207.000    MRR: 0.068    H@10: 0.119    H@100: 0.350    H@500: 0.728
+Val (Not in Train):     median_rank: 911.500    MRR: 0.008    H@10: 0.010    H@100: 0.071    H@500: 0.295
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:45    Epoch (Evaluation): 0:03:01    Total: 5:01:07
+Current time: 2019-07-10 02:08:59 EDT-0400
+
+Epoch 45
+Train:    Avg loss: 0.158    Percent Correct: 92.976
+Val  :    Avg loss: 0.234    Percent Correct: 75.910
+Train (All):            median_rank: 119.000    MRR: 0.085    H@10: 0.161    H@100: 0.466    H@500: 0.817
+Val (All):              median_rank: 238.000    MRR: 0.060    H@10: 0.113    H@100: 0.331    H@500: 0.685
+Val (In Train):         median_rank: 199.500    MRR: 0.067    H@10: 0.126    H@100: 0.363    H@500: 0.728
+Val (Not in Train):     median_rank: 752.000    MRR: 0.006    H@10: 0.013    H@100: 0.088    H@500: 0.367
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:41    Epoch (Evaluation): 0:03:01    Total: 5:07:49
+Current time: 2019-07-10 02:15:41 EDT-0400
+
+Epoch 46
+Train:    Avg loss: 0.154    Percent Correct: 93.452
+Val  :    Avg loss: 0.213    Percent Correct: 79.992
+Train (All):            median_rank: 115.000    MRR: 0.090    H@10: 0.169    H@100: 0.475    H@500: 0.826
+Val (All):              median_rank: 250.000    MRR: 0.056    H@10: 0.111    H@100: 0.326    H@500: 0.657
+Val (In Train):         median_rank: 205.500    MRR: 0.063    H@10: 0.124    H@100: 0.354    H@500: 0.694
+Val (Not in Train):     median_rank: 729.000    MRR: 0.006    H@10: 0.010    H@100: 0.110    H@500: 0.380
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:39    Epoch (Evaluation): 0:03:03    Total: 5:14:30
+Current time: 2019-07-10 02:22:23 EDT-0400
+
+Epoch 47
+Train:    Avg loss: 0.157    Percent Correct: 94.105
+Val  :    Avg loss: 0.213    Percent Correct: 78.149
+Train (All):            median_rank: 117.000    MRR: 0.087    H@10: 0.162    H@100: 0.468    H@500: 0.829
+Val (All):              median_rank: 252.000    MRR: 0.061    H@10: 0.114    H@100: 0.331    H@500: 0.659
+Val (In Train):         median_rank: 213.000    MRR: 0.068    H@10: 0.126    H@100: 0.358    H@500: 0.698
+Val (Not in Train):     median_rank: 707.000    MRR: 0.012    H@10: 0.023    H@100: 0.123    H@500: 0.367
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:40    Epoch (Evaluation): 0:03:00    Total: 5:21:10
+Current time: 2019-07-10 02:29:03 EDT-0400
+
+Epoch 48
+Train:    Avg loss: 0.156    Percent Correct: 93.759
+Val  :    Avg loss: 0.213    Percent Correct: 79.935
+Train (All):            median_rank: 111.000    MRR: 0.090    H@10: 0.171    H@100: 0.481    H@500: 0.829
+Val (All):              median_rank: 250.000    MRR: 0.063    H@10: 0.123    H@100: 0.341    H@500: 0.672
+Val (In Train):         median_rank: 207.000    MRR: 0.070    H@10: 0.138    H@100: 0.377    H@500: 0.724
+Val (Not in Train):     median_rank: 919.000    MRR: 0.005    H@10: 0.006    H@100: 0.071    H@500: 0.279
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:44    Epoch (Evaluation): 0:03:00    Total: 5:27:55
+Current time: 2019-07-10 02:35:47 EDT-0400
+
+Epoch 49
+Train:    Avg loss: 0.155    Percent Correct: 93.469
+Val  :    Avg loss: 0.221    Percent Correct: 79.393
+Train (All):            median_rank: 105.000    MRR: 0.090    H@10: 0.172    H@100: 0.491    H@500: 0.841
+Val (All):              median_rank: 244.000    MRR: 0.054    H@10: 0.112    H@100: 0.343    H@500: 0.680
+Val (In Train):         median_rank: 200.000    MRR: 0.060    H@10: 0.126    H@100: 0.374    H@500: 0.719
+Val (Not in Train):     median_rank: 688.500    MRR: 0.005    H@10: 0.003    H@100: 0.107    H@500: 0.383
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:41    Epoch (Evaluation): 0:03:03    Total: 5:34:40
+Current time: 2019-07-10 02:42:32 EDT-0400
+
+Epoch 50
+Train:    Avg loss: 0.153    Percent Correct: 93.632
+Val  :    Avg loss: 0.221    Percent Correct: 78.175
+Train (All):            median_rank: 99.500    MRR: 0.092    H@10: 0.177    H@100: 0.502    H@500: 0.853
+Val (All):              median_rank: 229.500    MRR: 0.063    H@10: 0.122    H@100: 0.342    H@500: 0.687
+Val (In Train):         median_rank: 202.000    MRR: 0.070    H@10: 0.135    H@100: 0.370    H@500: 0.717
+Val (Not in Train):     median_rank: 552.000    MRR: 0.009    H@10: 0.026    H@100: 0.130    H@500: 0.455
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:51    Epoch (Evaluation): 0:03:01    Total: 5:41:32
+Current time: 2019-07-10 02:49:25 EDT-0400
+
+Epoch 51
+Train:    Avg loss: 0.153    Percent Correct: 94.437
+Val  :    Avg loss: 0.224    Percent Correct: 76.838
+Train (All):            median_rank: 98.000    MRR: 0.095    H@10: 0.182    H@100: 0.505    H@500: 0.850
+Val (All):              median_rank: 237.000    MRR: 0.064    H@10: 0.118    H@100: 0.343    H@500: 0.690
+Val (In Train):         median_rank: 196.000    MRR: 0.072    H@10: 0.132    H@100: 0.377    H@500: 0.743
+Val (Not in Train):     median_rank: 899.000    MRR: 0.005    H@10: 0.013    H@100: 0.081    H@500: 0.292
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:45    Epoch (Evaluation): 0:02:59    Total: 5:48:16
+Current time: 2019-07-10 02:56:08 EDT-0400
+
+Epoch 52
+Train:    Avg loss: 0.153    Percent Correct: 93.168
+Val  :    Avg loss: 0.209    Percent Correct: 79.621
+Train (All):            median_rank: 97.000    MRR: 0.093    H@10: 0.178    H@100: 0.508    H@500: 0.859
+Val (All):              median_rank: 217.500    MRR: 0.065    H@10: 0.125    H@100: 0.343    H@500: 0.677
+Val (In Train):         median_rank: 178.000    MRR: 0.072    H@10: 0.139    H@100: 0.379    H@500: 0.726
+Val (Not in Train):     median_rank: 864.000    MRR: 0.013    H@10: 0.013    H@100: 0.071    H@500: 0.305
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:41    Epoch (Evaluation): 0:03:02    Total: 5:54:59
+Current time: 2019-07-10 03:02:51 EDT-0400
+
+Epoch 53
+Train:    Avg loss: 0.153    Percent Correct: 93.654
+Val  :    Avg loss: 0.206    Percent Correct: 80.942
+Train (All):            median_rank: 97.000    MRR: 0.093    H@10: 0.178    H@100: 0.507    H@500: 0.862
+Val (All):              median_rank: 237.500    MRR: 0.065    H@10: 0.125    H@100: 0.343    H@500: 0.684
+Val (In Train):         median_rank: 195.000    MRR: 0.072    H@10: 0.140    H@100: 0.374    H@500: 0.719
+Val (Not in Train):     median_rank: 630.500    MRR: 0.010    H@10: 0.013    H@100: 0.107    H@500: 0.416
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:43    Epoch (Evaluation): 0:03:04    Total: 6:01:46
+Current time: 2019-07-10 03:09:38 EDT-0400
+
+Epoch 54
+Train:    Avg loss: 0.156    Percent Correct: 93.959
+Val  :    Avg loss: 0.213    Percent Correct: 81.651
+Train (All):            median_rank: 90.000    MRR: 0.100    H@10: 0.190    H@100: 0.521    H@500: 0.864
+Val (All):              median_rank: 247.000    MRR: 0.064    H@10: 0.122    H@100: 0.341    H@500: 0.673
+Val (In Train):         median_rank: 211.500    MRR: 0.071    H@10: 0.137    H@100: 0.371    H@500: 0.715
+Val (Not in Train):     median_rank: 779.500    MRR: 0.007    H@10: 0.010    H@100: 0.114    H@500: 0.357
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:40    Epoch (Evaluation): 0:03:03    Total: 6:08:28
+Current time: 2019-07-10 03:16:21 EDT-0400
+
+Epoch 55
+Train:    Avg loss: 0.150    Percent Correct: 94.377
+Val  :    Avg loss: 0.215    Percent Correct: 80.415
+Train (All):            median_rank: 94.000    MRR: 0.099    H@10: 0.185    H@100: 0.514    H@500: 0.854
+Val (All):              median_rank: 240.500    MRR: 0.063    H@10: 0.117    H@100: 0.331    H@500: 0.682
+Val (In Train):         median_rank: 212.000    MRR: 0.070    H@10: 0.131    H@100: 0.356    H@500: 0.706
+Val (Not in Train):     median_rank: 511.000    MRR: 0.010    H@10: 0.016    H@100: 0.140    H@500: 0.497
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:41    Epoch (Evaluation): 0:03:01    Total: 6:15:10
+Current time: 2019-07-10 03:23:03 EDT-0400
+
+Epoch 56
+Train:    Avg loss: 0.154    Percent Correct: 94.448
+Val  :    Avg loss: 0.215    Percent Correct: 78.348
+Train (All):            median_rank: 85.000    MRR: 0.100    H@10: 0.189    H@100: 0.533    H@500: 0.871
+Val (All):              median_rank: 232.500    MRR: 0.064    H@10: 0.118    H@100: 0.344    H@500: 0.696
+Val (In Train):         median_rank: 190.500    MRR: 0.071    H@10: 0.132    H@100: 0.374    H@500: 0.731
+Val (Not in Train):     median_rank: 581.000    MRR: 0.008    H@10: 0.019    H@100: 0.117    H@500: 0.429
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:42    Epoch (Evaluation): 0:03:03    Total: 6:21:55
+Current time: 2019-07-10 03:29:48 EDT-0400
+
+Epoch 57
+Train:    Avg loss: 0.151    Percent Correct: 94.180
+Val  :    Avg loss: 0.234    Percent Correct: 78.458
+Train (All):            median_rank: 93.000    MRR: 0.095    H@10: 0.183    H@100: 0.516    H@500: 0.866
+Val (All):              median_rank: 239.000    MRR: 0.065    H@10: 0.118    H@100: 0.352    H@500: 0.669
+Val (In Train):         median_rank: 196.500    MRR: 0.072    H@10: 0.132    H@100: 0.389    H@500: 0.718
+Val (Not in Train):     median_rank: 891.000    MRR: 0.007    H@10: 0.006    H@100: 0.068    H@500: 0.299
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:41    Epoch (Evaluation): 0:03:02    Total: 6:28:38
+Current time: 2019-07-10 03:36:31 EDT-0400
+
+Epoch 58
+Train:    Avg loss: 0.146    Percent Correct: 94.919
+Val  :    Avg loss: 0.238    Percent Correct: 79.764
+Train (All):            median_rank: 85.000    MRR: 0.103    H@10: 0.193    H@100: 0.533    H@500: 0.881
+Val (All):              median_rank: 236.000    MRR: 0.069    H@10: 0.129    H@100: 0.345    H@500: 0.684
+Val (In Train):         median_rank: 190.000    MRR: 0.078    H@10: 0.145    H@100: 0.379    H@500: 0.725
+Val (Not in Train):     median_rank: 775.000    MRR: 0.005    H@10: 0.010    H@100: 0.084    H@500: 0.373
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:42    Epoch (Evaluation): 0:03:01    Total: 6:35:21
+Current time: 2019-07-10 03:43:13 EDT-0400
+
+Epoch 59
+Train:    Avg loss: 0.148    Percent Correct: 95.056
+Val  :    Avg loss: 0.226    Percent Correct: 81.884
+Train (All):            median_rank: 82.000    MRR: 0.104    H@10: 0.195    H@100: 0.540    H@500: 0.886
+Val (All):              median_rank: 221.500    MRR: 0.065    H@10: 0.126    H@100: 0.346    H@500: 0.685
+Val (In Train):         median_rank: 179.000    MRR: 0.072    H@10: 0.141    H@100: 0.380    H@500: 0.728
+Val (Not in Train):     median_rank: 772.000    MRR: 0.009    H@10: 0.019    H@100: 0.088    H@500: 0.360
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:48    Epoch (Evaluation): 0:03:02    Total: 6:42:11
+Current time: 2019-07-10 03:50:04 EDT-0400
+
+Epoch 60
+Train:    Avg loss: 0.145    Percent Correct: 95.298
+Val  :    Avg loss: 0.228    Percent Correct: 79.405
+Train (All):            median_rank: 81.000    MRR: 0.104    H@10: 0.194    H@100: 0.541    H@500: 0.880
+Val (All):              median_rank: 221.000    MRR: 0.068    H@10: 0.127    H@100: 0.364    H@500: 0.677
+Val (In Train):         median_rank: 183.500    MRR: 0.077    H@10: 0.142    H@100: 0.401    H@500: 0.717
+Val (Not in Train):     median_rank: 702.000    MRR: 0.005    H@10: 0.013    H@100: 0.091    H@500: 0.370
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:43    Epoch (Evaluation): 0:03:10    Total: 6:49:03
+Current time: 2019-07-10 03:56:56 EDT-0400
+
+Epoch 61
+Train:    Avg loss: 0.147    Percent Correct: 94.674
+Val  :    Avg loss: 0.228    Percent Correct: 81.437
+Train (All):            median_rank: 84.000    MRR: 0.101    H@10: 0.198    H@100: 0.535    H@500: 0.872
+Val (All):              median_rank: 220.500    MRR: 0.065    H@10: 0.120    H@100: 0.343    H@500: 0.698
+Val (In Train):         median_rank: 191.500    MRR: 0.072    H@10: 0.134    H@100: 0.371    H@500: 0.725
+Val (Not in Train):     median_rank: 502.000    MRR: 0.010    H@10: 0.013    H@100: 0.130    H@500: 0.497
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:42    Epoch (Evaluation): 0:03:00    Total: 6:55:45
+Current time: 2019-07-10 04:03:37 EDT-0400
+
+Epoch 62
+Train:    Avg loss: 0.155    Percent Correct: 94.637
+Val  :    Avg loss: 0.237    Percent Correct: 80.238
+Train (All):            median_rank: 78.000    MRR: 0.109    H@10: 0.204    H@100: 0.550    H@500: 0.888
+Val (All):              median_rank: 211.500    MRR: 0.071    H@10: 0.133    H@100: 0.354    H@500: 0.712
+Val (In Train):         median_rank: 181.000    MRR: 0.079    H@10: 0.148    H@100: 0.386    H@500: 0.743
+Val (Not in Train):     median_rank: 541.000    MRR: 0.009    H@10: 0.023    H@100: 0.114    H@500: 0.474
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:42    Epoch (Evaluation): 0:03:01    Total: 7:02:28
+Current time: 2019-07-10 04:10:20 EDT-0400
+
+Epoch 63
+Train:    Avg loss: 0.149    Percent Correct: 94.645
+Val  :    Avg loss: 0.238    Percent Correct: 77.899
+Train (All):            median_rank: 73.000    MRR: 0.109    H@10: 0.208    H@100: 0.564    H@500: 0.899
+Val (All):              median_rank: 216.000    MRR: 0.071    H@10: 0.137    H@100: 0.358    H@500: 0.699
+Val (In Train):         median_rank: 177.000    MRR: 0.079    H@10: 0.152    H@100: 0.393    H@500: 0.738
+Val (Not in Train):     median_rank: 648.500    MRR: 0.011    H@10: 0.023    H@100: 0.097    H@500: 0.399
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:42    Epoch (Evaluation): 0:03:02    Total: 7:09:12
+Current time: 2019-07-10 04:17:04 EDT-0400
+
+Epoch 64
+Train:    Avg loss: 0.149    Percent Correct: 94.924
+Val  :    Avg loss: 0.215    Percent Correct: 83.967
+Train (All):            median_rank: 73.000    MRR: 0.112    H@10: 0.206    H@100: 0.563    H@500: 0.898
+Val (All):              median_rank: 208.500    MRR: 0.073    H@10: 0.137    H@100: 0.363    H@500: 0.704
+Val (In Train):         median_rank: 172.500    MRR: 0.082    H@10: 0.153    H@100: 0.399    H@500: 0.748
+Val (Not in Train):     median_rank: 711.000    MRR: 0.007    H@10: 0.016    H@100: 0.091    H@500: 0.373
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:43    Epoch (Evaluation): 0:03:03    Total: 7:15:57
+Current time: 2019-07-10 04:23:50 EDT-0400
+
+Epoch 65
+Train:    Avg loss: 0.148    Percent Correct: 94.223
+Val  :    Avg loss: 0.241    Percent Correct: 81.294
+Train (All):            median_rank: 71.000    MRR: 0.117    H@10: 0.217    H@100: 0.572    H@500: 0.898
+Val (All):              median_rank: 218.000    MRR: 0.075    H@10: 0.140    H@100: 0.377    H@500: 0.708
+Val (In Train):         median_rank: 169.500    MRR: 0.084    H@10: 0.157    H@100: 0.412    H@500: 0.752
+Val (Not in Train):     median_rank: 766.500    MRR: 0.009    H@10: 0.013    H@100: 0.114    H@500: 0.373
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:51    Epoch (Evaluation): 0:03:01    Total: 7:22:49
+Current time: 2019-07-10 04:30:41 EDT-0400
+
+Epoch 66
+Train:    Avg loss: 0.143    Percent Correct: 95.446
+Val  :    Avg loss: 0.245    Percent Correct: 78.215
+Train (All):            median_rank: 71.000    MRR: 0.107    H@10: 0.209    H@100: 0.567    H@500: 0.900
+Val (All):              median_rank: 216.000    MRR: 0.065    H@10: 0.128    H@100: 0.367    H@500: 0.694
+Val (In Train):         median_rank: 170.000    MRR: 0.072    H@10: 0.143    H@100: 0.407    H@500: 0.751
+Val (Not in Train):     median_rank: 1022.000    MRR: 0.006    H@10: 0.019    H@100: 0.068    H@500: 0.263
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:40    Epoch (Evaluation): 0:03:05    Total: 7:29:34
+Current time: 2019-07-10 04:37:26 EDT-0400
+
+Epoch 67
+Train:    Avg loss: 0.147    Percent Correct: 95.392
+Val  :    Avg loss: 0.232    Percent Correct: 78.972
+Train (All):            median_rank: 71.000    MRR: 0.106    H@10: 0.206    H@100: 0.567    H@500: 0.898
+Val (All):              median_rank: 199.000    MRR: 0.067    H@10: 0.129    H@100: 0.372    H@500: 0.715
+Val (In Train):         median_rank: 160.000    MRR: 0.075    H@10: 0.144    H@100: 0.411    H@500: 0.757
+Val (Not in Train):     median_rank: 647.500    MRR: 0.007    H@10: 0.013    H@100: 0.075    H@500: 0.399
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:42    Epoch (Evaluation): 0:02:59    Total: 7:36:15
+Current time: 2019-07-10 04:44:07 EDT-0400
+
+Epoch 68
+Train:    Avg loss: 0.148    Percent Correct: 95.218
+Val  :    Avg loss: 0.220    Percent Correct: 82.633
+Train (All):            median_rank: 66.000    MRR: 0.115    H@10: 0.220    H@100: 0.584    H@500: 0.907
+Val (All):              median_rank: 208.000    MRR: 0.068    H@10: 0.133    H@100: 0.364    H@500: 0.713
+Val (In Train):         median_rank: 170.000    MRR: 0.075    H@10: 0.148    H@100: 0.400    H@500: 0.754
+Val (Not in Train):     median_rank: 692.000    MRR: 0.008    H@10: 0.019    H@100: 0.088    H@500: 0.406
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:39    Epoch (Evaluation): 0:03:04    Total: 7:42:58
+Current time: 2019-07-10 04:50:51 EDT-0400
+
+Epoch 69
+Train:    Avg loss: 0.143    Percent Correct: 95.366
+Val  :    Avg loss: 0.228    Percent Correct: 83.425
+Train (All):            median_rank: 67.000    MRR: 0.115    H@10: 0.219    H@100: 0.581    H@500: 0.913
+Val (All):              median_rank: 210.000    MRR: 0.074    H@10: 0.129    H@100: 0.364    H@500: 0.710
+Val (In Train):         median_rank: 175.500    MRR: 0.082    H@10: 0.144    H@100: 0.398    H@500: 0.745
+Val (Not in Train):     median_rank: 579.500    MRR: 0.013    H@10: 0.023    H@100: 0.110    H@500: 0.445
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:40    Epoch (Evaluation): 0:03:00    Total: 7:49:38
+Current time: 2019-07-10 04:57:30 EDT-0400
+
+Epoch 70
+Train:    Avg loss: 0.146    Percent Correct: 95.602
+Val  :    Avg loss: 0.229    Percent Correct: 81.293
+Train (All):            median_rank: 66.000    MRR: 0.119    H@10: 0.220    H@100: 0.585    H@500: 0.914
+Val (All):              median_rank: 192.500    MRR: 0.073    H@10: 0.139    H@100: 0.376    H@500: 0.723
+Val (In Train):         median_rank: 159.000    MRR: 0.081    H@10: 0.155    H@100: 0.411    H@500: 0.756
+Val (Not in Train):     median_rank: 528.500    MRR: 0.009    H@10: 0.019    H@100: 0.110    H@500: 0.474
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:42    Epoch (Evaluation): 0:03:05    Total: 7:56:24
+Current time: 2019-07-10 05:04:17 EDT-0400
+
+Epoch 71
+Train:    Avg loss: 0.148    Percent Correct: 95.544
+Val  :    Avg loss: 0.232    Percent Correct: 79.902
+Train (All):            median_rank: 63.000    MRR: 0.121    H@10: 0.228    H@100: 0.596    H@500: 0.921
+Val (All):              median_rank: 191.000    MRR: 0.072    H@10: 0.140    H@100: 0.380    H@500: 0.743
+Val (In Train):         median_rank: 153.000    MRR: 0.080    H@10: 0.155    H@100: 0.418    H@500: 0.786
+Val (Not in Train):     median_rank: 685.500    MRR: 0.010    H@10: 0.023    H@100: 0.097    H@500: 0.416
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:41    Epoch (Evaluation): 0:02:59    Total: 8:03:04
+Current time: 2019-07-10 05:10:57 EDT-0400
+
+Epoch 72
+Train:    Avg loss: 0.148    Percent Correct: 95.765
+Val  :    Avg loss: 0.230    Percent Correct: 82.531
+Train (All):            median_rank: 64.000    MRR: 0.117    H@10: 0.222    H@100: 0.592    H@500: 0.916
+Val (All):              median_rank: 210.000    MRR: 0.075    H@10: 0.139    H@100: 0.386    H@500: 0.702
+Val (In Train):         median_rank: 158.000    MRR: 0.083    H@10: 0.155    H@100: 0.426    H@500: 0.753
+Val (Not in Train):     median_rank: 876.500    MRR: 0.010    H@10: 0.013    H@100: 0.081    H@500: 0.312
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:41    Epoch (Evaluation): 0:03:01    Total: 8:09:47
+Current time: 2019-07-10 05:17:39 EDT-0400
+
+Epoch 73
+Train:    Avg loss: 0.143    Percent Correct: 95.445
+Val  :    Avg loss: 0.245    Percent Correct: 82.932
+Train (All):            median_rank: 61.000    MRR: 0.117    H@10: 0.222    H@100: 0.602    H@500: 0.922
+Val (All):              median_rank: 191.000    MRR: 0.072    H@10: 0.136    H@100: 0.379    H@500: 0.710
+Val (In Train):         median_rank: 153.000    MRR: 0.081    H@10: 0.152    H@100: 0.416    H@500: 0.752
+Val (Not in Train):     median_rank: 731.000    MRR: 0.007    H@10: 0.016    H@100: 0.101    H@500: 0.393
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:42    Epoch (Evaluation): 0:03:01    Total: 8:16:30
+Current time: 2019-07-10 05:24:23 EDT-0400
+
+Epoch 74
+Train:    Avg loss: 0.149    Percent Correct: 95.646
+Val  :    Avg loss: 0.236    Percent Correct: 79.847
+Train (All):            median_rank: 60.000    MRR: 0.121    H@10: 0.227    H@100: 0.606    H@500: 0.922
+Val (All):              median_rank: 217.000    MRR: 0.070    H@10: 0.126    H@100: 0.364    H@500: 0.690
+Val (In Train):         median_rank: 179.500    MRR: 0.078    H@10: 0.141    H@100: 0.402    H@500: 0.731
+Val (Not in Train):     median_rank: 727.500    MRR: 0.011    H@10: 0.016    H@100: 0.078    H@500: 0.377
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:45    Epoch (Evaluation): 0:03:04    Total: 8:23:19
+Current time: 2019-07-10 05:31:12 EDT-0400
+
+Epoch 75
+Train:    Avg loss: 0.144    Percent Correct: 95.787
+Val  :    Avg loss: 0.226    Percent Correct: 80.143
+Train (All):            median_rank: 58.000    MRR: 0.120    H@10: 0.229    H@100: 0.613    H@500: 0.919
+Val (All):              median_rank: 207.000    MRR: 0.075    H@10: 0.135    H@100: 0.366    H@500: 0.724
+Val (In Train):         median_rank: 172.500    MRR: 0.084    H@10: 0.152    H@100: 0.402    H@500: 0.767
+Val (Not in Train):     median_rank: 686.500    MRR: 0.006    H@10: 0.010    H@100: 0.091    H@500: 0.393
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:41    Epoch (Evaluation): 0:03:01    Total: 8:30:02
+Current time: 2019-07-10 05:37:55 EDT-0400
+
+Epoch 76
+Train:    Avg loss: 0.148    Percent Correct: 95.478
+Val  :    Avg loss: 0.232    Percent Correct: 81.036
+Train (All):            median_rank: 57.000    MRR: 0.124    H@10: 0.232    H@100: 0.617    H@500: 0.927
+Val (All):              median_rank: 198.000    MRR: 0.076    H@10: 0.144    H@100: 0.368    H@500: 0.706
+Val (In Train):         median_rank: 159.000    MRR: 0.084    H@10: 0.159    H@100: 0.405    H@500: 0.749
+Val (Not in Train):     median_rank: 681.500    MRR: 0.010    H@10: 0.026    H@100: 0.088    H@500: 0.380
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:42    Epoch (Evaluation): 0:03:04    Total: 8:36:48
+Current time: 2019-07-10 05:44:40 EDT-0400
+
+Epoch 77
+Train:    Avg loss: 0.145    Percent Correct: 95.367
+Val  :    Avg loss: 0.223    Percent Correct: 81.680
+Train (All):            median_rank: 58.000    MRR: 0.122    H@10: 0.232    H@100: 0.610    H@500: 0.925
+Val (All):              median_rank: 204.500    MRR: 0.072    H@10: 0.127    H@100: 0.371    H@500: 0.709
+Val (In Train):         median_rank: 164.000    MRR: 0.081    H@10: 0.142    H@100: 0.408    H@500: 0.751
+Val (Not in Train):     median_rank: 739.000    MRR: 0.007    H@10: 0.013    H@100: 0.084    H@500: 0.383
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:39    Epoch (Evaluation): 0:03:01    Total: 8:43:27
+Current time: 2019-07-10 05:51:20 EDT-0400
+
+Epoch 78
+Train:    Avg loss: 0.148    Percent Correct: 95.930
+Val  :    Avg loss: 0.237    Percent Correct: 80.260
+Train (All):            median_rank: 56.000    MRR: 0.126    H@10: 0.240    H@100: 0.620    H@500: 0.929
+Val (All):              median_rank: 187.000    MRR: 0.074    H@10: 0.137    H@100: 0.381    H@500: 0.713
+Val (In Train):         median_rank: 152.000    MRR: 0.083    H@10: 0.152    H@100: 0.419    H@500: 0.762
+Val (Not in Train):     median_rank: 830.000    MRR: 0.006    H@10: 0.019    H@100: 0.094    H@500: 0.344
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:40    Epoch (Evaluation): 0:03:01    Total: 8:50:08
+Current time: 2019-07-10 05:58:01 EDT-0400
+
+Epoch 79
+Train:    Avg loss: 0.144    Percent Correct: 95.854
+Val  :    Avg loss: 0.225    Percent Correct: 82.330
+Train (All):            median_rank: 54.000    MRR: 0.127    H@10: 0.242    H@100: 0.627    H@500: 0.931
+Val (All):              median_rank: 200.500    MRR: 0.078    H@10: 0.142    H@100: 0.373    H@500: 0.701
+Val (In Train):         median_rank: 164.000    MRR: 0.087    H@10: 0.161    H@100: 0.413    H@500: 0.756
+Val (Not in Train):     median_rank: 921.000    MRR: 0.004    H@10: 0.003    H@100: 0.068    H@500: 0.286
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:39    Epoch (Evaluation): 0:03:02    Total: 8:56:50
+Current time: 2019-07-10 06:04:42 EDT-0400
+
+Epoch 80
+Train:    Avg loss: 0.141    Percent Correct: 96.497
+Val  :    Avg loss: 0.239    Percent Correct: 80.137
+Train (All):            median_rank: 54.000    MRR: 0.126    H@10: 0.237    H@100: 0.629    H@500: 0.936
+Val (All):              median_rank: 184.500    MRR: 0.073    H@10: 0.136    H@100: 0.390    H@500: 0.720
+Val (In Train):         median_rank: 151.000    MRR: 0.081    H@10: 0.152    H@100: 0.429    H@500: 0.769
+Val (Not in Train):     median_rank: 818.500    MRR: 0.009    H@10: 0.010    H@100: 0.094    H@500: 0.351
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:38    Epoch (Evaluation): 0:03:03    Total: 9:03:31
+Current time: 2019-07-10 06:11:23 EDT-0400
+
+Epoch 81
+Train:    Avg loss: 0.145    Percent Correct: 95.861
+Val  :    Avg loss: 0.227    Percent Correct: 84.135
+Train (All):            median_rank: 52.000    MRR: 0.130    H@10: 0.244    H@100: 0.633    H@500: 0.937
+Val (All):              median_rank: 200.500    MRR: 0.075    H@10: 0.139    H@100: 0.382    H@500: 0.697
+Val (In Train):         median_rank: 162.000    MRR: 0.085    H@10: 0.156    H@100: 0.421    H@500: 0.743
+Val (Not in Train):     median_rank: 744.500    MRR: 0.005    H@10: 0.006    H@100: 0.088    H@500: 0.347
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:40    Epoch (Evaluation): 0:02:59    Total: 9:10:10
+Current time: 2019-07-10 06:18:03 EDT-0400
+
+Epoch 82
+Train:    Avg loss: 0.143    Percent Correct: 96.654
+Val  :    Avg loss: 0.240    Percent Correct: 83.315
+Train (All):            median_rank: 52.000    MRR: 0.126    H@10: 0.239    H@100: 0.635    H@500: 0.940
+Val (All):              median_rank: 206.500    MRR: 0.072    H@10: 0.134    H@100: 0.374    H@500: 0.709
+Val (In Train):         median_rank: 170.500    MRR: 0.081    H@10: 0.149    H@100: 0.408    H@500: 0.746
+Val (Not in Train):     median_rank: 625.500    MRR: 0.008    H@10: 0.023    H@100: 0.114    H@500: 0.432
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:41    Epoch (Evaluation): 0:02:59    Total: 9:16:49
+Current time: 2019-07-10 06:24:42 EDT-0400
+
+Epoch 83
+Train:    Avg loss: 0.151    Percent Correct: 95.879
+Val  :    Avg loss: 0.234    Percent Correct: 84.344
+Train (All):            median_rank: 52.000    MRR: 0.127    H@10: 0.239    H@100: 0.639    H@500: 0.944
+Val (All):              median_rank: 204.000    MRR: 0.079    H@10: 0.143    H@100: 0.383    H@500: 0.697
+Val (In Train):         median_rank: 168.500    MRR: 0.088    H@10: 0.160    H@100: 0.415    H@500: 0.727
+Val (Not in Train):     median_rank: 571.000    MRR: 0.008    H@10: 0.013    H@100: 0.140    H@500: 0.471
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:44    Epoch (Evaluation): 0:03:04    Total: 9:23:37
+Current time: 2019-07-10 06:31:29 EDT-0400
+
+Epoch 84
+Train:    Avg loss: 0.143    Percent Correct: 96.214
+Val  :    Avg loss: 0.243    Percent Correct: 82.102
+Train (All):            median_rank: 50.000    MRR: 0.134    H@10: 0.251    H@100: 0.642    H@500: 0.935
+Val (All):              median_rank: 173.500    MRR: 0.081    H@10: 0.148    H@100: 0.400    H@500: 0.732
+Val (In Train):         median_rank: 138.000    MRR: 0.091    H@10: 0.167    H@100: 0.440    H@500: 0.774
+Val (Not in Train):     median_rank: 682.500    MRR: 0.008    H@10: 0.006    H@100: 0.104    H@500: 0.419
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:40    Epoch (Evaluation): 0:03:02    Total: 9:30:19
+Current time: 2019-07-10 06:38:11 EDT-0400
+
+Epoch 85
+Train:    Avg loss: 0.145    Percent Correct: 96.587
+Val  :    Avg loss: 0.225    Percent Correct: 83.688
+Train (All):            median_rank: 49.000    MRR: 0.131    H@10: 0.254    H@100: 0.650    H@500: 0.940
+Val (All):              median_rank: 186.500    MRR: 0.071    H@10: 0.138    H@100: 0.391    H@500: 0.729
+Val (In Train):         median_rank: 156.000    MRR: 0.079    H@10: 0.155    H@100: 0.422    H@500: 0.760
+Val (Not in Train):     median_rank: 539.000    MRR: 0.010    H@10: 0.013    H@100: 0.153    H@500: 0.490
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:43    Epoch (Evaluation): 0:03:02    Total: 9:37:03
+Current time: 2019-07-10 06:44:56 EDT-0400
+
+Epoch 86
+Train:    Avg loss: 0.144    Percent Correct: 96.256
+Val  :    Avg loss: 0.238    Percent Correct: 86.408
+Train (All):            median_rank: 51.500    MRR: 0.132    H@10: 0.245    H@100: 0.638    H@500: 0.933
+Val (All):              median_rank: 183.000    MRR: 0.077    H@10: 0.129    H@100: 0.388    H@500: 0.723
+Val (In Train):         median_rank: 155.000    MRR: 0.085    H@10: 0.144    H@100: 0.425    H@500: 0.759
+Val (Not in Train):     median_rank: 570.000    MRR: 0.012    H@10: 0.016    H@100: 0.104    H@500: 0.455
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:43    Epoch (Evaluation): 0:03:01    Total: 9:43:47
+Current time: 2019-07-10 06:51:40 EDT-0400
+
+Epoch 87
+Train:    Avg loss: 0.143    Percent Correct: 96.472
+Val  :    Avg loss: 0.233    Percent Correct: 82.404
+Train (All):            median_rank: 50.000    MRR: 0.132    H@10: 0.247    H@100: 0.646    H@500: 0.944
+Val (All):              median_rank: 185.000    MRR: 0.074    H@10: 0.136    H@100: 0.380    H@500: 0.732
+Val (In Train):         median_rank: 156.000    MRR: 0.083    H@10: 0.153    H@100: 0.416    H@500: 0.766
+Val (Not in Train):     median_rank: 548.500    MRR: 0.006    H@10: 0.010    H@100: 0.107    H@500: 0.471
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:42    Epoch (Evaluation): 0:03:02    Total: 9:50:31
+Current time: 2019-07-10 06:58:24 EDT-0400
+
+Epoch 88
+Train:    Avg loss: 0.144    Percent Correct: 96.104
+Val  :    Avg loss: 0.246    Percent Correct: 80.417
+Train (All):            median_rank: 47.000    MRR: 0.133    H@10: 0.255    H@100: 0.658    H@500: 0.943
+Val (All):              median_rank: 186.500    MRR: 0.072    H@10: 0.136    H@100: 0.382    H@500: 0.725
+Val (In Train):         median_rank: 150.500    MRR: 0.080    H@10: 0.152    H@100: 0.421    H@500: 0.760
+Val (Not in Train):     median_rank: 563.500    MRR: 0.008    H@10: 0.013    H@100: 0.091    H@500: 0.464
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:39    Epoch (Evaluation): 0:03:02    Total: 9:57:13
+Current time: 2019-07-10 07:05:06 EDT-0400
+
+Epoch 89
+Train:    Avg loss: 0.143    Percent Correct: 96.405
+Val  :    Avg loss: 0.245    Percent Correct: 84.806
+Train (All):            median_rank: 46.000    MRR: 0.140    H@10: 0.265    H@100: 0.664    H@500: 0.951
+Val (All):              median_rank: 177.500    MRR: 0.083    H@10: 0.149    H@100: 0.396    H@500: 0.722
+Val (In Train):         median_rank: 147.000    MRR: 0.093    H@10: 0.167    H@100: 0.433    H@500: 0.757
+Val (Not in Train):     median_rank: 578.000    MRR: 0.012    H@10: 0.016    H@100: 0.120    H@500: 0.455
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:42    Epoch (Evaluation): 0:03:04    Total: 10:04:00
+Current time: 2019-07-10 07:11:53 EDT-0400
+
+Epoch 90
+Train:    Avg loss: 0.141    Percent Correct: 96.836
+Val  :    Avg loss: 0.248    Percent Correct: 82.064
+Train (All):            median_rank: 44.000    MRR: 0.140    H@10: 0.264    H@100: 0.665    H@500: 0.948
+Val (All):              median_rank: 184.000    MRR: 0.080    H@10: 0.147    H@100: 0.394    H@500: 0.719
+Val (In Train):         median_rank: 139.000    MRR: 0.089    H@10: 0.164    H@100: 0.435    H@500: 0.768
+Val (Not in Train):     median_rank: 849.000    MRR: 0.011    H@10: 0.016    H@100: 0.081    H@500: 0.347
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:39    Epoch (Evaluation): 0:03:01    Total: 10:10:40
+Current time: 2019-07-10 07:18:33 EDT-0400
+
+Epoch 91
+Train:    Avg loss: 0.140    Percent Correct: 96.503
+Val  :    Avg loss: 0.248    Percent Correct: 82.849
+Train (All):            median_rank: 44.000    MRR: 0.139    H@10: 0.265    H@100: 0.667    H@500: 0.949
+Val (All):              median_rank: 180.000    MRR: 0.083    H@10: 0.148    H@100: 0.404    H@500: 0.720
+Val (In Train):         median_rank: 149.000    MRR: 0.093    H@10: 0.165    H@100: 0.438    H@500: 0.757
+Val (Not in Train):     median_rank: 623.000    MRR: 0.008    H@10: 0.019    H@100: 0.143    H@500: 0.435
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:41    Epoch (Evaluation): 0:03:03    Total: 10:17:24
+Current time: 2019-07-10 07:25:16 EDT-0400
+
+Epoch 92
+Train:    Avg loss: 0.135    Percent Correct: 96.937
+Val  :    Avg loss: 0.241    Percent Correct: 84.283
+Train (All):            median_rank: 45.000    MRR: 0.137    H@10: 0.262    H@100: 0.665    H@500: 0.944
+Val (All):              median_rank: 172.000    MRR: 0.077    H@10: 0.145    H@100: 0.409    H@500: 0.729
+Val (In Train):         median_rank: 133.000    MRR: 0.087    H@10: 0.163    H@100: 0.452    H@500: 0.786
+Val (Not in Train):     median_rank: 862.500    MRR: 0.006    H@10: 0.010    H@100: 0.081    H@500: 0.302
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:42    Epoch (Evaluation): 0:03:01    Total: 10:24:06
+Current time: 2019-07-10 07:31:59 EDT-0400
+
+Epoch 93
+Train:    Avg loss: 0.145    Percent Correct: 96.538
+Val  :    Avg loss: 0.251    Percent Correct: 83.908
+Train (All):            median_rank: 44.000    MRR: 0.141    H@10: 0.268    H@100: 0.669    H@500: 0.953
+Val (All):              median_rank: 178.000    MRR: 0.076    H@10: 0.151    H@100: 0.396    H@500: 0.721
+Val (In Train):         median_rank: 147.000    MRR: 0.085    H@10: 0.169    H@100: 0.431    H@500: 0.756
+Val (Not in Train):     median_rank: 563.500    MRR: 0.009    H@10: 0.016    H@100: 0.127    H@500: 0.458
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:40    Epoch (Evaluation): 0:02:57    Total: 10:30:43
+Current time: 2019-07-10 07:38:36 EDT-0400
+
+Epoch 94
+Train:    Avg loss: 0.143    Percent Correct: 96.332
+Val  :    Avg loss: 0.238    Percent Correct: 84.191
+Train (All):            median_rank: 46.000    MRR: 0.135    H@10: 0.259    H@100: 0.662    H@500: 0.949
+Val (All):              median_rank: 184.000    MRR: 0.070    H@10: 0.134    H@100: 0.388    H@500: 0.729
+Val (In Train):         median_rank: 152.000    MRR: 0.078    H@10: 0.150    H@100: 0.422    H@500: 0.767
+Val (Not in Train):     median_rank: 596.000    MRR: 0.009    H@10: 0.010    H@100: 0.127    H@500: 0.442
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:36    Epoch (Evaluation): 0:02:58    Total: 10:37:17
+Current time: 2019-07-10 07:45:10 EDT-0400
+
+Epoch 95
+Train:    Avg loss: 0.146    Percent Correct: 96.486
+Val  :    Avg loss: 0.233    Percent Correct: 85.434
+Train (All):            median_rank: 45.000    MRR: 0.136    H@10: 0.257    H@100: 0.666    H@500: 0.952
+Val (All):              median_rank: 191.000    MRR: 0.072    H@10: 0.137    H@100: 0.388    H@500: 0.731
+Val (In Train):         median_rank: 158.000    MRR: 0.080    H@10: 0.153    H@100: 0.421    H@500: 0.761
+Val (Not in Train):     median_rank: 490.000    MRR: 0.010    H@10: 0.016    H@100: 0.136    H@500: 0.506
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:36    Epoch (Evaluation): 0:02:58    Total: 10:43:51
+Current time: 2019-07-10 07:51:44 EDT-0400
+
+Epoch 96
+Train:    Avg loss: 0.141    Percent Correct: 96.582
+Val  :    Avg loss: 0.241    Percent Correct: 84.231
+Train (All):            median_rank: 42.000    MRR: 0.142    H@10: 0.272    H@100: 0.675    H@500: 0.951
+Val (All):              median_rank: 181.500    MRR: 0.080    H@10: 0.145    H@100: 0.391    H@500: 0.722
+Val (In Train):         median_rank: 146.500    MRR: 0.089    H@10: 0.162    H@100: 0.426    H@500: 0.764
+Val (Not in Train):     median_rank: 683.000    MRR: 0.010    H@10: 0.013    H@100: 0.120    H@500: 0.403
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:36    Epoch (Evaluation): 0:02:58    Total: 10:50:26
+Current time: 2019-07-10 07:58:19 EDT-0400
+
+Epoch 97
+Train:    Avg loss: 0.141    Percent Correct: 96.818
+Val  :    Avg loss: 0.256    Percent Correct: 83.256
+Train (All):            median_rank: 41.000    MRR: 0.145    H@10: 0.275    H@100: 0.692    H@500: 0.964
+Val (All):              median_rank: 173.000    MRR: 0.080    H@10: 0.148    H@100: 0.402    H@500: 0.741
+Val (In Train):         median_rank: 141.000    MRR: 0.089    H@10: 0.165    H@100: 0.440    H@500: 0.782
+Val (Not in Train):     median_rank: 620.500    MRR: 0.007    H@10: 0.016    H@100: 0.117    H@500: 0.429
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:37    Epoch (Evaluation): 0:02:59    Total: 10:57:02
+Current time: 2019-07-10 08:04:55 EDT-0400
+
+Epoch 98
+Train:    Avg loss: 0.140    Percent Correct: 96.565
+Val  :    Avg loss: 0.240    Percent Correct: 81.468
+Train (All):            median_rank: 40.000    MRR: 0.143    H@10: 0.273    H@100: 0.691    H@500: 0.959
+Val (All):              median_rank: 179.000    MRR: 0.081    H@10: 0.146    H@100: 0.403    H@500: 0.731
+Val (In Train):         median_rank: 138.000    MRR: 0.091    H@10: 0.163    H@100: 0.442    H@500: 0.781
+Val (Not in Train):     median_rank: 802.500    MRR: 0.005    H@10: 0.013    H@100: 0.107    H@500: 0.354
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:37    Epoch (Evaluation): 0:02:56    Total: 11:03:36
+Current time: 2019-07-10 08:11:29 EDT-0400
+
+Epoch 99
+Train:    Avg loss: 0.141    Percent Correct: 97.065
+Val  :    Avg loss: 0.242    Percent Correct: 80.849
+Train (All):            median_rank: 41.000    MRR: 0.150    H@10: 0.280    H@100: 0.680    H@500: 0.952
+Val (All):              median_rank: 182.500    MRR: 0.082    H@10: 0.146    H@100: 0.402    H@500: 0.724
+Val (In Train):         median_rank: 141.000    MRR: 0.091    H@10: 0.163    H@100: 0.444    H@500: 0.770
+Val (Not in Train):     median_rank: 712.000    MRR: 0.014    H@10: 0.016    H@100: 0.088    H@500: 0.373
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:37    Epoch (Evaluation): 0:02:59    Total: 11:10:12
+Current time: 2019-07-10 08:18:04 EDT-0400
+
+Epoch 100
+Train:    Avg loss: 0.147    Percent Correct: 97.194
+Val  :    Avg loss: 0.252    Percent Correct: 82.934
+Train (All):            median_rank: 42.000    MRR: 0.144    H@10: 0.274    H@100: 0.683    H@500: 0.958
+Val (All):              median_rank: 170.500    MRR: 0.077    H@10: 0.139    H@100: 0.406    H@500: 0.735
+Val (In Train):         median_rank: 140.000    MRR: 0.086    H@10: 0.154    H@100: 0.439    H@500: 0.772
+Val (Not in Train):     median_rank: 550.500    MRR: 0.009    H@10: 0.019    H@100: 0.156    H@500: 0.458
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:39    Epoch (Evaluation): 0:02:58    Total: 11:16:49
+Current time: 2019-07-10 08:24:42 EDT-0400
+
