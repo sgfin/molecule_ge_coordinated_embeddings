@@ -1,4 +1,49 @@
-2019-07-10 18:39:14,263 : INFO : {'model_name': 'quad_256_embed', 'device_num': 3, 'structure': 'quadruplet', 'dataset': OrderedDict([('type', 'LincsQuadrupletDataset'), ('args', OrderedDict([('l1000_sigs_path', '~/DBMI_server/repo/mdeg_collab/data/lincs_level3_all_perts.pkl'), ('rank_transform', False)]))]), 'model': OrderedDict([('type', 'FeedForwardQuadrupletNet'), ('args', OrderedDict([('embed_size', 256)]))]), 'loss': OrderedDict([('type', 'QuadrupletMarginLoss'), ('online_eval_metrics', ['loss', 'pc_geFirst', 'pc_chemFirst']), ('args', OrderedDict())]), 'trainer': OrderedDict([('epochs', 100), ('base_exp_dir', 'experiments/'), ('wait_before_save_models', 0)]), 'optimizer': OrderedDict([('type', 'Adam'), ('args', OrderedDict([('lr', 0.0003)]))]), 'dataset_wrapper_ge': OrderedDict([('type', 'LincsSingletGEWrapperDataset'), ('args', OrderedDict())]), 'dataset_wrapper_smiles': OrderedDict([('type', 'LincsSingletSmilesWrapperDataset'), ('args', OrderedDict())]), 'data_loader': OrderedDict([('type', 'DataLoader'), ('args', OrderedDict([('batch_size', 512)]))]), 'data_loader_singlet': OrderedDict([('type', 'DataLoader'), ('args', OrderedDict([('batch_size', 2934)]))]), 'exp_dir': 'experiments/quad_256_embed'}
+2019-07-10 19:08:11,863 : INFO : {'model_name': 'quad_256_embed', 'device_num': 3, 'structure': 'quadruplet', 'dataset': OrderedDict([('type', 'LincsQuadrupletDataset'), ('args', OrderedDict([('l1000_sigs_path', '~/DBMI_server/repo/mdeg_collab/data/lincs_level3_all_perts.pkl'), ('rank_transform', False)]))]), 'model': OrderedDict([('type', 'FeedForwardQuadrupletNet'), ('args', OrderedDict([('embed_size', 256)]))]), 'loss': OrderedDict([('type', 'QuadrupletMarginLoss'), ('online_eval_metrics', ['loss', 'pc_geFirst', 'pc_chemFirst']), ('args', OrderedDict())]), 'trainer': OrderedDict([('epochs', 100), ('base_exp_dir', 'experiments/'), ('wait_before_save_models', 0)]), 'optimizer': OrderedDict([('type', 'Adam'), ('args', OrderedDict([('lr', 0.0003)]))]), 'dataset_wrapper_ge': OrderedDict([('type', 'LincsSingletGEWrapperDataset'), ('args', OrderedDict())]), 'dataset_wrapper_smiles': OrderedDict([('type', 'LincsSingletSmilesWrapperDataset'), ('args', OrderedDict())]), 'data_loader': OrderedDict([('type', 'DataLoader'), ('args', OrderedDict([('batch_size', 512)]))]), 'data_loader_singlet': OrderedDict([('type', 'DataLoader'), ('args', OrderedDict([('batch_size', 2934)]))]), 'exp_dir': 'experiments/quad_256_embed'}
 
-2019-07-10 18:39:14,264 : DEBUG : Building Dataset
+2019-07-10 19:08:11,863 : DEBUG : Building Dataset
+
+2019-07-10 19:09:11,407 : INFO : 
+Building Model
+
+2019-07-10 19:09:18,547 : DEBUG : FeedForwardQuadrupletNet(
+  (ge_embed): SNN_Embedder(
+    (model): Sequential(
+      (0): Linear(in_features=2934, out_features=1024, bias=True)
+      (1): SELU()
+      (2): AlphaDropout(p=0)
+      (3): Linear(in_features=1024, out_features=512, bias=True)
+      (4): SELU()
+      (5): AlphaDropout(p=0)
+      (6): Linear(in_features=512, out_features=256, bias=True)
+      (7): SELU()
+      (8): AlphaDropout(p=0)
+    )
+  )
+  (chemprop_encoder): MPN(
+    (encoder): MPNEncoder(
+      (dropout_layer): Dropout(p=0.0)
+      (act_func): ReLU()
+      (W_i): Linear(in_features=147, out_features=300, bias=False)
+      (W_h): Linear(in_features=300, out_features=300, bias=False)
+      (W_o): Linear(in_features=433, out_features=300, bias=True)
+    )
+  )
+  (chem_linear): SNN_Embedder(
+    (model): Sequential(
+      (0): Linear(in_features=300, out_features=256, bias=True)
+      (1): SELU()
+      (2): AlphaDropout(p=0)
+    )
+  )
+)
+
+2019-07-10 19:09:18,549 : DEBUG : QuadrupletMarginLoss(
+  (triplet_margin): TripletMarginLoss_WU(
+    (distance): PairwiseDistance()
+  )
+)
+
+2019-07-10 19:09:18,549 : DEBUG : ['loss', 'pc_geFirst', 'pc_chemFirst']
+
+2019-07-10 19:09:19,688 : DEBUG : Training
 

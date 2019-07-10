@@ -26,6 +26,17 @@ from pytz import timezone
 import logging
 import argparse
 
+###############
+# Globals
+
+val_mrr_total = 0.0; val_mrr_outsample = 0.0
+best_val_mrr = 0.0
+
+def get_val_mrr(engine):
+    return val_mrr_total
+
+def get_val_mrr_outsample(engine):
+    return val_mrr_outsample
 
 def main(config_path, logger_level, train_log_filepath, debug_log_filepath):
     # Config
@@ -175,14 +186,6 @@ def main(config_path, logger_level, train_log_filepath, debug_log_filepath):
     ###################################################
 
     # IR metrics
-    val_mrr_total = 0.0; val_mrr_outsample = 0.0
-    best_val_mrr = 0.0
-
-    def get_val_mrr(engine):
-        return val_mrr_total
-
-    def get_val_mrr_outsample(engine):
-        return val_mrr_outsample
 
     # Method to compute MRR, H@K metrics
     def compute_ir_metrics(ge_wrapper, ge_loader, smiles_wrapper, smiles_loader,

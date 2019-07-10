@@ -1,0 +1,15 @@
+
+Total GE Experiments: 29548 (Train)   2642 (Val)
+Total Drugs: 6318 (Train)   2248 (Val)
+Val Drugs not in Train:  307 (N)  13.7 (Percent)
+
+Epoch 1
+Train:    Avg loss: 3.864    Acc GE Anchor: 54.565    Acc Chem Anchor: 53.739
+Val  :    Avg loss: 0.854    Acc GE Anchor: 55.947    Acc Chem Anchor: 44.665
+Train (All):            median_rank: 2158.000    MRR: 0.012    H@10: 0.019    H@100: 0.074    H@500: 0.210
+Val (All):              median_rank: 924.500    MRR: 0.014    H@10: 0.017    H@100: 0.087    H@500: 0.298
+Val (In Train):         median_rank: 896.500    MRR: 0.015    H@10: 0.019    H@100: 0.090    H@500: 0.310
+Val (Not in Train):     median_rank: 1088.000    MRR: 0.003    H@10: 0.003    H@100: 0.062    H@500: 0.211
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:04:39    Epoch (Evaluation): 0:03:24    Total: 0:08:03
+Current time: 2019-07-10 19:17:22 EDT-0400
+
