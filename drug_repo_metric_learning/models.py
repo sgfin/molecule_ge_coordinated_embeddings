@@ -48,16 +48,23 @@ class SNN_Embedder(FFANN_Embedder):
         super().__init__(dim_sizes, n_genes=n_genes, dropout_prob=dropout_prob, act=nn.SELU, dropout=nn.AlphaDropout)
 
 class FeedForwardTripletNet(nn.Module):
-    def __init__(self, embed_size=128, input_type="triplet_ge_first",
-                 n_genes=978*3, dropout_prob=0):
+    def __init__(self, embed_size=128, n_genes=978,
+                 hidden_layers_ge=[1024, 512], hidden_layers_chem=[],
+                 input_type="triplet_ge_first",  dropout_prob=0):
         super().__init__()
         self.input_type = input_type
         self.embed_size = embed_size
+        self.n_genes = n_genes
 
-        self.ge_embed = SNN_Embedder(dim_sizes=[1024, 512, embed_size], n_genes=n_genes, dropout_prob=dropout_prob)
+        ge_layers = hidden_layers_ge.extend([embed_size])
+        self.ge_embed = SNN_Embedder(dim_sizes=ge_layers,
+                                     n_genes=n_genes,
+                                     dropout_prob=dropout_prob)
 
         self.chemprop_encoder = load_chemprop_model()
-        self.chem_linear = SNN_Embedder(dim_sizes=[embed_size], n_genes=300, dropout_prob=dropout_prob)
+        chem_layers = hidden_layers_chem.extend([embed_size])
+        self.chem_linear = SNN_Embedder(dim_sizes=chem_layers,
+                                        n_genes=300, dropout_prob=dropout_prob)
 
         self.ge_embed.cuda(); self.chem_linear.cuda();
 

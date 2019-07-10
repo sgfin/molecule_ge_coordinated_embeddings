@@ -23,13 +23,6 @@ class LincsTripletDataset(Dataset):
         self.cell_id = cell_id if isinstance(cell_id, list) else [cell_id]
         self.input_type = input_type
 
-        if self.control_method == "baseline":
-            self.n_channels = 2
-        elif self.control_method == "baseline_logFC":
-            self.n_channels = 3
-        elif self.control_method == "all":
-            self.n_channels = 4
-
         # Define cell lines for splits
         l1000_sigs = pd.read_pickle(l1000_sigs_path)
         nan = np.nan
@@ -91,6 +84,14 @@ class LincsTripletDataset(Dataset):
         self.pert_dist = cdist(pert_mean_sigs, pert_mean_sigs, metric='correlation')
         self.pert_dist_min = np.min(self.pert_dist)
         self.pert_dist_max = np.max(self.pert_dist)
+
+        # Output shape
+        if self.control_method == "baseline":
+            self.n_gene_columns = 2 * self.l1000_perts.shape[1]
+        elif self.control_method == "baseline_logFC":
+            self.n_gene_columns = 3 * self.l1000_perts.shape[1]
+        elif self.control_method == "all":
+            self.n_gene_columns = 4 * self.l1000_perts.shape[1]
 
     def __get_GE_sig__(self, idx):
         # Post-pert signature

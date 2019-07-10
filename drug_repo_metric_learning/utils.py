@@ -8,6 +8,18 @@ import torch
 import sys
 
 
+def init_file_logger(filename, log_level=logging.DEBUG):
+    """ Sets up a logger that writes to a given file.
+            """
+    logger = logging.getLogger(__name__)
+    logger.setLevel(log_level)
+    fh = logging.FileHandler(filename)
+    fh.setLevel(log_level)
+    formatter = logging.Formatter('\n%(asctime)s - %(levelname)s -\n %(message)s')
+    fh.setFormatter(formatter)
+    logger.addHandler(fh)
+    return logger
+
 class CustomPrintOutput(object):
     """Class that can be used to turn "print" into a function that
     both prints and writes to file.
