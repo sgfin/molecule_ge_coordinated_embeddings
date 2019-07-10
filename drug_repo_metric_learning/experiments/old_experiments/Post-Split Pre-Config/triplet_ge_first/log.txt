@@ -1,0 +1,971 @@
+namespace(base_exp_dir='experiments', batch_size=512, device_num=1, dropout_prob=0, exp_dir='experiments/triplet_ge_first', model_name='triplet_ge_first', rankTrans=False, structure='triplet', val_mode_at_val=True)
+
+Loading Data
+Building Dataset
+
+Total GE Experiments: 29548 (Train)   2642 (Val)
+Total Drugs: 6318 (Train)   2248 (Val)
+Val Drugs not in Train:  307 (N)  13.7 (Percent)
+
+Initializing Models
+Training
+Epoch 1
+Train:    Avg loss: 1.217    Percent Correct: 56.427
+Val  :    Avg loss: 0.272    Percent Correct: 59.694
+Train (All):            total_drugs: 6318.000    median_rank: 1764.000    MRR: 0.017    H@10: 0.027    H@100: 0.092    H@500: 0.241
+Val (All):              total_drugs: 2248.000    median_rank: 873.500    MRR: 0.021    H@10: 0.027    H@100: 0.113    H@500: 0.332
+Val (In Train):         total_drugs: 1941.000    median_rank: 855.500    MRR: 0.023    H@10: 0.031    H@100: 0.122    H@500: 0.346
+Val (Not in Train):     total_drugs: 307.000    median_rank: 1013.000    MRR: 0.002    H@10: 0.000    H@100: 0.045    H@500: 0.227
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:39    Epoch (Evaluation): 0:03:07    Total: 0:06:46
+Current time: 2019-07-09 08:57:34 EDT-0400
+
+Epoch 2
+Train:    Avg loss: 0.210    Percent Correct: 66.528
+Val  :    Avg loss: 0.251    Percent Correct: 60.572
+Train (All):            total_drugs: 6318.000    median_rank: 1196.000    MRR: 0.022    H@10: 0.039    H@100: 0.128    H@500: 0.318
+Val (All):              total_drugs: 2248.000    median_rank: 719.000    MRR: 0.026    H@10: 0.049    H@100: 0.140    H@500: 0.390
+Val (In Train):         total_drugs: 1941.000    median_rank: 692.000    MRR: 0.029    H@10: 0.054    H@100: 0.150    H@500: 0.403
+Val (Not in Train):     total_drugs: 307.000    median_rank: 931.500    MRR: 0.006    H@10: 0.010    H@100: 0.062    H@500: 0.292
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:28    Epoch (Evaluation): 0:03:08    Total: 0:13:22
+Current time: 2019-07-09 09:04:10 EDT-0400
+
+Epoch 3
+Train:    Avg loss: 0.200    Percent Correct: 71.656
+Val  :    Avg loss: 0.253    Percent Correct: 58.908
+Train (All):            total_drugs: 6318.000    median_rank: 1019.000    MRR: 0.026    H@10: 0.045    H@100: 0.145    H@500: 0.352
+Val (All):              total_drugs: 2248.000    median_rank: 767.500    MRR: 0.026    H@10: 0.044    H@100: 0.149    H@500: 0.380
+Val (In Train):         total_drugs: 1941.000    median_rank: 721.000    MRR: 0.029    H@10: 0.049    H@100: 0.161    H@500: 0.398
+Val (Not in Train):     total_drugs: 307.000    median_rank: 978.000    MRR: 0.003    H@10: 0.000    H@100: 0.062    H@500: 0.237
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:29    Epoch (Evaluation): 0:03:08    Total: 0:20:00
+Current time: 2019-07-09 09:10:48 EDT-0400
+
+Epoch 4
+Train:    Avg loss: 0.194    Percent Correct: 74.558
+Val  :    Avg loss: 0.250    Percent Correct: 62.450
+Train (All):            total_drugs: 6318.000    median_rank: 842.000    MRR: 0.029    H@10: 0.052    H@100: 0.165    H@500: 0.388
+Val (All):              total_drugs: 2248.000    median_rank: 672.500    MRR: 0.033    H@10: 0.053    H@100: 0.156    H@500: 0.407
+Val (In Train):         total_drugs: 1941.000    median_rank: 640.000    MRR: 0.036    H@10: 0.060    H@100: 0.169    H@500: 0.426
+Val (Not in Train):     total_drugs: 307.000    median_rank: 903.000    MRR: 0.008    H@10: 0.006    H@100: 0.055    H@500: 0.263
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:24    Epoch (Evaluation): 0:03:10    Total: 0:26:34
+Current time: 2019-07-09 09:17:22 EDT-0400
+
+Epoch 5
+Train:    Avg loss: 0.189    Percent Correct: 78.159
+Val  :    Avg loss: 0.248    Percent Correct: 60.535
+Train (All):            total_drugs: 6318.000    median_rank: 766.000    MRR: 0.034    H@10: 0.057    H@100: 0.179    H@500: 0.412
+Val (All):              total_drugs: 2248.000    median_rank: 657.500    MRR: 0.031    H@10: 0.052    H@100: 0.152    H@500: 0.417
+Val (In Train):         total_drugs: 1941.000    median_rank: 640.000    MRR: 0.035    H@10: 0.057    H@100: 0.163    H@500: 0.428
+Val (Not in Train):     total_drugs: 307.000    median_rank: 786.000    MRR: 0.006    H@10: 0.016    H@100: 0.065    H@500: 0.334
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:25    Epoch (Evaluation): 0:03:07    Total: 0:33:07
+Current time: 2019-07-09 09:23:54 EDT-0400
+
+Epoch 6
+Train:    Avg loss: 0.187    Percent Correct: 78.430
+Val  :    Avg loss: 0.224    Percent Correct: 65.023
+Train (All):            total_drugs: 6318.000    median_rank: 671.000    MRR: 0.037    H@10: 0.065    H@100: 0.196    H@500: 0.439
+Val (All):              total_drugs: 2248.000    median_rank: 603.000    MRR: 0.036    H@10: 0.062    H@100: 0.171    H@500: 0.451
+Val (In Train):         total_drugs: 1941.000    median_rank: 564.000    MRR: 0.041    H@10: 0.069    H@100: 0.186    H@500: 0.472
+Val (Not in Train):     total_drugs: 307.000    median_rank: 905.000    MRR: 0.003    H@10: 0.003    H@100: 0.065    H@500: 0.295
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:23    Epoch (Evaluation): 0:03:09    Total: 0:39:39
+Current time: 2019-07-09 09:30:27 EDT-0400
+
+Epoch 7
+Train:    Avg loss: 0.185    Percent Correct: 79.652
+Val  :    Avg loss: 0.227    Percent Correct: 63.769
+Train (All):            total_drugs: 6318.000    median_rank: 588.000    MRR: 0.040    H@10: 0.071    H@100: 0.213    H@500: 0.466
+Val (All):              total_drugs: 2248.000    median_rank: 548.000    MRR: 0.041    H@10: 0.071    H@100: 0.182    H@500: 0.466
+Val (In Train):         total_drugs: 1941.000    median_rank: 532.000    MRR: 0.046    H@10: 0.079    H@100: 0.196    H@500: 0.476
+Val (Not in Train):     total_drugs: 307.000    median_rank: 653.000    MRR: 0.006    H@10: 0.013    H@100: 0.078    H@500: 0.393
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:25    Epoch (Evaluation): 0:03:09    Total: 0:46:14
+Current time: 2019-07-09 09:37:01 EDT-0400
+
+Epoch 8
+Train:    Avg loss: 0.183    Percent Correct: 80.977
+Val  :    Avg loss: 0.214    Percent Correct: 65.021
+Train (All):            total_drugs: 6318.000    median_rank: 512.000    MRR: 0.044    H@10: 0.078    H@100: 0.231    H@500: 0.495
+Val (All):              total_drugs: 2248.000    median_rank: 546.500    MRR: 0.041    H@10: 0.067    H@100: 0.185    H@500: 0.471
+Val (In Train):         total_drugs: 1941.000    median_rank: 524.500    MRR: 0.046    H@10: 0.075    H@100: 0.201    H@500: 0.487
+Val (Not in Train):     total_drugs: 307.000    median_rank: 771.000    MRR: 0.005    H@10: 0.010    H@100: 0.068    H@500: 0.354
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:26    Epoch (Evaluation): 0:03:06    Total: 0:52:46
+Current time: 2019-07-09 09:43:34 EDT-0400
+
+Epoch 9
+Train:    Avg loss: 0.181    Percent Correct: 82.268
+Val  :    Avg loss: 0.221    Percent Correct: 67.097
+Train (All):            total_drugs: 6318.000    median_rank: 483.000    MRR: 0.045    H@10: 0.079    H@100: 0.238    H@500: 0.509
+Val (All):              total_drugs: 2248.000    median_rank: 511.000    MRR: 0.044    H@10: 0.070    H@100: 0.209    H@500: 0.492
+Val (In Train):         total_drugs: 1941.000    median_rank: 497.000    MRR: 0.050    H@10: 0.078    H@100: 0.225    H@500: 0.502
+Val (Not in Train):     total_drugs: 307.000    median_rank: 713.500    MRR: 0.004    H@10: 0.006    H@100: 0.088    H@500: 0.416
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:28    Epoch (Evaluation): 0:03:07    Total: 0:59:20
+Current time: 2019-07-09 09:50:08 EDT-0400
+
+Epoch 10
+Train:    Avg loss: 0.178    Percent Correct: 82.783
+Val  :    Avg loss: 0.224    Percent Correct: 69.094
+Train (All):            total_drugs: 6318.000    median_rank: 450.000    MRR: 0.048    H@10: 0.088    H@100: 0.256    H@500: 0.522
+Val (All):              total_drugs: 2248.000    median_rank: 495.500    MRR: 0.042    H@10: 0.069    H@100: 0.204    H@500: 0.502
+Val (In Train):         total_drugs: 1941.000    median_rank: 473.500    MRR: 0.047    H@10: 0.077    H@100: 0.217    H@500: 0.513
+Val (Not in Train):     total_drugs: 307.000    median_rank: 671.500    MRR: 0.005    H@10: 0.006    H@100: 0.104    H@500: 0.419
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:24    Epoch (Evaluation): 0:03:06    Total: 1:05:51
+Current time: 2019-07-09 09:56:39 EDT-0400
+
+Epoch 11
+Train:    Avg loss: 0.179    Percent Correct: 83.944
+Val  :    Avg loss: 0.220    Percent Correct: 69.436
+Train (All):            total_drugs: 6318.000    median_rank: 411.000    MRR: 0.050    H@10: 0.092    H@100: 0.263    H@500: 0.542
+Val (All):              total_drugs: 2248.000    median_rank: 477.500    MRR: 0.047    H@10: 0.079    H@100: 0.207    H@500: 0.512
+Val (In Train):         total_drugs: 1941.000    median_rank: 454.500    MRR: 0.052    H@10: 0.088    H@100: 0.223    H@500: 0.526
+Val (Not in Train):     total_drugs: 307.000    median_rank: 680.500    MRR: 0.010    H@10: 0.016    H@100: 0.091    H@500: 0.406
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:27    Epoch (Evaluation): 0:03:11    Total: 1:12:29
+Current time: 2019-07-09 10:03:16 EDT-0400
+
+Epoch 12
+Train:    Avg loss: 0.172    Percent Correct: 84.833
+Val  :    Avg loss: 0.216    Percent Correct: 68.231
+Train (All):            total_drugs: 6318.000    median_rank: 389.000    MRR: 0.053    H@10: 0.093    H@100: 0.268    H@500: 0.557
+Val (All):              total_drugs: 2248.000    median_rank: 491.000    MRR: 0.047    H@10: 0.076    H@100: 0.210    H@500: 0.507
+Val (In Train):         total_drugs: 1941.000    median_rank: 470.000    MRR: 0.052    H@10: 0.084    H@100: 0.225    H@500: 0.519
+Val (Not in Train):     total_drugs: 307.000    median_rank: 674.500    MRR: 0.009    H@10: 0.010    H@100: 0.101    H@500: 0.412
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:20    Epoch (Evaluation): 0:03:01    Total: 1:18:50
+Current time: 2019-07-09 10:09:38 EDT-0400
+
+Epoch 13
+Train:    Avg loss: 0.175    Percent Correct: 85.495
+Val  :    Avg loss: 0.215    Percent Correct: 71.258
+Train (All):            total_drugs: 6318.000    median_rank: 365.000    MRR: 0.057    H@10: 0.103    H@100: 0.281    H@500: 0.570
+Val (All):              total_drugs: 2248.000    median_rank: 439.500    MRR: 0.049    H@10: 0.083    H@100: 0.218    H@500: 0.539
+Val (In Train):         total_drugs: 1941.000    median_rank: 427.500    MRR: 0.054    H@10: 0.093    H@100: 0.232    H@500: 0.545
+Val (Not in Train):     total_drugs: 307.000    median_rank: 509.500    MRR: 0.012    H@10: 0.013    H@100: 0.107    H@500: 0.490
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:18    Epoch (Evaluation): 0:03:02    Total: 1:25:10
+Current time: 2019-07-09 10:15:58 EDT-0400
+
+Epoch 14
+Train:    Avg loss: 0.176    Percent Correct: 85.449
+Val  :    Avg loss: 0.220    Percent Correct: 69.206
+Train (All):            total_drugs: 6318.000    median_rank: 320.000    MRR: 0.059    H@10: 0.106    H@100: 0.300    H@500: 0.596
+Val (All):              total_drugs: 2248.000    median_rank: 436.000    MRR: 0.052    H@10: 0.086    H@100: 0.237    H@500: 0.540
+Val (In Train):         total_drugs: 1941.000    median_rank: 420.500    MRR: 0.058    H@10: 0.096    H@100: 0.251    H@500: 0.550
+Val (Not in Train):     total_drugs: 307.000    median_rank: 578.000    MRR: 0.008    H@10: 0.010    H@100: 0.127    H@500: 0.471
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:18    Epoch (Evaluation): 0:03:01    Total: 1:31:30
+Current time: 2019-07-09 10:22:18 EDT-0400
+
+Epoch 15
+Train:    Avg loss: 0.171    Percent Correct: 86.745
+Val  :    Avg loss: 0.212    Percent Correct: 71.001
+Train (All):            total_drugs: 6318.000    median_rank: 311.500    MRR: 0.061    H@10: 0.108    H@100: 0.304    H@500: 0.604
+Val (All):              total_drugs: 2248.000    median_rank: 437.500    MRR: 0.050    H@10: 0.081    H@100: 0.227    H@500: 0.536
+Val (In Train):         total_drugs: 1941.000    median_rank: 406.000    MRR: 0.056    H@10: 0.091    H@100: 0.243    H@500: 0.554
+Val (Not in Train):     total_drugs: 307.000    median_rank: 680.000    MRR: 0.005    H@10: 0.003    H@100: 0.107    H@500: 0.396
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:19    Epoch (Evaluation): 0:03:00    Total: 1:37:49
+Current time: 2019-07-09 10:28:37 EDT-0400
+
+Epoch 16
+Train:    Avg loss: 0.167    Percent Correct: 86.793
+Val  :    Avg loss: 0.214    Percent Correct: 71.851
+Train (All):            total_drugs: 6318.000    median_rank: 291.000    MRR: 0.064    H@10: 0.112    H@100: 0.310    H@500: 0.623
+Val (All):              total_drugs: 2248.000    median_rank: 426.000    MRR: 0.049    H@10: 0.079    H@100: 0.225    H@500: 0.548
+Val (In Train):         total_drugs: 1941.000    median_rank: 412.000    MRR: 0.055    H@10: 0.087    H@100: 0.237    H@500: 0.558
+Val (Not in Train):     total_drugs: 307.000    median_rank: 522.500    MRR: 0.009    H@10: 0.013    H@100: 0.136    H@500: 0.477
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:19    Epoch (Evaluation): 0:03:00    Total: 1:44:08
+Current time: 2019-07-09 10:34:56 EDT-0400
+
+Epoch 17
+Train:    Avg loss: 0.167    Percent Correct: 88.030
+Val  :    Avg loss: 0.209    Percent Correct: 70.571
+Train (All):            total_drugs: 6318.000    median_rank: 270.000    MRR: 0.065    H@10: 0.115    H@100: 0.326    H@500: 0.634
+Val (All):              total_drugs: 2248.000    median_rank: 392.500    MRR: 0.054    H@10: 0.095    H@100: 0.251    H@500: 0.575
+Val (In Train):         total_drugs: 1941.000    median_rank: 380.000    MRR: 0.060    H@10: 0.105    H@100: 0.260    H@500: 0.582
+Val (Not in Train):     total_drugs: 307.000    median_rank: 469.000    MRR: 0.011    H@10: 0.023    H@100: 0.179    H@500: 0.523
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:18    Epoch (Evaluation): 0:03:01    Total: 1:50:27
+Current time: 2019-07-09 10:41:15 EDT-0400
+
+Epoch 18
+Train:    Avg loss: 0.165    Percent Correct: 88.293
+Val  :    Avg loss: 0.207    Percent Correct: 72.768
+Train (All):            total_drugs: 6318.000    median_rank: 255.500    MRR: 0.068    H@10: 0.122    H@100: 0.334    H@500: 0.651
+Val (All):              total_drugs: 2248.000    median_rank: 387.000    MRR: 0.059    H@10: 0.100    H@100: 0.245    H@500: 0.581
+Val (In Train):         total_drugs: 1941.000    median_rank: 369.500    MRR: 0.066    H@10: 0.111    H@100: 0.259    H@500: 0.591
+Val (Not in Train):     total_drugs: 307.000    median_rank: 491.500    MRR: 0.012    H@10: 0.016    H@100: 0.136    H@500: 0.503
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:18    Epoch (Evaluation): 0:03:01    Total: 1:56:46
+Current time: 2019-07-09 10:47:34 EDT-0400
+
+Epoch 19
+Train:    Avg loss: 0.166    Percent Correct: 88.478
+Val  :    Avg loss: 0.213    Percent Correct: 74.091
+Train (All):            total_drugs: 6318.000    median_rank: 260.000    MRR: 0.067    H@10: 0.119    H@100: 0.335    H@500: 0.648
+Val (All):              total_drugs: 2248.000    median_rank: 370.000    MRR: 0.059    H@10: 0.091    H@100: 0.259    H@500: 0.573
+Val (In Train):         total_drugs: 1941.000    median_rank: 356.000    MRR: 0.065    H@10: 0.102    H@100: 0.272    H@500: 0.582
+Val (Not in Train):     total_drugs: 307.000    median_rank: 462.500    MRR: 0.007    H@10: 0.010    H@100: 0.162    H@500: 0.506
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:18    Epoch (Evaluation): 0:03:02    Total: 2:03:06
+Current time: 2019-07-09 10:53:54 EDT-0400
+
+Epoch 20
+Train:    Avg loss: 0.166    Percent Correct: 88.749
+Val  :    Avg loss: 0.216    Percent Correct: 72.684
+Train (All):            total_drugs: 6318.000    median_rank: 230.000    MRR: 0.070    H@10: 0.123    H@100: 0.352    H@500: 0.673
+Val (All):              total_drugs: 2248.000    median_rank: 399.000    MRR: 0.053    H@10: 0.086    H@100: 0.234    H@500: 0.561
+Val (In Train):         total_drugs: 1941.000    median_rank: 375.500    MRR: 0.060    H@10: 0.096    H@100: 0.251    H@500: 0.576
+Val (Not in Train):     total_drugs: 307.000    median_rank: 546.500    MRR: 0.006    H@10: 0.003    H@100: 0.104    H@500: 0.442
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:19    Epoch (Evaluation): 0:03:00    Total: 2:09:25
+Current time: 2019-07-09 11:00:13 EDT-0400
+
+Epoch 21
+Train:    Avg loss: 0.161    Percent Correct: 89.760
+Val  :    Avg loss: 0.220    Percent Correct: 69.990
+Train (All):            total_drugs: 6318.000    median_rank: 232.000    MRR: 0.070    H@10: 0.124    H@100: 0.350    H@500: 0.674
+Val (All):              total_drugs: 2248.000    median_rank: 379.000    MRR: 0.057    H@10: 0.088    H@100: 0.240    H@500: 0.583
+Val (In Train):         total_drugs: 1941.000    median_rank: 359.000    MRR: 0.063    H@10: 0.097    H@100: 0.255    H@500: 0.596
+Val (Not in Train):     total_drugs: 307.000    median_rank: 535.000    MRR: 0.008    H@10: 0.023    H@100: 0.123    H@500: 0.481
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:18    Epoch (Evaluation): 0:03:01    Total: 2:15:44
+Current time: 2019-07-09 11:06:32 EDT-0400
+
+Epoch 22
+Train:    Avg loss: 0.163    Percent Correct: 90.074
+Val  :    Avg loss: 0.216    Percent Correct: 73.195
+Train (All):            total_drugs: 6318.000    median_rank: 215.000    MRR: 0.075    H@10: 0.134    H@100: 0.366    H@500: 0.687
+Val (All):              total_drugs: 2248.000    median_rank: 375.000    MRR: 0.063    H@10: 0.102    H@100: 0.265    H@500: 0.577
+Val (In Train):         total_drugs: 1941.000    median_rank: 356.000    MRR: 0.069    H@10: 0.112    H@100: 0.278    H@500: 0.591
+Val (Not in Train):     total_drugs: 307.000    median_rank: 548.000    MRR: 0.013    H@10: 0.029    H@100: 0.169    H@500: 0.474
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:19    Epoch (Evaluation): 0:03:00    Total: 2:22:03
+Current time: 2019-07-09 11:12:51 EDT-0400
+
+Epoch 23
+Train:    Avg loss: 0.159    Percent Correct: 90.353
+Val  :    Avg loss: 0.218    Percent Correct: 73.376
+Train (All):            total_drugs: 6318.000    median_rank: 194.000    MRR: 0.076    H@10: 0.137    H@100: 0.381    H@500: 0.705
+Val (All):              total_drugs: 2248.000    median_rank: 353.500    MRR: 0.057    H@10: 0.097    H@100: 0.265    H@500: 0.589
+Val (In Train):         total_drugs: 1941.000    median_rank: 334.500    MRR: 0.063    H@10: 0.107    H@100: 0.278    H@500: 0.603
+Val (Not in Train):     total_drugs: 307.000    median_rank: 523.000    MRR: 0.010    H@10: 0.019    H@100: 0.159    H@500: 0.487
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:19    Epoch (Evaluation): 0:03:01    Total: 2:28:23
+Current time: 2019-07-09 11:19:11 EDT-0400
+
+Epoch 24
+Train:    Avg loss: 0.160    Percent Correct: 90.867
+Val  :    Avg loss: 0.221    Percent Correct: 72.574
+Train (All):            total_drugs: 6318.000    median_rank: 191.000    MRR: 0.078    H@10: 0.141    H@100: 0.384    H@500: 0.717
+Val (All):              total_drugs: 2248.000    median_rank: 321.000    MRR: 0.058    H@10: 0.094    H@100: 0.274    H@500: 0.624
+Val (In Train):         total_drugs: 1941.000    median_rank: 305.500    MRR: 0.063    H@10: 0.104    H@100: 0.288    H@500: 0.633
+Val (Not in Train):     total_drugs: 307.000    median_rank: 437.000    MRR: 0.014    H@10: 0.019    H@100: 0.162    H@500: 0.552
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:19    Epoch (Evaluation): 0:03:00    Total: 2:34:42
+Current time: 2019-07-09 11:25:30 EDT-0400
+
+Epoch 25
+Train:    Avg loss: 0.159    Percent Correct: 90.744
+Val  :    Avg loss: 0.211    Percent Correct: 74.178
+Train (All):            total_drugs: 6318.000    median_rank: 183.000    MRR: 0.081    H@10: 0.144    H@100: 0.391    H@500: 0.720
+Val (All):              total_drugs: 2248.000    median_rank: 332.500    MRR: 0.059    H@10: 0.099    H@100: 0.273    H@500: 0.616
+Val (In Train):         total_drugs: 1941.000    median_rank: 312.000    MRR: 0.065    H@10: 0.108    H@100: 0.287    H@500: 0.632
+Val (Not in Train):     total_drugs: 307.000    median_rank: 509.000    MRR: 0.012    H@10: 0.032    H@100: 0.162    H@500: 0.497
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:19    Epoch (Evaluation): 0:03:01    Total: 2:41:02
+Current time: 2019-07-09 11:31:50 EDT-0400
+
+Epoch 26
+Train:    Avg loss: 0.155    Percent Correct: 91.454
+Val  :    Avg loss: 0.220    Percent Correct: 71.187
+Train (All):            total_drugs: 6318.000    median_rank: 173.000    MRR: 0.085    H@10: 0.149    H@100: 0.403    H@500: 0.731
+Val (All):              total_drugs: 2248.000    median_rank: 354.500    MRR: 0.059    H@10: 0.098    H@100: 0.261    H@500: 0.602
+Val (In Train):         total_drugs: 1941.000    median_rank: 333.000    MRR: 0.065    H@10: 0.110    H@100: 0.278    H@500: 0.620
+Val (Not in Train):     total_drugs: 307.000    median_rank: 560.500    MRR: 0.012    H@10: 0.013    H@100: 0.133    H@500: 0.464
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:17    Epoch (Evaluation): 0:03:00    Total: 2:47:20
+Current time: 2019-07-09 11:38:08 EDT-0400
+
+Epoch 27
+Train:    Avg loss: 0.159    Percent Correct: 91.573
+Val  :    Avg loss: 0.224    Percent Correct: 73.890
+Train (All):            total_drugs: 6318.000    median_rank: 160.000    MRR: 0.085    H@10: 0.153    H@100: 0.413    H@500: 0.752
+Val (All):              total_drugs: 2248.000    median_rank: 330.500    MRR: 0.060    H@10: 0.100    H@100: 0.273    H@500: 0.625
+Val (In Train):         total_drugs: 1941.000    median_rank: 312.000    MRR: 0.066    H@10: 0.110    H@100: 0.291    H@500: 0.638
+Val (Not in Train):     total_drugs: 307.000    median_rank: 445.000    MRR: 0.013    H@10: 0.023    H@100: 0.140    H@500: 0.529
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:17    Epoch (Evaluation): 0:03:03    Total: 2:53:40
+Current time: 2019-07-09 11:44:28 EDT-0400
+
+Epoch 28
+Train:    Avg loss: 0.158    Percent Correct: 91.144
+Val  :    Avg loss: 0.219    Percent Correct: 72.859
+Train (All):            total_drugs: 6318.000    median_rank: 154.000    MRR: 0.091    H@10: 0.164    H@100: 0.421    H@500: 0.753
+Val (All):              total_drugs: 2248.000    median_rank: 344.000    MRR: 0.063    H@10: 0.101    H@100: 0.271    H@500: 0.608
+Val (In Train):         total_drugs: 1941.000    median_rank: 308.500    MRR: 0.070    H@10: 0.111    H@100: 0.294    H@500: 0.633
+Val (Not in Train):     total_drugs: 307.000    median_rank: 663.500    MRR: 0.009    H@10: 0.019    H@100: 0.091    H@500: 0.422
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:19    Epoch (Evaluation): 0:03:00    Total: 2:59:59
+Current time: 2019-07-09 11:50:47 EDT-0400
+
+Epoch 29
+Train:    Avg loss: 0.158    Percent Correct: 91.727
+Val  :    Avg loss: 0.227    Percent Correct: 73.431
+Train (All):            total_drugs: 6318.000    median_rank: 146.000    MRR: 0.089    H@10: 0.161    H@100: 0.433    H@500: 0.767
+Val (All):              total_drugs: 2248.000    median_rank: 317.000    MRR: 0.060    H@10: 0.100    H@100: 0.277    H@500: 0.633
+Val (In Train):         total_drugs: 1941.000    median_rank: 304.000    MRR: 0.066    H@10: 0.111    H@100: 0.290    H@500: 0.640
+Val (Not in Train):     total_drugs: 307.000    median_rank: 392.000    MRR: 0.009    H@10: 0.013    H@100: 0.182    H@500: 0.578
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:19    Epoch (Evaluation): 0:03:01    Total: 3:06:18
+Current time: 2019-07-09 11:57:06 EDT-0400
+
+Epoch 30
+Train:    Avg loss: 0.155    Percent Correct: 92.738
+Val  :    Avg loss: 0.221    Percent Correct: 77.035
+Train (All):            total_drugs: 6318.000    median_rank: 168.000    MRR: 0.082    H@10: 0.145    H@100: 0.403    H@500: 0.742
+Val (All):              total_drugs: 2248.000    median_rank: 322.000    MRR: 0.060    H@10: 0.097    H@100: 0.274    H@500: 0.618
+Val (In Train):         total_drugs: 1941.000    median_rank: 305.000    MRR: 0.067    H@10: 0.108    H@100: 0.288    H@500: 0.631
+Val (Not in Train):     total_drugs: 307.000    median_rank: 474.000    MRR: 0.010    H@10: 0.013    H@100: 0.169    H@500: 0.523
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:17    Epoch (Evaluation): 0:03:02    Total: 3:12:37
+Current time: 2019-07-09 12:03:25 EDT-0400
+
+Epoch 31
+Train:    Avg loss: 0.155    Percent Correct: 92.345
+Val  :    Avg loss: 0.220    Percent Correct: 73.866
+Train (All):            total_drugs: 6318.000    median_rank: 142.000    MRR: 0.093    H@10: 0.165    H@100: 0.436    H@500: 0.778
+Val (All):              total_drugs: 2248.000    median_rank: 321.000    MRR: 0.062    H@10: 0.103    H@100: 0.288    H@500: 0.612
+Val (In Train):         total_drugs: 1941.000    median_rank: 294.000    MRR: 0.068    H@10: 0.113    H@100: 0.309    H@500: 0.632
+Val (Not in Train):     total_drugs: 307.000    median_rank: 544.000    MRR: 0.010    H@10: 0.026    H@100: 0.133    H@500: 0.464
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:17    Epoch (Evaluation): 0:03:01    Total: 3:18:55
+Current time: 2019-07-09 12:09:43 EDT-0400
+
+Epoch 32
+Train:    Avg loss: 0.154    Percent Correct: 92.153
+Val  :    Avg loss: 0.216    Percent Correct: 78.519
+Train (All):            total_drugs: 6318.000    median_rank: 138.000    MRR: 0.093    H@10: 0.166    H@100: 0.441    H@500: 0.776
+Val (All):              total_drugs: 2248.000    median_rank: 289.000    MRR: 0.064    H@10: 0.104    H@100: 0.298    H@500: 0.636
+Val (In Train):         total_drugs: 1941.000    median_rank: 257.500    MRR: 0.071    H@10: 0.117    H@100: 0.321    H@500: 0.663
+Val (Not in Train):     total_drugs: 307.000    median_rank: 618.000    MRR: 0.010    H@10: 0.013    H@100: 0.120    H@500: 0.429
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:19    Epoch (Evaluation): 0:03:02    Total: 3:25:16
+Current time: 2019-07-09 12:16:04 EDT-0400
+
+Epoch 33
+Train:    Avg loss: 0.156    Percent Correct: 92.660
+Val  :    Avg loss: 0.215    Percent Correct: 76.094
+Train (All):            total_drugs: 6318.000    median_rank: 131.000    MRR: 0.095    H@10: 0.171    H@100: 0.451    H@500: 0.791
+Val (All):              total_drugs: 2248.000    median_rank: 297.000    MRR: 0.063    H@10: 0.107    H@100: 0.296    H@500: 0.632
+Val (In Train):         total_drugs: 1941.000    median_rank: 279.000    MRR: 0.070    H@10: 0.119    H@100: 0.317    H@500: 0.650
+Val (Not in Train):     total_drugs: 307.000    median_rank: 506.500    MRR: 0.011    H@10: 0.016    H@100: 0.133    H@500: 0.497
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:17    Epoch (Evaluation): 0:02:59    Total: 3:31:32
+Current time: 2019-07-09 12:22:20 EDT-0400
+
+Epoch 34
+Train:    Avg loss: 0.153    Percent Correct: 92.754
+Val  :    Avg loss: 0.231    Percent Correct: 76.568
+Train (All):            total_drugs: 6318.000    median_rank: 131.000    MRR: 0.095    H@10: 0.170    H@100: 0.451    H@500: 0.790
+Val (All):              total_drugs: 2248.000    median_rank: 314.500    MRR: 0.064    H@10: 0.112    H@100: 0.282    H@500: 0.640
+Val (In Train):         total_drugs: 1941.000    median_rank: 284.500    MRR: 0.071    H@10: 0.126    H@100: 0.302    H@500: 0.662
+Val (Not in Train):     total_drugs: 307.000    median_rank: 552.000    MRR: 0.007    H@10: 0.006    H@100: 0.130    H@500: 0.468
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:15    Epoch (Evaluation): 0:02:57    Total: 3:37:44
+Current time: 2019-07-09 12:28:32 EDT-0400
+
+Epoch 35
+Train:    Avg loss: 0.156    Percent Correct: 93.039
+Val  :    Avg loss: 0.215    Percent Correct: 76.961
+Train (All):            total_drugs: 6318.000    median_rank: 121.000    MRR: 0.100    H@10: 0.178    H@100: 0.465    H@500: 0.798
+Val (All):              total_drugs: 2248.000    median_rank: 305.000    MRR: 0.067    H@10: 0.111    H@100: 0.300    H@500: 0.618
+Val (In Train):         total_drugs: 1941.000    median_rank: 266.000    MRR: 0.075    H@10: 0.125    H@100: 0.322    H@500: 0.639
+Val (Not in Train):     total_drugs: 307.000    median_rank: 589.000    MRR: 0.007    H@10: 0.010    H@100: 0.133    H@500: 0.458
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:14    Epoch (Evaluation): 0:02:57    Total: 3:43:55
+Current time: 2019-07-09 12:34:43 EDT-0400
+
+Epoch 36
+Train:    Avg loss: 0.156    Percent Correct: 92.733
+Val  :    Avg loss: 0.225    Percent Correct: 74.365
+Train (All):            total_drugs: 6318.000    median_rank: 122.000    MRR: 0.098    H@10: 0.175    H@100: 0.462    H@500: 0.800
+Val (All):              total_drugs: 2248.000    median_rank: 331.000    MRR: 0.064    H@10: 0.108    H@100: 0.277    H@500: 0.602
+Val (In Train):         total_drugs: 1941.000    median_rank: 274.500    MRR: 0.072    H@10: 0.122    H@100: 0.308    H@500: 0.647
+Val (Not in Train):     total_drugs: 307.000    median_rank: 997.000    MRR: 0.003    H@10: 0.000    H@100: 0.049    H@500: 0.260
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:14    Epoch (Evaluation): 0:03:03    Total: 3:50:12
+Current time: 2019-07-09 12:41:00 EDT-0400
+
+Epoch 37
+Train:    Avg loss: 0.156    Percent Correct: 93.189
+Val  :    Avg loss: 0.219    Percent Correct: 76.114
+Train (All):            total_drugs: 6318.000    median_rank: 122.000    MRR: 0.099    H@10: 0.175    H@100: 0.464    H@500: 0.806
+Val (All):              total_drugs: 2248.000    median_rank: 260.500    MRR: 0.060    H@10: 0.102    H@100: 0.315    H@500: 0.656
+Val (In Train):         total_drugs: 1941.000    median_rank: 249.000    MRR: 0.066    H@10: 0.114    H@100: 0.326    H@500: 0.662
+Val (Not in Train):     total_drugs: 307.000    median_rank: 347.500    MRR: 0.012    H@10: 0.016    H@100: 0.227    H@500: 0.607
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:14    Epoch (Evaluation): 0:02:59    Total: 3:56:25
+Current time: 2019-07-09 12:47:13 EDT-0400
+
+Epoch 38
+Train:    Avg loss: 0.148    Percent Correct: 93.679
+Val  :    Avg loss: 0.216    Percent Correct: 75.396
+Train (All):            total_drugs: 6318.000    median_rank: 110.000    MRR: 0.103    H@10: 0.185    H@100: 0.484    H@500: 0.820
+Val (All):              total_drugs: 2248.000    median_rank: 320.500    MRR: 0.063    H@10: 0.104    H@100: 0.288    H@500: 0.611
+Val (In Train):         total_drugs: 1941.000    median_rank: 271.500    MRR: 0.070    H@10: 0.117    H@100: 0.319    H@500: 0.653
+Val (Not in Train):     total_drugs: 307.000    median_rank: 972.000    MRR: 0.005    H@10: 0.006    H@100: 0.049    H@500: 0.292
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:13    Epoch (Evaluation): 0:02:57    Total: 4:02:35
+Current time: 2019-07-09 12:53:23 EDT-0400
+
+Epoch 39
+Train:    Avg loss: 0.157    Percent Correct: 92.830
+Val  :    Avg loss: 0.224    Percent Correct: 76.106
+Train (All):            total_drugs: 6318.000    median_rank: 106.000    MRR: 0.106    H@10: 0.188    H@100: 0.490    H@500: 0.827
+Val (All):              total_drugs: 2248.000    median_rank: 281.000    MRR: 0.064    H@10: 0.106    H@100: 0.304    H@500: 0.647
+Val (In Train):         total_drugs: 1941.000    median_rank: 255.000    MRR: 0.072    H@10: 0.118    H@100: 0.325    H@500: 0.667
+Val (Not in Train):     total_drugs: 307.000    median_rank: 509.500    MRR: 0.008    H@10: 0.010    H@100: 0.140    H@500: 0.497
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:16    Epoch (Evaluation): 0:02:59    Total: 4:08:51
+Current time: 2019-07-09 12:59:38 EDT-0400
+
+Epoch 40
+Train:    Avg loss: 0.153    Percent Correct: 93.232
+Val  :    Avg loss: 0.218    Percent Correct: 78.567
+Train (All):            total_drugs: 6318.000    median_rank: 109.000    MRR: 0.103    H@10: 0.186    H@100: 0.485    H@500: 0.828
+Val (All):              total_drugs: 2248.000    median_rank: 305.500    MRR: 0.062    H@10: 0.107    H@100: 0.299    H@500: 0.628
+Val (In Train):         total_drugs: 1941.000    median_rank: 273.500    MRR: 0.069    H@10: 0.119    H@100: 0.321    H@500: 0.650
+Val (Not in Train):     total_drugs: 307.000    median_rank: 562.000    MRR: 0.011    H@10: 0.019    H@100: 0.136    H@500: 0.461
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:14    Epoch (Evaluation): 0:02:59    Total: 4:15:03
+Current time: 2019-07-09 13:05:51 EDT-0400
+
+Epoch 41
+Train:    Avg loss: 0.150    Percent Correct: 93.923
+Val  :    Avg loss: 0.221    Percent Correct: 78.757
+Train (All):            total_drugs: 6318.000    median_rank: 111.000    MRR: 0.100    H@10: 0.182    H@100: 0.480    H@500: 0.826
+Val (All):              total_drugs: 2248.000    median_rank: 277.500    MRR: 0.062    H@10: 0.104    H@100: 0.296    H@500: 0.660
+Val (In Train):         total_drugs: 1941.000    median_rank: 246.000    MRR: 0.069    H@10: 0.116    H@100: 0.322    H@500: 0.689
+Val (Not in Train):     total_drugs: 307.000    median_rank: 595.000    MRR: 0.007    H@10: 0.016    H@100: 0.094    H@500: 0.442
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:15    Epoch (Evaluation): 0:03:01    Total: 4:21:19
+Current time: 2019-07-09 13:12:07 EDT-0400
+
+Epoch 42
+Train:    Avg loss: 0.152    Percent Correct: 93.592
+Val  :    Avg loss: 0.219    Percent Correct: 77.912
+Train (All):            total_drugs: 6318.000    median_rank: 102.000    MRR: 0.108    H@10: 0.193    H@100: 0.497    H@500: 0.838
+Val (All):              total_drugs: 2248.000    median_rank: 282.000    MRR: 0.070    H@10: 0.117    H@100: 0.303    H@500: 0.645
+Val (In Train):         total_drugs: 1941.000    median_rank: 245.500    MRR: 0.078    H@10: 0.131    H@100: 0.331    H@500: 0.674
+Val (Not in Train):     total_drugs: 307.000    median_rank: 624.000    MRR: 0.009    H@10: 0.010    H@100: 0.094    H@500: 0.432
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:14    Epoch (Evaluation): 0:02:59    Total: 4:27:31
+Current time: 2019-07-09 13:18:19 EDT-0400
+
+Epoch 43
+Train:    Avg loss: 0.151    Percent Correct: 93.226
+Val  :    Avg loss: 0.227    Percent Correct: 77.827
+Train (All):            total_drugs: 6318.000    median_rank: 89.000    MRR: 0.114    H@10: 0.203    H@100: 0.523    H@500: 0.851
+Val (All):              total_drugs: 2248.000    median_rank: 261.500    MRR: 0.069    H@10: 0.123    H@100: 0.330    H@500: 0.667
+Val (In Train):         total_drugs: 1941.000    median_rank: 242.000    MRR: 0.076    H@10: 0.136    H@100: 0.349    H@500: 0.685
+Val (Not in Train):     total_drugs: 307.000    median_rank: 451.500    MRR: 0.013    H@10: 0.023    H@100: 0.185    H@500: 0.532
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:17    Epoch (Evaluation): 0:02:58    Total: 4:33:45
+Current time: 2019-07-09 13:24:33 EDT-0400
+
+Epoch 44
+Train:    Avg loss: 0.149    Percent Correct: 94.038
+Val  :    Avg loss: 0.226    Percent Correct: 77.952
+Train (All):            total_drugs: 6318.000    median_rank: 90.000    MRR: 0.115    H@10: 0.206    H@100: 0.521    H@500: 0.853
+Val (All):              total_drugs: 2248.000    median_rank: 268.000    MRR: 0.066    H@10: 0.109    H@100: 0.312    H@500: 0.662
+Val (In Train):         total_drugs: 1941.000    median_rank: 234.500    MRR: 0.073    H@10: 0.121    H@100: 0.336    H@500: 0.695
+Val (Not in Train):     total_drugs: 307.000    median_rank: 644.500    MRR: 0.011    H@10: 0.016    H@100: 0.127    H@500: 0.419
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:16    Epoch (Evaluation): 0:03:00    Total: 4:40:01
+Current time: 2019-07-09 13:30:49 EDT-0400
+
+Epoch 45
+Train:    Avg loss: 0.151    Percent Correct: 94.683
+Val  :    Avg loss: 0.233    Percent Correct: 77.591
+Train (All):            total_drugs: 6318.000    median_rank: 94.000    MRR: 0.112    H@10: 0.202    H@100: 0.514    H@500: 0.849
+Val (All):              total_drugs: 2248.000    median_rank: 281.000    MRR: 0.066    H@10: 0.110    H@100: 0.319    H@500: 0.653
+Val (In Train):         total_drugs: 1941.000    median_rank: 250.000    MRR: 0.074    H@10: 0.123    H@100: 0.344    H@500: 0.673
+Val (Not in Train):     total_drugs: 307.000    median_rank: 499.500    MRR: 0.010    H@10: 0.010    H@100: 0.130    H@500: 0.500
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:16    Epoch (Evaluation): 0:03:00    Total: 4:46:17
+Current time: 2019-07-09 13:37:05 EDT-0400
+
+Epoch 46
+Train:    Avg loss: 0.147    Percent Correct: 94.378
+Val  :    Avg loss: 0.228    Percent Correct: 77.761
+Train (All):            total_drugs: 6318.000    median_rank: 89.000    MRR: 0.114    H@10: 0.203    H@100: 0.525    H@500: 0.856
+Val (All):              total_drugs: 2248.000    median_rank: 272.000    MRR: 0.070    H@10: 0.117    H@100: 0.316    H@500: 0.660
+Val (In Train):         total_drugs: 1941.000    median_rank: 241.000    MRR: 0.078    H@10: 0.131    H@100: 0.339    H@500: 0.685
+Val (Not in Train):     total_drugs: 307.000    median_rank: 529.500    MRR: 0.009    H@10: 0.010    H@100: 0.136    H@500: 0.471
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:17    Epoch (Evaluation): 0:03:00    Total: 4:52:34
+Current time: 2019-07-09 13:43:22 EDT-0400
+
+Epoch 47
+Train:    Avg loss: 0.147    Percent Correct: 94.300
+Val  :    Avg loss: 0.224    Percent Correct: 78.249
+Train (All):            total_drugs: 6318.000    median_rank: 89.000    MRR: 0.116    H@10: 0.210    H@100: 0.523    H@500: 0.860
+Val (All):              total_drugs: 2248.000    median_rank: 255.000    MRR: 0.067    H@10: 0.119    H@100: 0.330    H@500: 0.670
+Val (In Train):         total_drugs: 1941.000    median_rank: 230.500    MRR: 0.074    H@10: 0.133    H@100: 0.351    H@500: 0.687
+Val (Not in Train):     total_drugs: 307.000    median_rank: 440.000    MRR: 0.008    H@10: 0.010    H@100: 0.172    H@500: 0.545
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:15    Epoch (Evaluation): 0:02:57    Total: 4:58:47
+Current time: 2019-07-09 13:49:35 EDT-0400
+
+Epoch 48
+Train:    Avg loss: 0.144    Percent Correct: 94.731
+Val  :    Avg loss: 0.222    Percent Correct: 79.561
+Train (All):            total_drugs: 6318.000    median_rank: 81.000    MRR: 0.119    H@10: 0.214    H@100: 0.540    H@500: 0.862
+Val (All):              total_drugs: 2248.000    median_rank: 256.000    MRR: 0.070    H@10: 0.120    H@100: 0.323    H@500: 0.667
+Val (In Train):         total_drugs: 1941.000    median_rank: 220.500    MRR: 0.078    H@10: 0.133    H@100: 0.350    H@500: 0.694
+Val (Not in Train):     total_drugs: 307.000    median_rank: 583.500    MRR: 0.011    H@10: 0.023    H@100: 0.117    H@500: 0.461
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:15    Epoch (Evaluation): 0:03:02    Total: 5:05:04
+Current time: 2019-07-09 13:55:52 EDT-0400
+
+Epoch 49
+Train:    Avg loss: 0.147    Percent Correct: 94.411
+Val  :    Avg loss: 0.241    Percent Correct: 80.002
+Train (All):            total_drugs: 6318.000    median_rank: 85.000    MRR: 0.117    H@10: 0.210    H@100: 0.532    H@500: 0.862
+Val (All):              total_drugs: 2248.000    median_rank: 283.000    MRR: 0.069    H@10: 0.121    H@100: 0.308    H@500: 0.654
+Val (In Train):         total_drugs: 1941.000    median_rank: 246.000    MRR: 0.077    H@10: 0.135    H@100: 0.337    H@500: 0.692
+Val (Not in Train):     total_drugs: 307.000    median_rank: 776.000    MRR: 0.006    H@10: 0.016    H@100: 0.091    H@500: 0.367
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:15    Epoch (Evaluation): 0:02:58    Total: 5:11:16
+Current time: 2019-07-09 14:02:04 EDT-0400
+
+Epoch 50
+Train:    Avg loss: 0.146    Percent Correct: 94.356
+Val  :    Avg loss: 0.231    Percent Correct: 79.137
+Train (All):            total_drugs: 6318.000    median_rank: 86.000    MRR: 0.113    H@10: 0.209    H@100: 0.531    H@500: 0.861
+Val (All):              total_drugs: 2248.000    median_rank: 279.500    MRR: 0.068    H@10: 0.117    H@100: 0.309    H@500: 0.649
+Val (In Train):         total_drugs: 1941.000    median_rank: 255.000    MRR: 0.076    H@10: 0.131    H@100: 0.334    H@500: 0.673
+Val (Not in Train):     total_drugs: 307.000    median_rank: 563.000    MRR: 0.007    H@10: 0.010    H@100: 0.123    H@500: 0.464
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:14    Epoch (Evaluation): 0:02:58    Total: 5:17:28
+Current time: 2019-07-09 14:08:16 EDT-0400
+
+Epoch 51
+Train:    Avg loss: 0.146    Percent Correct: 94.853
+Val  :    Avg loss: 0.224    Percent Correct: 76.551
+Train (All):            total_drugs: 6318.000    median_rank: 79.000    MRR: 0.121    H@10: 0.217    H@100: 0.545    H@500: 0.874
+Val (All):              total_drugs: 2248.000    median_rank: 263.000    MRR: 0.068    H@10: 0.114    H@100: 0.316    H@500: 0.657
+Val (In Train):         total_drugs: 1941.000    median_rank: 229.000    MRR: 0.076    H@10: 0.127    H@100: 0.344    H@500: 0.689
+Val (Not in Train):     total_drugs: 307.000    median_rank: 668.000    MRR: 0.008    H@10: 0.016    H@100: 0.097    H@500: 0.416
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:13    Epoch (Evaluation): 0:02:57    Total: 5:23:38
+Current time: 2019-07-09 14:14:26 EDT-0400
+
+Epoch 52
+Train:    Avg loss: 0.146    Percent Correct: 95.179
+Val  :    Avg loss: 0.238    Percent Correct: 74.655
+Train (All):            total_drugs: 6318.000    median_rank: 77.000    MRR: 0.119    H@10: 0.216    H@100: 0.550    H@500: 0.872
+Val (All):              total_drugs: 2248.000    median_rank: 274.000    MRR: 0.065    H@10: 0.114    H@100: 0.319    H@500: 0.640
+Val (In Train):         total_drugs: 1941.000    median_rank: 253.000    MRR: 0.072    H@10: 0.127    H@100: 0.338    H@500: 0.656
+Val (Not in Train):     total_drugs: 307.000    median_rank: 465.000    MRR: 0.012    H@10: 0.016    H@100: 0.179    H@500: 0.516
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:12    Epoch (Evaluation): 0:02:59    Total: 5:29:50
+Current time: 2019-07-09 14:20:38 EDT-0400
+
+Epoch 53
+Train:    Avg loss: 0.144    Percent Correct: 95.121
+Val  :    Avg loss: 0.229    Percent Correct: 78.752
+Train (All):            total_drugs: 6318.000    median_rank: 72.000    MRR: 0.125    H@10: 0.226    H@100: 0.564    H@500: 0.888
+Val (All):              total_drugs: 2248.000    median_rank: 255.000    MRR: 0.069    H@10: 0.118    H@100: 0.327    H@500: 0.660
+Val (In Train):         total_drugs: 1941.000    median_rank: 228.500    MRR: 0.077    H@10: 0.132    H@100: 0.351    H@500: 0.687
+Val (Not in Train):     total_drugs: 307.000    median_rank: 582.000    MRR: 0.006    H@10: 0.010    H@100: 0.146    H@500: 0.455
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:13    Epoch (Evaluation): 0:03:00    Total: 5:36:03
+Current time: 2019-07-09 14:26:51 EDT-0400
+
+Epoch 54
+Train:    Avg loss: 0.148    Percent Correct: 94.885
+Val  :    Avg loss: 0.216    Percent Correct: 78.983
+Train (All):            total_drugs: 6318.000    median_rank: 74.000    MRR: 0.127    H@10: 0.228    H@100: 0.560    H@500: 0.891
+Val (All):              total_drugs: 2248.000    median_rank: 247.000    MRR: 0.069    H@10: 0.121    H@100: 0.332    H@500: 0.675
+Val (In Train):         total_drugs: 1941.000    median_rank: 225.000    MRR: 0.077    H@10: 0.135    H@100: 0.350    H@500: 0.695
+Val (Not in Train):     total_drugs: 307.000    median_rank: 482.500    MRR: 0.012    H@10: 0.023    H@100: 0.188    H@500: 0.523
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:13    Epoch (Evaluation): 0:02:58    Total: 5:42:14
+Current time: 2019-07-09 14:33:01 EDT-0400
+
+Epoch 55
+Train:    Avg loss: 0.147    Percent Correct: 94.824
+Val  :    Avg loss: 0.226    Percent Correct: 79.684
+Train (All):            total_drugs: 6318.000    median_rank: 71.000    MRR: 0.128    H@10: 0.232    H@100: 0.569    H@500: 0.890
+Val (All):              total_drugs: 2248.000    median_rank: 245.500    MRR: 0.074    H@10: 0.133    H@100: 0.340    H@500: 0.678
+Val (In Train):         total_drugs: 1941.000    median_rank: 213.000    MRR: 0.082    H@10: 0.148    H@100: 0.368    H@500: 0.708
+Val (Not in Train):     total_drugs: 307.000    median_rank: 585.000    MRR: 0.010    H@10: 0.016    H@100: 0.123    H@500: 0.451
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:14    Epoch (Evaluation): 0:03:04    Total: 5:48:31
+Current time: 2019-07-09 14:39:19 EDT-0400
+
+Epoch 56
+Train:    Avg loss: 0.144    Percent Correct: 95.373
+Val  :    Avg loss: 0.222    Percent Correct: 79.222
+Train (All):            total_drugs: 6318.000    median_rank: 70.000    MRR: 0.129    H@10: 0.228    H@100: 0.575    H@500: 0.892
+Val (All):              total_drugs: 2248.000    median_rank: 238.000    MRR: 0.074    H@10: 0.119    H@100: 0.341    H@500: 0.687
+Val (In Train):         total_drugs: 1941.000    median_rank: 209.000    MRR: 0.082    H@10: 0.132    H@100: 0.364    H@500: 0.703
+Val (Not in Train):     total_drugs: 307.000    median_rank: 423.000    MRR: 0.012    H@10: 0.019    H@100: 0.172    H@500: 0.571
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:16    Epoch (Evaluation): 0:02:59    Total: 5:54:45
+Current time: 2019-07-09 14:45:33 EDT-0400
+
+Epoch 57
+Train:    Avg loss: 0.146    Percent Correct: 95.725
+Val  :    Avg loss: 0.234    Percent Correct: 79.048
+Train (All):            total_drugs: 6318.000    median_rank: 75.000    MRR: 0.123    H@10: 0.223    H@100: 0.558    H@500: 0.884
+Val (All):              total_drugs: 2248.000    median_rank: 251.500    MRR: 0.070    H@10: 0.120    H@100: 0.323    H@500: 0.675
+Val (In Train):         total_drugs: 1941.000    median_rank: 224.000    MRR: 0.078    H@10: 0.135    H@100: 0.350    H@500: 0.701
+Val (Not in Train):     total_drugs: 307.000    median_rank: 533.500    MRR: 0.007    H@10: 0.010    H@100: 0.120    H@500: 0.477
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:17    Epoch (Evaluation): 0:02:58    Total: 6:01:01
+Current time: 2019-07-09 14:51:49 EDT-0400
+
+Epoch 58
+Train:    Avg loss: 0.143    Percent Correct: 95.527
+Val  :    Avg loss: 0.223    Percent Correct: 76.588
+Train (All):            total_drugs: 6318.000    median_rank: 69.000    MRR: 0.127    H@10: 0.233    H@100: 0.572    H@500: 0.893
+Val (All):              total_drugs: 2248.000    median_rank: 226.000    MRR: 0.072    H@10: 0.125    H@100: 0.356    H@500: 0.700
+Val (In Train):         total_drugs: 1941.000    median_rank: 204.500    MRR: 0.080    H@10: 0.139    H@100: 0.378    H@500: 0.721
+Val (Not in Train):     total_drugs: 307.000    median_rank: 460.500    MRR: 0.014    H@10: 0.019    H@100: 0.188    H@500: 0.539
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:15    Epoch (Evaluation): 0:02:56    Total: 6:07:12
+Current time: 2019-07-09 14:58:00 EDT-0400
+
+Epoch 59
+Train:    Avg loss: 0.144    Percent Correct: 95.552
+Val  :    Avg loss: 0.234    Percent Correct: 79.082
+Train (All):            total_drugs: 6318.000    median_rank: 66.000    MRR: 0.133    H@10: 0.237    H@100: 0.583    H@500: 0.896
+Val (All):              total_drugs: 2248.000    median_rank: 245.500    MRR: 0.072    H@10: 0.126    H@100: 0.338    H@500: 0.673
+Val (In Train):         total_drugs: 1941.000    median_rank: 202.500    MRR: 0.081    H@10: 0.140    H@100: 0.369    H@500: 0.708
+Val (Not in Train):     total_drugs: 307.000    median_rank: 665.500    MRR: 0.008    H@10: 0.019    H@100: 0.107    H@500: 0.406
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:14    Epoch (Evaluation): 0:02:58    Total: 6:13:23
+Current time: 2019-07-09 15:04:11 EDT-0400
+
+Epoch 60
+Train:    Avg loss: 0.146    Percent Correct: 95.616
+Val  :    Avg loss: 0.234    Percent Correct: 78.400
+Train (All):            total_drugs: 6318.000    median_rank: 67.000    MRR: 0.126    H@10: 0.230    H@100: 0.580    H@500: 0.898
+Val (All):              total_drugs: 2248.000    median_rank: 260.000    MRR: 0.065    H@10: 0.110    H@100: 0.316    H@500: 0.653
+Val (In Train):         total_drugs: 1941.000    median_rank: 232.000    MRR: 0.072    H@10: 0.122    H@100: 0.341    H@500: 0.681
+Val (Not in Train):     total_drugs: 307.000    median_rank: 584.000    MRR: 0.013    H@10: 0.019    H@100: 0.130    H@500: 0.445
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:12    Epoch (Evaluation): 0:02:58    Total: 6:19:34
+Current time: 2019-07-09 15:10:22 EDT-0400
+
+Epoch 61
+Train:    Avg loss: 0.142    Percent Correct: 95.660
+Val  :    Avg loss: 0.227    Percent Correct: 81.326
+Train (All):            total_drugs: 6318.000    median_rank: 67.000    MRR: 0.131    H@10: 0.233    H@100: 0.579    H@500: 0.902
+Val (All):              total_drugs: 2248.000    median_rank: 240.500    MRR: 0.072    H@10: 0.126    H@100: 0.334    H@500: 0.685
+Val (In Train):         total_drugs: 1941.000    median_rank: 217.500    MRR: 0.080    H@10: 0.141    H@100: 0.358    H@500: 0.708
+Val (Not in Train):     total_drugs: 307.000    median_rank: 497.000    MRR: 0.011    H@10: 0.019    H@100: 0.153    H@500: 0.510
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:13    Epoch (Evaluation): 0:02:59    Total: 6:25:46
+Current time: 2019-07-09 15:16:34 EDT-0400
+
+Epoch 62
+Train:    Avg loss: 0.140    Percent Correct: 95.587
+Val  :    Avg loss: 0.238    Percent Correct: 80.178
+Train (All):            total_drugs: 6318.000    median_rank: 62.000    MRR: 0.132    H@10: 0.235    H@100: 0.598    H@500: 0.909
+Val (All):              total_drugs: 2248.000    median_rank: 244.500    MRR: 0.072    H@10: 0.125    H@100: 0.336    H@500: 0.681
+Val (In Train):         total_drugs: 1941.000    median_rank: 214.500    MRR: 0.081    H@10: 0.140    H@100: 0.363    H@500: 0.705
+Val (Not in Train):     total_drugs: 307.000    median_rank: 501.000    MRR: 0.011    H@10: 0.016    H@100: 0.130    H@500: 0.500
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:16    Epoch (Evaluation): 0:02:57    Total: 6:31:59
+Current time: 2019-07-09 15:22:46 EDT-0400
+
+Epoch 63
+Train:    Avg loss: 0.142    Percent Correct: 95.775
+Val  :    Avg loss: 0.228    Percent Correct: 79.517
+Train (All):            total_drugs: 6318.000    median_rank: 62.000    MRR: 0.135    H@10: 0.243    H@100: 0.600    H@500: 0.909
+Val (All):              total_drugs: 2248.000    median_rank: 238.000    MRR: 0.075    H@10: 0.125    H@100: 0.346    H@500: 0.680
+Val (In Train):         total_drugs: 1941.000    median_rank: 203.000    MRR: 0.083    H@10: 0.139    H@100: 0.376    H@500: 0.713
+Val (Not in Train):     total_drugs: 307.000    median_rank: 620.000    MRR: 0.008    H@10: 0.013    H@100: 0.114    H@500: 0.432
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:12    Epoch (Evaluation): 0:02:58    Total: 6:38:08
+Current time: 2019-07-09 15:28:56 EDT-0400
+
+Epoch 64
+Train:    Avg loss: 0.141    Percent Correct: 96.016
+Val  :    Avg loss: 0.232    Percent Correct: 81.855
+Train (All):            total_drugs: 6318.000    median_rank: 61.000    MRR: 0.134    H@10: 0.242    H@100: 0.599    H@500: 0.909
+Val (All):              total_drugs: 2248.000    median_rank: 234.000    MRR: 0.064    H@10: 0.115    H@100: 0.341    H@500: 0.695
+Val (In Train):         total_drugs: 1941.000    median_rank: 208.500    MRR: 0.072    H@10: 0.129    H@100: 0.370    H@500: 0.721
+Val (Not in Train):     total_drugs: 307.000    median_rank: 500.500    MRR: 0.007    H@10: 0.006    H@100: 0.123    H@500: 0.500
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:14    Epoch (Evaluation): 0:02:58    Total: 6:44:21
+Current time: 2019-07-09 15:35:08 EDT-0400
+
+Epoch 65
+Train:    Avg loss: 0.139    Percent Correct: 95.885
+Val  :    Avg loss: 0.234    Percent Correct: 80.541
+Train (All):            total_drugs: 6318.000    median_rank: 58.000    MRR: 0.136    H@10: 0.246    H@100: 0.609    H@500: 0.915
+Val (All):              total_drugs: 2248.000    median_rank: 221.500    MRR: 0.077    H@10: 0.132    H@100: 0.350    H@500: 0.685
+Val (In Train):         total_drugs: 1941.000    median_rank: 206.000    MRR: 0.085    H@10: 0.147    H@100: 0.371    H@500: 0.703
+Val (Not in Train):     total_drugs: 307.000    median_rank: 397.000    MRR: 0.014    H@10: 0.026    H@100: 0.188    H@500: 0.549
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:12    Epoch (Evaluation): 0:02:57    Total: 6:50:30
+Current time: 2019-07-09 15:41:18 EDT-0400
+
+Epoch 66
+Train:    Avg loss: 0.140    Percent Correct: 96.151
+Val  :    Avg loss: 0.230    Percent Correct: 83.438
+Train (All):            total_drugs: 6318.000    median_rank: 57.000    MRR: 0.142    H@10: 0.253    H@100: 0.610    H@500: 0.914
+Val (All):              total_drugs: 2248.000    median_rank: 242.000    MRR: 0.076    H@10: 0.128    H@100: 0.339    H@500: 0.670
+Val (In Train):         total_drugs: 1941.000    median_rank: 213.000    MRR: 0.084    H@10: 0.141    H@100: 0.366    H@500: 0.697
+Val (Not in Train):     total_drugs: 307.000    median_rank: 569.500    MRR: 0.012    H@10: 0.029    H@100: 0.136    H@500: 0.468
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:13    Epoch (Evaluation): 0:02:58    Total: 6:56:41
+Current time: 2019-07-09 15:47:29 EDT-0400
+
+Epoch 67
+Train:    Avg loss: 0.142    Percent Correct: 96.159
+Val  :    Avg loss: 0.226    Percent Correct: 81.409
+Train (All):            total_drugs: 6318.000    median_rank: 57.000    MRR: 0.139    H@10: 0.247    H@100: 0.611    H@500: 0.921
+Val (All):              total_drugs: 2248.000    median_rank: 228.000    MRR: 0.071    H@10: 0.125    H@100: 0.346    H@500: 0.669
+Val (In Train):         total_drugs: 1941.000    median_rank: 203.000    MRR: 0.079    H@10: 0.140    H@100: 0.375    H@500: 0.697
+Val (Not in Train):     total_drugs: 307.000    median_rank: 560.000    MRR: 0.007    H@10: 0.010    H@100: 0.123    H@500: 0.461
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:13    Epoch (Evaluation): 0:02:56    Total: 7:02:51
+Current time: 2019-07-09 15:53:39 EDT-0400
+
+Epoch 68
+Train:    Avg loss: 0.144    Percent Correct: 96.262
+Val  :    Avg loss: 0.229    Percent Correct: 78.813
+Train (All):            total_drugs: 6318.000    median_rank: 57.000    MRR: 0.139    H@10: 0.247    H@100: 0.609    H@500: 0.917
+Val (All):              total_drugs: 2248.000    median_rank: 224.000    MRR: 0.073    H@10: 0.122    H@100: 0.345    H@500: 0.687
+Val (In Train):         total_drugs: 1941.000    median_rank: 204.000    MRR: 0.081    H@10: 0.136    H@100: 0.371    H@500: 0.707
+Val (Not in Train):     total_drugs: 307.000    median_rank: 449.000    MRR: 0.009    H@10: 0.013    H@100: 0.153    H@500: 0.536
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:13    Epoch (Evaluation): 0:02:58    Total: 7:09:02
+Current time: 2019-07-09 15:59:50 EDT-0400
+
+Epoch 69
+Train:    Avg loss: 0.141    Percent Correct: 96.284
+Val  :    Avg loss: 0.231    Percent Correct: 79.035
+Train (All):            total_drugs: 6318.000    median_rank: 56.000    MRR: 0.139    H@10: 0.252    H@100: 0.617    H@500: 0.923
+Val (All):              total_drugs: 2248.000    median_rank: 248.500    MRR: 0.074    H@10: 0.129    H@100: 0.345    H@500: 0.682
+Val (In Train):         total_drugs: 1941.000    median_rank: 214.500    MRR: 0.083    H@10: 0.143    H@100: 0.374    H@500: 0.716
+Val (Not in Train):     total_drugs: 307.000    median_rank: 676.500    MRR: 0.010    H@10: 0.023    H@100: 0.120    H@500: 0.422
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:12    Epoch (Evaluation): 0:02:59    Total: 7:15:13
+Current time: 2019-07-09 16:06:00 EDT-0400
+
+Epoch 70
+Train:    Avg loss: 0.141    Percent Correct: 96.278
+Val  :    Avg loss: 0.240    Percent Correct: 80.418
+Train (All):            total_drugs: 6318.000    median_rank: 56.000    MRR: 0.138    H@10: 0.250    H@100: 0.618    H@500: 0.924
+Val (All):              total_drugs: 2248.000    median_rank: 247.000    MRR: 0.074    H@10: 0.126    H@100: 0.339    H@500: 0.673
+Val (In Train):         total_drugs: 1941.000    median_rank: 214.500    MRR: 0.083    H@10: 0.142    H@100: 0.371    H@500: 0.711
+Val (Not in Train):     total_drugs: 307.000    median_rank: 651.500    MRR: 0.005    H@10: 0.006    H@100: 0.101    H@500: 0.383
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:13    Epoch (Evaluation): 0:02:58    Total: 7:21:23
+Current time: 2019-07-09 16:12:11 EDT-0400
+
+Epoch 71
+Train:    Avg loss: 0.140    Percent Correct: 96.289
+Val  :    Avg loss: 0.229    Percent Correct: 80.210
+Train (All):            total_drugs: 6318.000    median_rank: 52.000    MRR: 0.143    H@10: 0.260    H@100: 0.629    H@500: 0.929
+Val (All):              total_drugs: 2248.000    median_rank: 235.500    MRR: 0.076    H@10: 0.128    H@100: 0.337    H@500: 0.703
+Val (In Train):         total_drugs: 1941.000    median_rank: 212.500    MRR: 0.085    H@10: 0.143    H@100: 0.357    H@500: 0.716
+Val (Not in Train):     total_drugs: 307.000    median_rank: 390.000    MRR: 0.012    H@10: 0.019    H@100: 0.185    H@500: 0.601
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:13    Epoch (Evaluation): 0:02:59    Total: 7:27:35
+Current time: 2019-07-09 16:18:23 EDT-0400
+
+Epoch 72
+Train:    Avg loss: 0.139    Percent Correct: 96.833
+Val  :    Avg loss: 0.227    Percent Correct: 80.452
+Train (All):            total_drugs: 6318.000    median_rank: 52.000    MRR: 0.146    H@10: 0.262    H@100: 0.628    H@500: 0.931
+Val (All):              total_drugs: 2248.000    median_rank: 220.500    MRR: 0.076    H@10: 0.134    H@100: 0.347    H@500: 0.690
+Val (In Train):         total_drugs: 1941.000    median_rank: 194.000    MRR: 0.084    H@10: 0.149    H@100: 0.370    H@500: 0.711
+Val (Not in Train):     total_drugs: 307.000    median_rank: 463.000    MRR: 0.015    H@10: 0.019    H@100: 0.169    H@500: 0.529
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:13    Epoch (Evaluation): 0:02:58    Total: 7:33:46
+Current time: 2019-07-09 16:24:34 EDT-0400
+
+Epoch 73
+Train:    Avg loss: 0.139    Percent Correct: 96.297
+Val  :    Avg loss: 0.234    Percent Correct: 79.077
+Train (All):            total_drugs: 6318.000    median_rank: 52.250    MRR: 0.145    H@10: 0.261    H@100: 0.625    H@500: 0.922
+Val (All):              total_drugs: 2248.000    median_rank: 252.000    MRR: 0.078    H@10: 0.134    H@100: 0.332    H@500: 0.656
+Val (In Train):         total_drugs: 1941.000    median_rank: 223.000    MRR: 0.086    H@10: 0.148    H@100: 0.357    H@500: 0.677
+Val (Not in Train):     total_drugs: 307.000    median_rank: 516.500    MRR: 0.015    H@10: 0.026    H@100: 0.140    H@500: 0.490
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:15    Epoch (Evaluation): 0:02:58    Total: 7:39:59
+Current time: 2019-07-09 16:30:47 EDT-0400
+
+Epoch 74
+Train:    Avg loss: 0.142    Percent Correct: 95.774
+Val  :    Avg loss: 0.235    Percent Correct: 78.629
+Train (All):            total_drugs: 6318.000    median_rank: 49.000    MRR: 0.148    H@10: 0.267    H@100: 0.644    H@500: 0.934
+Val (All):              total_drugs: 2248.000    median_rank: 222.000    MRR: 0.077    H@10: 0.134    H@100: 0.346    H@500: 0.685
+Val (In Train):         total_drugs: 1941.000    median_rank: 202.000    MRR: 0.086    H@10: 0.149    H@100: 0.366    H@500: 0.705
+Val (Not in Train):     total_drugs: 307.000    median_rank: 464.000    MRR: 0.013    H@10: 0.023    H@100: 0.192    H@500: 0.532
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:12    Epoch (Evaluation): 0:02:57    Total: 7:46:08
+Current time: 2019-07-09 16:36:56 EDT-0400
+
+Epoch 75
+Train:    Avg loss: 0.138    Percent Correct: 96.438
+Val  :    Avg loss: 0.229    Percent Correct: 80.069
+Train (All):            total_drugs: 6318.000    median_rank: 52.000    MRR: 0.143    H@10: 0.258    H@100: 0.630    H@500: 0.926
+Val (All):              total_drugs: 2248.000    median_rank: 226.000    MRR: 0.078    H@10: 0.137    H@100: 0.350    H@500: 0.689
+Val (In Train):         total_drugs: 1941.000    median_rank: 195.000    MRR: 0.087    H@10: 0.153    H@100: 0.374    H@500: 0.711
+Val (Not in Train):     total_drugs: 307.000    median_rank: 446.500    MRR: 0.014    H@10: 0.019    H@100: 0.162    H@500: 0.519
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:11    Epoch (Evaluation): 0:02:56    Total: 7:52:16
+Current time: 2019-07-09 16:43:04 EDT-0400
+
+Epoch 76
+Train:    Avg loss: 0.137    Percent Correct: 96.510
+Val  :    Avg loss: 0.233    Percent Correct: 81.362
+Train (All):            total_drugs: 6318.000    median_rank: 50.000    MRR: 0.146    H@10: 0.266    H@100: 0.639    H@500: 0.935
+Val (All):              total_drugs: 2248.000    median_rank: 238.000    MRR: 0.078    H@10: 0.139    H@100: 0.339    H@500: 0.676
+Val (In Train):         total_drugs: 1941.000    median_rank: 203.500    MRR: 0.087    H@10: 0.154    H@100: 0.367    H@500: 0.701
+Val (Not in Train):     total_drugs: 307.000    median_rank: 545.000    MRR: 0.012    H@10: 0.026    H@100: 0.127    H@500: 0.481
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:12    Epoch (Evaluation): 0:02:59    Total: 7:58:27
+Current time: 2019-07-09 16:49:15 EDT-0400
+
+Epoch 77
+Train:    Avg loss: 0.140    Percent Correct: 96.183
+Val  :    Avg loss: 0.235    Percent Correct: 80.900
+Train (All):            total_drugs: 6318.000    median_rank: 51.000    MRR: 0.145    H@10: 0.262    H@100: 0.636    H@500: 0.933
+Val (All):              total_drugs: 2248.000    median_rank: 223.500    MRR: 0.077    H@10: 0.134    H@100: 0.358    H@500: 0.681
+Val (In Train):         total_drugs: 1941.000    median_rank: 191.500    MRR: 0.085    H@10: 0.149    H@100: 0.387    H@500: 0.709
+Val (Not in Train):     total_drugs: 307.000    median_rank: 546.500    MRR: 0.009    H@10: 0.019    H@100: 0.133    H@500: 0.464
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:12    Epoch (Evaluation): 0:02:56    Total: 8:04:36
+Current time: 2019-07-09 16:55:24 EDT-0400
+
+Epoch 78
+Train:    Avg loss: 0.138    Percent Correct: 97.012
+Val  :    Avg loss: 0.240    Percent Correct: 80.610
+Train (All):            total_drugs: 6318.000    median_rank: 47.000    MRR: 0.153    H@10: 0.274    H@100: 0.651    H@500: 0.939
+Val (All):              total_drugs: 2248.000    median_rank: 238.500    MRR: 0.079    H@10: 0.138    H@100: 0.343    H@500: 0.685
+Val (In Train):         total_drugs: 1941.000    median_rank: 199.500    MRR: 0.088    H@10: 0.154    H@100: 0.373    H@500: 0.719
+Val (Not in Train):     total_drugs: 307.000    median_rank: 667.000    MRR: 0.007    H@10: 0.016    H@100: 0.117    H@500: 0.429
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:12    Epoch (Evaluation): 0:02:56    Total: 8:10:44
+Current time: 2019-07-09 17:01:32 EDT-0400
+
+Epoch 79
+Train:    Avg loss: 0.139    Percent Correct: 96.736
+Val  :    Avg loss: 0.243    Percent Correct: 78.550
+Train (All):            total_drugs: 6318.000    median_rank: 45.000    MRR: 0.154    H@10: 0.277    H@100: 0.661    H@500: 0.944
+Val (All):              total_drugs: 2248.000    median_rank: 207.000    MRR: 0.079    H@10: 0.132    H@100: 0.363    H@500: 0.709
+Val (In Train):         total_drugs: 1941.000    median_rank: 178.000    MRR: 0.087    H@10: 0.145    H@100: 0.394    H@500: 0.737
+Val (Not in Train):     total_drugs: 307.000    median_rank: 524.500    MRR: 0.013    H@10: 0.029    H@100: 0.127    H@500: 0.494
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:14    Epoch (Evaluation): 0:03:03    Total: 8:17:01
+Current time: 2019-07-09 17:07:49 EDT-0400
+
+Epoch 80
+Train:    Avg loss: 0.139    Percent Correct: 96.309
+Val  :    Avg loss: 0.220    Percent Correct: 82.115
+Train (All):            total_drugs: 6318.000    median_rank: 47.000    MRR: 0.150    H@10: 0.270    H@100: 0.652    H@500: 0.938
+Val (All):              total_drugs: 2248.000    median_rank: 218.000    MRR: 0.078    H@10: 0.125    H@100: 0.358    H@500: 0.709
+Val (In Train):         total_drugs: 1941.000    median_rank: 183.000    MRR: 0.087    H@10: 0.140    H@100: 0.388    H@500: 0.736
+Val (Not in Train):     total_drugs: 307.000    median_rank: 499.000    MRR: 0.009    H@10: 0.016    H@100: 0.130    H@500: 0.503
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:11    Epoch (Evaluation): 0:02:57    Total: 8:23:10
+Current time: 2019-07-09 17:13:58 EDT-0400
+
+Epoch 81
+Train:    Avg loss: 0.136    Percent Correct: 97.148
+Val  :    Avg loss: 0.237    Percent Correct: 81.184
+Train (All):            total_drugs: 6318.000    median_rank: 45.000    MRR: 0.152    H@10: 0.278    H@100: 0.662    H@500: 0.944
+Val (All):              total_drugs: 2248.000    median_rank: 222.000    MRR: 0.075    H@10: 0.128    H@100: 0.349    H@500: 0.685
+Val (In Train):         total_drugs: 1941.000    median_rank: 183.500    MRR: 0.084    H@10: 0.141    H@100: 0.381    H@500: 0.716
+Val (Not in Train):     total_drugs: 307.000    median_rank: 575.000    MRR: 0.008    H@10: 0.029    H@100: 0.104    H@500: 0.458
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:13    Epoch (Evaluation): 0:02:58    Total: 8:29:20
+Current time: 2019-07-09 17:20:08 EDT-0400
+
+Epoch 82
+Train:    Avg loss: 0.136    Percent Correct: 96.973
+Val  :    Avg loss: 0.259    Percent Correct: 79.673
+Train (All):            total_drugs: 6318.000    median_rank: 46.000    MRR: 0.153    H@10: 0.275    H@100: 0.651    H@500: 0.935
+Val (All):              total_drugs: 2248.000    median_rank: 218.000    MRR: 0.076    H@10: 0.132    H@100: 0.355    H@500: 0.696
+Val (In Train):         total_drugs: 1941.000    median_rank: 187.000    MRR: 0.085    H@10: 0.148    H@100: 0.386    H@500: 0.727
+Val (Not in Train):     total_drugs: 307.000    median_rank: 589.500    MRR: 0.012    H@10: 0.016    H@100: 0.120    H@500: 0.461
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:15    Epoch (Evaluation): 0:03:02    Total: 8:35:37
+Current time: 2019-07-09 17:26:25 EDT-0400
+
+Epoch 83
+Train:    Avg loss: 0.136    Percent Correct: 96.634
+Val  :    Avg loss: 0.238    Percent Correct: 81.859
+Train (All):            total_drugs: 6318.000    median_rank: 44.000    MRR: 0.154    H@10: 0.280    H@100: 0.667    H@500: 0.948
+Val (All):              total_drugs: 2248.000    median_rank: 211.000    MRR: 0.076    H@10: 0.137    H@100: 0.350    H@500: 0.703
+Val (In Train):         total_drugs: 1941.000    median_rank: 188.500    MRR: 0.084    H@10: 0.152    H@100: 0.377    H@500: 0.722
+Val (Not in Train):     total_drugs: 307.000    median_rank: 425.500    MRR: 0.015    H@10: 0.026    H@100: 0.149    H@500: 0.558
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:16    Epoch (Evaluation): 0:02:58    Total: 8:41:51
+Current time: 2019-07-09 17:32:39 EDT-0400
+
+Epoch 84
+Train:    Avg loss: 0.134    Percent Correct: 97.118
+Val  :    Avg loss: 0.235    Percent Correct: 81.082
+Train (All):            total_drugs: 6318.000    median_rank: 43.000    MRR: 0.156    H@10: 0.281    H@100: 0.667    H@500: 0.945
+Val (All):              total_drugs: 2248.000    median_rank: 204.500    MRR: 0.079    H@10: 0.137    H@100: 0.367    H@500: 0.710
+Val (In Train):         total_drugs: 1941.000    median_rank: 178.000    MRR: 0.087    H@10: 0.152    H@100: 0.394    H@500: 0.731
+Val (Not in Train):     total_drugs: 307.000    median_rank: 418.000    MRR: 0.013    H@10: 0.026    H@100: 0.162    H@500: 0.558
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:14    Epoch (Evaluation): 0:02:59    Total: 8:48:04
+Current time: 2019-07-09 17:38:52 EDT-0400
+
+Epoch 85
+Train:    Avg loss: 0.138    Percent Correct: 96.556
+Val  :    Avg loss: 0.246    Percent Correct: 83.160
+Train (All):            total_drugs: 6318.000    median_rank: 41.000    MRR: 0.162    H@10: 0.289    H@100: 0.678    H@500: 0.951
+Val (All):              total_drugs: 2248.000    median_rank: 206.500    MRR: 0.077    H@10: 0.137    H@100: 0.361    H@500: 0.708
+Val (In Train):         total_drugs: 1941.000    median_rank: 183.000    MRR: 0.086    H@10: 0.152    H@100: 0.390    H@500: 0.735
+Val (Not in Train):     total_drugs: 307.000    median_rank: 502.000    MRR: 0.011    H@10: 0.023    H@100: 0.146    H@500: 0.500
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:13    Epoch (Evaluation): 0:02:59    Total: 8:54:15
+Current time: 2019-07-09 17:45:03 EDT-0400
+
+Epoch 86
+Train:    Avg loss: 0.134    Percent Correct: 97.157
+Val  :    Avg loss: 0.256    Percent Correct: 82.778
+Train (All):            total_drugs: 6318.000    median_rank: 43.000    MRR: 0.155    H@10: 0.281    H@100: 0.662    H@500: 0.942
+Val (All):              total_drugs: 2248.000    median_rank: 232.000    MRR: 0.076    H@10: 0.134    H@100: 0.347    H@500: 0.690
+Val (In Train):         total_drugs: 1941.000    median_rank: 210.000    MRR: 0.084    H@10: 0.147    H@100: 0.373    H@500: 0.707
+Val (Not in Train):     total_drugs: 307.000    median_rank: 422.000    MRR: 0.015    H@10: 0.029    H@100: 0.156    H@500: 0.555
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:16    Epoch (Evaluation): 0:02:58    Total: 9:00:29
+Current time: 2019-07-09 17:51:17 EDT-0400
+
+Epoch 87
+Train:    Avg loss: 0.134    Percent Correct: 97.129
+Val  :    Avg loss: 0.248    Percent Correct: 80.557
+Train (All):            total_drugs: 6318.000    median_rank: 41.000    MRR: 0.160    H@10: 0.292    H@100: 0.679    H@500: 0.948
+Val (All):              total_drugs: 2248.000    median_rank: 213.500    MRR: 0.077    H@10: 0.132    H@100: 0.361    H@500: 0.708
+Val (In Train):         total_drugs: 1941.000    median_rank: 185.500    MRR: 0.086    H@10: 0.147    H@100: 0.386    H@500: 0.731
+Val (Not in Train):     total_drugs: 307.000    median_rank: 458.500    MRR: 0.012    H@10: 0.019    H@100: 0.172    H@500: 0.529
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:16    Epoch (Evaluation): 0:02:59    Total: 9:06:45
+Current time: 2019-07-09 17:57:33 EDT-0400
+
+Epoch 88
+Train:    Avg loss: 0.139    Percent Correct: 97.264
+Val  :    Avg loss: 0.236    Percent Correct: 81.223
+Train (All):            total_drugs: 6318.000    median_rank: 41.000    MRR: 0.161    H@10: 0.290    H@100: 0.674    H@500: 0.951
+Val (All):              total_drugs: 2248.000    median_rank: 217.000    MRR: 0.078    H@10: 0.136    H@100: 0.368    H@500: 0.690
+Val (In Train):         total_drugs: 1941.000    median_rank: 175.500    MRR: 0.087    H@10: 0.152    H@100: 0.407    H@500: 0.736
+Val (Not in Train):     total_drugs: 307.000    median_rank: 761.500    MRR: 0.008    H@10: 0.010    H@100: 0.078    H@500: 0.338
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:17    Epoch (Evaluation): 0:02:57    Total: 9:12:58
+Current time: 2019-07-09 18:03:46 EDT-0400
+
+Epoch 89
+Train:    Avg loss: 0.138    Percent Correct: 96.907
+Val  :    Avg loss: 0.241    Percent Correct: 80.612
+Train (All):            total_drugs: 6318.000    median_rank: 41.000    MRR: 0.162    H@10: 0.293    H@100: 0.674    H@500: 0.951
+Val (All):              total_drugs: 2248.000    median_rank: 220.000    MRR: 0.078    H@10: 0.131    H@100: 0.362    H@500: 0.693
+Val (In Train):         total_drugs: 1941.000    median_rank: 193.500    MRR: 0.087    H@10: 0.147    H@100: 0.392    H@500: 0.708
+Val (Not in Train):     total_drugs: 307.000    median_rank: 384.500    MRR: 0.008    H@10: 0.016    H@100: 0.133    H@500: 0.584
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:14    Epoch (Evaluation): 0:02:58    Total: 9:19:10
+Current time: 2019-07-09 18:09:58 EDT-0400
+
+Epoch 90
+Train:    Avg loss: 0.136    Percent Correct: 97.099
+Val  :    Avg loss: 0.255    Percent Correct: 81.982
+Train (All):            total_drugs: 6318.000    median_rank: 38.000    MRR: 0.164    H@10: 0.299    H@100: 0.687    H@500: 0.950
+Val (All):              total_drugs: 2248.000    median_rank: 212.000    MRR: 0.078    H@10: 0.137    H@100: 0.362    H@500: 0.709
+Val (In Train):         total_drugs: 1941.000    median_rank: 181.500    MRR: 0.088    H@10: 0.153    H@100: 0.395    H@500: 0.740
+Val (Not in Train):     total_drugs: 307.000    median_rank: 546.500    MRR: 0.008    H@10: 0.016    H@100: 0.114    H@500: 0.468
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:13    Epoch (Evaluation): 0:02:59    Total: 9:25:22
+Current time: 2019-07-09 18:16:09 EDT-0400
+
+Epoch 91
+Train:    Avg loss: 0.131    Percent Correct: 97.088
+Val  :    Avg loss: 0.259    Percent Correct: 78.757
+Train (All):            total_drugs: 6318.000    median_rank: 39.000    MRR: 0.161    H@10: 0.292    H@100: 0.691    H@500: 0.954
+Val (All):              total_drugs: 2248.000    median_rank: 221.500    MRR: 0.075    H@10: 0.132    H@100: 0.353    H@500: 0.705
+Val (In Train):         total_drugs: 1941.000    median_rank: 193.000    MRR: 0.084    H@10: 0.147    H@100: 0.379    H@500: 0.725
+Val (Not in Train):     total_drugs: 307.000    median_rank: 446.500    MRR: 0.013    H@10: 0.019    H@100: 0.156    H@500: 0.552
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:13    Epoch (Evaluation): 0:02:57    Total: 9:31:32
+Current time: 2019-07-09 18:22:20 EDT-0400
+
+Epoch 92
+Train:    Avg loss: 0.136    Percent Correct: 96.700
+Val  :    Avg loss: 0.237    Percent Correct: 83.327
+Train (All):            total_drugs: 6318.000    median_rank: 37.000    MRR: 0.165    H@10: 0.303    H@100: 0.698    H@500: 0.959
+Val (All):              total_drugs: 2248.000    median_rank: 207.000    MRR: 0.079    H@10: 0.138    H@100: 0.364    H@500: 0.708
+Val (In Train):         total_drugs: 1941.000    median_rank: 183.000    MRR: 0.088    H@10: 0.153    H@100: 0.392    H@500: 0.728
+Val (Not in Train):     total_drugs: 307.000    median_rank: 397.500    MRR: 0.011    H@10: 0.026    H@100: 0.153    H@500: 0.558
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:12    Epoch (Evaluation): 0:03:01    Total: 9:37:45
+Current time: 2019-07-09 18:28:33 EDT-0400
+
+Epoch 93
+Train:    Avg loss: 0.136    Percent Correct: 97.429
+Val  :    Avg loss: 0.249    Percent Correct: 81.265
+Train (All):            total_drugs: 6318.000    median_rank: 38.000    MRR: 0.165    H@10: 0.299    H@100: 0.691    H@500: 0.954
+Val (All):              total_drugs: 2248.000    median_rank: 201.500    MRR: 0.080    H@10: 0.137    H@100: 0.365    H@500: 0.726
+Val (In Train):         total_drugs: 1941.000    median_rank: 172.000    MRR: 0.089    H@10: 0.153    H@100: 0.395    H@500: 0.750
+Val (Not in Train):     total_drugs: 307.000    median_rank: 459.500    MRR: 0.010    H@10: 0.019    H@100: 0.140    H@500: 0.545
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:12    Epoch (Evaluation): 0:03:05    Total: 9:44:02
+Current time: 2019-07-09 18:34:50 EDT-0400
+
+Epoch 94
+Train:    Avg loss: 0.134    Percent Correct: 96.737
+Val  :    Avg loss: 0.261    Percent Correct: 83.211
+Train (All):            total_drugs: 6318.000    median_rank: 37.000    MRR: 0.167    H@10: 0.302    H@100: 0.690    H@500: 0.953
+Val (All):              total_drugs: 2248.000    median_rank: 201.500    MRR: 0.083    H@10: 0.140    H@100: 0.374    H@500: 0.723
+Val (In Train):         total_drugs: 1941.000    median_rank: 171.000    MRR: 0.093    H@10: 0.158    H@100: 0.401    H@500: 0.745
+Val (Not in Train):     total_drugs: 307.000    median_rank: 428.500    MRR: 0.009    H@10: 0.010    H@100: 0.169    H@500: 0.558
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:17    Epoch (Evaluation): 0:02:56    Total: 9:50:15
+Current time: 2019-07-09 18:41:03 EDT-0400
+
+Epoch 95
+Train:    Avg loss: 0.140    Percent Correct: 96.710
+Val  :    Avg loss: 0.262    Percent Correct: 80.813
+Train (All):            total_drugs: 6318.000    median_rank: 37.000    MRR: 0.166    H@10: 0.302    H@100: 0.698    H@500: 0.962
+Val (All):              total_drugs: 2248.000    median_rank: 225.000    MRR: 0.080    H@10: 0.134    H@100: 0.351    H@500: 0.684
+Val (In Train):         total_drugs: 1941.000    median_rank: 203.000    MRR: 0.089    H@10: 0.149    H@100: 0.377    H@500: 0.709
+Val (Not in Train):     total_drugs: 307.000    median_rank: 510.000    MRR: 0.010    H@10: 0.023    H@100: 0.159    H@500: 0.494
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:18    Epoch (Evaluation): 0:03:02    Total: 9:56:35
+Current time: 2019-07-09 18:47:23 EDT-0400
+
+Epoch 96
+Train:    Avg loss: 0.135    Percent Correct: 97.043
+Val  :    Avg loss: 0.258    Percent Correct: 81.914
+Train (All):            total_drugs: 6318.000    median_rank: 37.000    MRR: 0.168    H@10: 0.302    H@100: 0.700    H@500: 0.963
+Val (All):              total_drugs: 2248.000    median_rank: 222.000    MRR: 0.079    H@10: 0.130    H@100: 0.352    H@500: 0.679
+Val (In Train):         total_drugs: 1941.000    median_rank: 187.500    MRR: 0.088    H@10: 0.145    H@100: 0.384    H@500: 0.716
+Val (Not in Train):     total_drugs: 307.000    median_rank: 617.500    MRR: 0.008    H@10: 0.019    H@100: 0.104    H@500: 0.399
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:17    Epoch (Evaluation): 0:02:59    Total: 10:02:52
+Current time: 2019-07-09 18:53:39 EDT-0400
+

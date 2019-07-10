@@ -1,0 +1,70 @@
+{
+    "model_name": "triplet_ge_first_test",
+    "device_num": 1,
+    "structure": "triplet",
+
+    "dataset": {
+        "type": "LincsTripletDataset",
+        "args":{
+            "input_type": "triplet_chem_first",
+            "l1000_sigs_path":"~/DBMI_server/repo/mdeg_collab/data/lincs_level3_all_perts.pkl",
+            "rank_transform": false
+        }
+    },
+
+    "model": {
+        "type": "FeedForwardTripletNet",
+        "args": {
+            "input_type": "triplet_chem_first"
+        }
+    },
+
+    "loss": {
+        "type": "TripletMarginLoss_WU",
+        "online_eval_metrics": [
+        "loss", "percent_correct"
+    ],
+        "args":{
+        }
+    },
+
+    "trainer": {
+        "epochs": 100,
+        "base_exp_dir": "experiments/",
+        "wait_before_save_models": 0
+    },
+
+    "optimizer": {
+        "type": "Adam",
+        "args":{
+            "lr": 0.0003
+        }
+    },
+
+    "dataset_wrapper_ge": {
+        "type": "LincsSingletGEWrapperDataset",
+        "args":{
+        }
+    },
+
+    "dataset_wrapper_smiles": {
+        "type": "LincsSingletSmilesWrapperDataset",
+        "args":{
+        }
+    },
+
+      "data_loader": {
+        "type": "DataLoader",
+        "args":{
+            "batch_size": 512
+        }
+    },
+
+
+    "data_loader_singlet": {
+        "type": "DataLoader",
+        "args":{
+            "batch_size": 2934
+        }
+    }
+}

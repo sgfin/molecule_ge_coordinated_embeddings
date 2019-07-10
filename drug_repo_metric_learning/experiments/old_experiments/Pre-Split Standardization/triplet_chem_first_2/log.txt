@@ -1,0 +1,15 @@
+namespace(base_exp_dir='experiments', batch_size=512, device_num=4, dropout_prob=0, exp_dir='experiments/triplet_chem_first_2', model_name='triplet_chem_first_2', rankTrans=False, structure='triplet', val_mode_at_val=True)
+
+Loading Data
+Building Dataset
+Total GE Experiments: 28217 (Train)   4275 (Val)
+Total Drugs: 6573 (Train)   3367 (Val)
+
+Initializing Models
+Training
+Epoch 1
+Train:    Avg loss: 1.279    Percent Correct: 54.481
+Val  :    Avg loss: 0.271    Percent Correct: 61.805
+namespace(base_exp_dir='experiments', batch_size=512, device_num=4, dropout_prob=0, exp_dir='experiments/triplet_chem_first_2', model_name='triplet_chem_first_2', rankTrans=False, structure='triplet', val_mode_at_val=True)
+
+Loading Data

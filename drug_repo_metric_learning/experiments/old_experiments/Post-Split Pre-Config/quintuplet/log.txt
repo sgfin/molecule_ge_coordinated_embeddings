@@ -1,0 +1,464 @@
+namespace(base_exp_dir='experiments', batch_size=512, device_num=3, dropout_prob=0, exp_dir='experiments/quintuplet', model_name='quintuplet', rankTrans=False, structure='quintuplet', val_mode_at_val=True)
+
+Loading Data
+Building Dataset
+
+Total GE Experiments: 29548 (Train)   2642 (Val)
+Total Drugs: 6318 (Train)   2248 (Val)
+Val Drugs not in Train:  307 (N)  13.7 (Percent)
+
+Initializing Models
+Training
+Epoch 1
+Train:    Avg loss: 3.538    Acc GE Anchor: 71.806    Acc Chem Anchor: 71.806    Acc GE Only: 71.806
+Val  :    Avg loss: 1.004    Acc GE Anchor: 85.139    Acc Chem Anchor: 85.139    Acc GE Only: 85.139
+Train (All):            total_drugs: 6318.000    median_rank: 1773.000    MRR: 0.012    H@10: 0.020    H@100: 0.078    H@500: 0.235
+Val (All):              total_drugs: 2248.000    median_rank: 860.000    MRR: 0.017    H@10: 0.027    H@100: 0.101    H@500: 0.338
+Val (In Train):         total_drugs: 1941.000    median_rank: 811.500    MRR: 0.019    H@10: 0.029    H@100: 0.108    H@500: 0.354
+Val (Not in Train):     total_drugs: 307.000    median_rank: 1201.500    MRR: 0.004    H@10: 0.013    H@100: 0.049    H@500: 0.211
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:38    Epoch (Evaluation): 0:03:16    Total: 0:09:54
+Current time: 2019-07-09 02:58:45 EDT-0400
+
+Epoch 2
+Train:    Avg loss: 0.676    Acc GE Anchor: 84.028    Acc Chem Anchor: 84.028    Acc GE Only: 84.028
+Val  :    Avg loss: 0.882    Acc GE Anchor: 88.525    Acc Chem Anchor: 88.525    Acc GE Only: 88.525
+Train (All):            total_drugs: 6318.000    median_rank: 1278.500    MRR: 0.018    H@10: 0.030    H@100: 0.113    H@500: 0.299
+Val (All):              total_drugs: 2248.000    median_rank: 787.000    MRR: 0.024    H@10: 0.040    H@100: 0.126    H@500: 0.360
+Val (In Train):         total_drugs: 1941.000    median_rank: 760.500    MRR: 0.026    H@10: 0.042    H@100: 0.136    H@500: 0.377
+Val (Not in Train):     total_drugs: 307.000    median_rank: 1039.000    MRR: 0.012    H@10: 0.019    H@100: 0.052    H@500: 0.237
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:14    Epoch (Evaluation): 0:03:12    Total: 0:19:20
+Current time: 2019-07-09 03:08:11 EDT-0400
+
+Epoch 3
+Train:    Avg loss: 0.640    Acc GE Anchor: 85.448    Acc Chem Anchor: 85.448    Acc GE Only: 85.448
+Val  :    Avg loss: 0.852    Acc GE Anchor: 88.618    Acc Chem Anchor: 88.618    Acc GE Only: 88.618
+Train (All):            total_drugs: 6318.000    median_rank: 1052.000    MRR: 0.021    H@10: 0.038    H@100: 0.139    H@500: 0.345
+Val (All):              total_drugs: 2248.000    median_rank: 712.000    MRR: 0.027    H@10: 0.044    H@100: 0.140    H@500: 0.400
+Val (In Train):         total_drugs: 1941.000    median_rank: 675.500    MRR: 0.030    H@10: 0.049    H@100: 0.147    H@500: 0.410
+Val (Not in Train):     total_drugs: 307.000    median_rank: 925.500    MRR: 0.004    H@10: 0.006    H@100: 0.084    H@500: 0.321
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:14    Epoch (Evaluation): 0:03:12    Total: 0:28:46
+Current time: 2019-07-09 03:17:37 EDT-0400
+
+Epoch 4
+Train:    Avg loss: 0.628    Acc GE Anchor: 86.517    Acc Chem Anchor: 86.517    Acc GE Only: 86.517
+Val  :    Avg loss: 0.806    Acc GE Anchor: 88.176    Acc Chem Anchor: 88.176    Acc GE Only: 88.176
+Train (All):            total_drugs: 6318.000    median_rank: 857.000    MRR: 0.027    H@10: 0.047    H@100: 0.161    H@500: 0.388
+Val (All):              total_drugs: 2248.000    median_rank: 670.000    MRR: 0.028    H@10: 0.046    H@100: 0.151    H@500: 0.420
+Val (In Train):         total_drugs: 1941.000    median_rank: 608.000    MRR: 0.031    H@10: 0.052    H@100: 0.165    H@500: 0.448
+Val (Not in Train):     total_drugs: 307.000    median_rank: 1070.000    MRR: 0.003    H@10: 0.003    H@100: 0.045    H@500: 0.205
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:18    Epoch (Evaluation): 0:03:12    Total: 0:38:16
+Current time: 2019-07-09 03:27:07 EDT-0400
+
+Epoch 5
+Train:    Avg loss: 0.604    Acc GE Anchor: 87.190    Acc Chem Anchor: 87.190    Acc GE Only: 87.190
+Val  :    Avg loss: 0.795    Acc GE Anchor: 89.956    Acc Chem Anchor: 89.956    Acc GE Only: 89.956
+Train (All):            total_drugs: 6318.000    median_rank: 724.000    MRR: 0.032    H@10: 0.055    H@100: 0.183    H@500: 0.420
+Val (All):              total_drugs: 2248.000    median_rank: 615.500    MRR: 0.033    H@10: 0.056    H@100: 0.154    H@500: 0.439
+Val (In Train):         total_drugs: 1941.000    median_rank: 583.500    MRR: 0.036    H@10: 0.061    H@100: 0.164    H@500: 0.456
+Val (Not in Train):     total_drugs: 307.000    median_rank: 819.000    MRR: 0.010    H@10: 0.019    H@100: 0.084    H@500: 0.312
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:16    Epoch (Evaluation): 0:03:13    Total: 0:47:44
+Current time: 2019-07-09 03:36:36 EDT-0400
+
+Epoch 6
+Train:    Avg loss: 0.601    Acc GE Anchor: 87.987    Acc Chem Anchor: 87.987    Acc GE Only: 87.987
+Val  :    Avg loss: 0.828    Acc GE Anchor: 89.705    Acc Chem Anchor: 89.705    Acc GE Only: 89.705
+Train (All):            total_drugs: 6318.000    median_rank: 666.000    MRR: 0.033    H@10: 0.058    H@100: 0.193    H@500: 0.438
+Val (All):              total_drugs: 2248.000    median_rank: 558.000    MRR: 0.035    H@10: 0.051    H@100: 0.179    H@500: 0.470
+Val (In Train):         total_drugs: 1941.000    median_rank: 538.000    MRR: 0.039    H@10: 0.057    H@100: 0.190    H@500: 0.481
+Val (Not in Train):     total_drugs: 307.000    median_rank: 722.000    MRR: 0.006    H@10: 0.010    H@100: 0.091    H@500: 0.386
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:17    Epoch (Evaluation): 0:03:10    Total: 0:57:11
+Current time: 2019-07-09 03:46:02 EDT-0400
+
+Epoch 7
+Train:    Avg loss: 0.592    Acc GE Anchor: 88.228    Acc Chem Anchor: 88.228    Acc GE Only: 88.228
+Val  :    Avg loss: 0.801    Acc GE Anchor: 89.688    Acc Chem Anchor: 89.688    Acc GE Only: 89.688
+Train (All):            total_drugs: 6318.000    median_rank: 578.000    MRR: 0.037    H@10: 0.066    H@100: 0.213    H@500: 0.469
+Val (All):              total_drugs: 2248.000    median_rank: 555.000    MRR: 0.036    H@10: 0.057    H@100: 0.180    H@500: 0.473
+Val (In Train):         total_drugs: 1941.000    median_rank: 532.000    MRR: 0.040    H@10: 0.063    H@100: 0.190    H@500: 0.485
+Val (Not in Train):     total_drugs: 307.000    median_rank: 703.500    MRR: 0.007    H@10: 0.013    H@100: 0.107    H@500: 0.383
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:17    Epoch (Evaluation): 0:03:15    Total: 1:06:43
+Current time: 2019-07-09 03:55:35 EDT-0400
+
+Epoch 8
+Train:    Avg loss: 0.589    Acc GE Anchor: 89.212    Acc Chem Anchor: 89.212    Acc GE Only: 89.212
+Val  :    Avg loss: 0.790    Acc GE Anchor: 89.703    Acc Chem Anchor: 89.703    Acc GE Only: 89.703
+Train (All):            total_drugs: 6318.000    median_rank: 530.000    MRR: 0.037    H@10: 0.066    H@100: 0.218    H@500: 0.488
+Val (All):              total_drugs: 2248.000    median_rank: 503.000    MRR: 0.038    H@10: 0.066    H@100: 0.195    H@500: 0.497
+Val (In Train):         total_drugs: 1941.000    median_rank: 481.000    MRR: 0.042    H@10: 0.071    H@100: 0.208    H@500: 0.510
+Val (Not in Train):     total_drugs: 307.000    median_rank: 630.000    MRR: 0.012    H@10: 0.029    H@100: 0.097    H@500: 0.399
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:15    Epoch (Evaluation): 0:03:11    Total: 1:16:09
+Current time: 2019-07-09 04:05:01 EDT-0400
+
+Epoch 9
+Train:    Avg loss: 0.579    Acc GE Anchor: 88.906    Acc Chem Anchor: 88.906    Acc GE Only: 88.906
+Val  :    Avg loss: 0.774    Acc GE Anchor: 90.164    Acc Chem Anchor: 90.164    Acc GE Only: 90.164
+Train (All):            total_drugs: 6318.000    median_rank: 464.000    MRR: 0.040    H@10: 0.071    H@100: 0.238    H@500: 0.516
+Val (All):              total_drugs: 2248.000    median_rank: 467.500    MRR: 0.040    H@10: 0.064    H@100: 0.196    H@500: 0.518
+Val (In Train):         total_drugs: 1941.000    median_rank: 440.000    MRR: 0.045    H@10: 0.071    H@100: 0.213    H@500: 0.540
+Val (Not in Train):     total_drugs: 307.000    median_rank: 747.500    MRR: 0.006    H@10: 0.013    H@100: 0.075    H@500: 0.347
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:17    Epoch (Evaluation): 0:03:12    Total: 1:25:39
+Current time: 2019-07-09 04:14:30 EDT-0400
+
+Epoch 10
+Train:    Avg loss: 0.565    Acc GE Anchor: 90.207    Acc Chem Anchor: 90.207    Acc GE Only: 90.207
+Val  :    Avg loss: 0.754    Acc GE Anchor: 91.109    Acc Chem Anchor: 91.109    Acc GE Only: 91.109
+Train (All):            total_drugs: 6318.000    median_rank: 401.000    MRR: 0.046    H@10: 0.084    H@100: 0.264    H@500: 0.549
+Val (All):              total_drugs: 2248.000    median_rank: 483.000    MRR: 0.043    H@10: 0.072    H@100: 0.210    H@500: 0.512
+Val (In Train):         total_drugs: 1941.000    median_rank: 446.000    MRR: 0.048    H@10: 0.081    H@100: 0.226    H@500: 0.532
+Val (Not in Train):     total_drugs: 307.000    median_rank: 812.000    MRR: 0.005    H@10: 0.006    H@100: 0.088    H@500: 0.367
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:18    Epoch (Evaluation): 0:03:13    Total: 1:35:10
+Current time: 2019-07-09 04:24:01 EDT-0400
+
+Epoch 11
+Train:    Avg loss: 0.574    Acc GE Anchor: 89.324    Acc Chem Anchor: 89.324    Acc GE Only: 89.324
+Val  :    Avg loss: 0.725    Acc GE Anchor: 90.119    Acc Chem Anchor: 90.119    Acc GE Only: 90.119
+Train (All):            total_drugs: 6318.000    median_rank: 367.000    MRR: 0.049    H@10: 0.088    H@100: 0.274    H@500: 0.569
+Val (All):              total_drugs: 2248.000    median_rank: 440.500    MRR: 0.049    H@10: 0.081    H@100: 0.219    H@500: 0.537
+Val (In Train):         total_drugs: 1941.000    median_rank: 413.500    MRR: 0.055    H@10: 0.091    H@100: 0.234    H@500: 0.551
+Val (Not in Train):     total_drugs: 307.000    median_rank: 652.500    MRR: 0.007    H@10: 0.006    H@100: 0.107    H@500: 0.432
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:17    Epoch (Evaluation): 0:03:13    Total: 1:44:40
+Current time: 2019-07-09 04:33:32 EDT-0400
+
+Epoch 12
+Train:    Avg loss: 0.559    Acc GE Anchor: 90.451    Acc Chem Anchor: 90.451    Acc GE Only: 90.451
+Val  :    Avg loss: 0.739    Acc GE Anchor: 91.514    Acc Chem Anchor: 91.514    Acc GE Only: 91.514
+Train (All):            total_drugs: 6318.000    median_rank: 348.000    MRR: 0.050    H@10: 0.093    H@100: 0.287    H@500: 0.582
+Val (All):              total_drugs: 2248.000    median_rank: 446.500    MRR: 0.043    H@10: 0.080    H@100: 0.213    H@500: 0.537
+Val (In Train):         total_drugs: 1941.000    median_rank: 416.000    MRR: 0.048    H@10: 0.090    H@100: 0.229    H@500: 0.554
+Val (Not in Train):     total_drugs: 307.000    median_rank: 691.500    MRR: 0.005    H@10: 0.006    H@100: 0.094    H@500: 0.406
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:16    Epoch (Evaluation): 0:03:13    Total: 1:54:10
+Current time: 2019-07-09 04:43:01 EDT-0400
+
+Epoch 13
+Train:    Avg loss: 0.555    Acc GE Anchor: 91.553    Acc Chem Anchor: 91.553    Acc GE Only: 91.553
+Val  :    Avg loss: 0.671    Acc GE Anchor: 92.549    Acc Chem Anchor: 92.549    Acc GE Only: 92.549
+Train (All):            total_drugs: 6318.000    median_rank: 303.000    MRR: 0.056    H@10: 0.103    H@100: 0.304    H@500: 0.609
+Val (All):              total_drugs: 2248.000    median_rank: 417.500    MRR: 0.050    H@10: 0.083    H@100: 0.233    H@500: 0.559
+Val (In Train):         total_drugs: 1941.000    median_rank: 390.000    MRR: 0.056    H@10: 0.091    H@100: 0.250    H@500: 0.576
+Val (Not in Train):     total_drugs: 307.000    median_rank: 625.000    MRR: 0.008    H@10: 0.019    H@100: 0.104    H@500: 0.432
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:13    Epoch (Evaluation): 0:03:11    Total: 2:03:34
+Current time: 2019-07-09 04:52:25 EDT-0400
+
+Epoch 14
+Train:    Avg loss: 0.550    Acc GE Anchor: 91.165    Acc Chem Anchor: 91.165    Acc GE Only: 91.165
+Val  :    Avg loss: 0.716    Acc GE Anchor: 92.148    Acc Chem Anchor: 92.148    Acc GE Only: 92.148
+Train (All):            total_drugs: 6318.000    median_rank: 270.000    MRR: 0.060    H@10: 0.109    H@100: 0.326    H@500: 0.638
+Val (All):              total_drugs: 2248.000    median_rank: 387.000    MRR: 0.051    H@10: 0.087    H@100: 0.242    H@500: 0.572
+Val (In Train):         total_drugs: 1941.000    median_rank: 365.000    MRR: 0.056    H@10: 0.097    H@100: 0.260    H@500: 0.587
+Val (Not in Train):     total_drugs: 307.000    median_rank: 575.500    MRR: 0.007    H@10: 0.016    H@100: 0.107    H@500: 0.455
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:16    Epoch (Evaluation): 0:03:09    Total: 2:12:59
+Current time: 2019-07-09 05:01:51 EDT-0400
+
+Epoch 15
+Train:    Avg loss: 0.549    Acc GE Anchor: 90.976    Acc Chem Anchor: 90.976    Acc GE Only: 90.976
+Val  :    Avg loss: 0.725    Acc GE Anchor: 91.312    Acc Chem Anchor: 91.312    Acc GE Only: 91.312
+Train (All):            total_drugs: 6318.000    median_rank: 259.000    MRR: 0.061    H@10: 0.114    H@100: 0.333    H@500: 0.647
+Val (All):              total_drugs: 2248.000    median_rank: 389.500    MRR: 0.049    H@10: 0.085    H@100: 0.243    H@500: 0.571
+Val (In Train):         total_drugs: 1941.000    median_rank: 348.500    MRR: 0.054    H@10: 0.093    H@100: 0.260    H@500: 0.597
+Val (Not in Train):     total_drugs: 307.000    median_rank: 756.500    MRR: 0.010    H@10: 0.019    H@100: 0.114    H@500: 0.373
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:17    Epoch (Evaluation): 0:03:18    Total: 2:22:35
+Current time: 2019-07-09 05:11:26 EDT-0400
+
+Epoch 16
+Train:    Avg loss: 0.544    Acc GE Anchor: 91.247    Acc Chem Anchor: 91.247    Acc GE Only: 91.247
+Val  :    Avg loss: 0.744    Acc GE Anchor: 92.830    Acc Chem Anchor: 92.830    Acc GE Only: 92.830
+Train (All):            total_drugs: 6318.000    median_rank: 233.000    MRR: 0.064    H@10: 0.121    H@100: 0.349    H@500: 0.667
+Val (All):              total_drugs: 2248.000    median_rank: 392.500    MRR: 0.052    H@10: 0.092    H@100: 0.250    H@500: 0.565
+Val (In Train):         total_drugs: 1941.000    median_rank: 363.500    MRR: 0.058    H@10: 0.100    H@100: 0.269    H@500: 0.589
+Val (Not in Train):     total_drugs: 307.000    median_rank: 703.000    MRR: 0.010    H@10: 0.029    H@100: 0.107    H@500: 0.386
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:16    Epoch (Evaluation): 0:03:12    Total: 2:32:03
+Current time: 2019-07-09 05:20:54 EDT-0400
+
+Epoch 17
+Train:    Avg loss: 0.534    Acc GE Anchor: 91.461    Acc Chem Anchor: 91.461    Acc GE Only: 91.461
+Val  :    Avg loss: 0.719    Acc GE Anchor: 92.266    Acc Chem Anchor: 92.266    Acc GE Only: 92.266
+Train (All):            total_drugs: 6318.000    median_rank: 220.000    MRR: 0.067    H@10: 0.124    H@100: 0.358    H@500: 0.676
+Val (All):              total_drugs: 2248.000    median_rank: 352.000    MRR: 0.055    H@10: 0.093    H@100: 0.267    H@500: 0.582
+Val (In Train):         total_drugs: 1941.000    median_rank: 313.000    MRR: 0.061    H@10: 0.102    H@100: 0.289    H@500: 0.606
+Val (Not in Train):     total_drugs: 307.000    median_rank: 702.500    MRR: 0.009    H@10: 0.026    H@100: 0.101    H@500: 0.403
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:16    Epoch (Evaluation): 0:03:17    Total: 2:41:36
+Current time: 2019-07-09 05:30:27 EDT-0400
+
+Epoch 18
+Train:    Avg loss: 0.539    Acc GE Anchor: 91.354    Acc Chem Anchor: 91.354    Acc GE Only: 91.354
+Val  :    Avg loss: 0.761    Acc GE Anchor: 91.156    Acc Chem Anchor: 91.156    Acc GE Only: 91.156
+Train (All):            total_drugs: 6318.000    median_rank: 216.000    MRR: 0.068    H@10: 0.129    H@100: 0.366    H@500: 0.686
+Val (All):              total_drugs: 2248.000    median_rank: 373.000    MRR: 0.060    H@10: 0.093    H@100: 0.248    H@500: 0.577
+Val (In Train):         total_drugs: 1941.000    median_rank: 351.000    MRR: 0.067    H@10: 0.103    H@100: 0.261    H@500: 0.588
+Val (Not in Train):     total_drugs: 307.000    median_rank: 519.000    MRR: 0.009    H@10: 0.016    H@100: 0.146    H@500: 0.494
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:16    Epoch (Evaluation): 0:03:12    Total: 2:51:05
+Current time: 2019-07-09 05:39:56 EDT-0400
+
+Epoch 19
+Train:    Avg loss: 0.544    Acc GE Anchor: 91.555    Acc Chem Anchor: 91.555    Acc GE Only: 91.555
+Val  :    Avg loss: 0.730    Acc GE Anchor: 91.459    Acc Chem Anchor: 91.459    Acc GE Only: 91.459
+Train (All):            total_drugs: 6318.000    median_rank: 184.000    MRR: 0.073    H@10: 0.137    H@100: 0.390    H@500: 0.714
+Val (All):              total_drugs: 2248.000    median_rank: 337.000    MRR: 0.059    H@10: 0.093    H@100: 0.263    H@500: 0.607
+Val (In Train):         total_drugs: 1941.000    median_rank: 307.500    MRR: 0.065    H@10: 0.102    H@100: 0.280    H@500: 0.627
+Val (Not in Train):     total_drugs: 307.000    median_rank: 603.500    MRR: 0.012    H@10: 0.019    H@100: 0.136    H@500: 0.458
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:16    Epoch (Evaluation): 0:03:12    Total: 3:00:33
+Current time: 2019-07-09 05:49:24 EDT-0400
+
+Epoch 20
+Train:    Avg loss: 0.524    Acc GE Anchor: 92.401    Acc Chem Anchor: 92.401    Acc GE Only: 92.401
+Val  :    Avg loss: 0.729    Acc GE Anchor: 92.461    Acc Chem Anchor: 92.461    Acc GE Only: 92.461
+Train (All):            total_drugs: 6318.000    median_rank: 186.000    MRR: 0.069    H@10: 0.134    H@100: 0.387    H@500: 0.715
+Val (All):              total_drugs: 2248.000    median_rank: 369.500    MRR: 0.056    H@10: 0.097    H@100: 0.265    H@500: 0.596
+Val (In Train):         total_drugs: 1941.000    median_rank: 326.500    MRR: 0.062    H@10: 0.107    H@100: 0.287    H@500: 0.623
+Val (Not in Train):     total_drugs: 307.000    median_rank: 683.500    MRR: 0.009    H@10: 0.016    H@100: 0.091    H@500: 0.393
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:17    Epoch (Evaluation): 0:03:12    Total: 3:10:01
+Current time: 2019-07-09 05:58:52 EDT-0400
+
+Epoch 21
+Train:    Avg loss: 0.521    Acc GE Anchor: 91.898    Acc Chem Anchor: 91.898    Acc GE Only: 91.898
+Val  :    Avg loss: 0.743    Acc GE Anchor: 92.509    Acc Chem Anchor: 92.509    Acc GE Only: 92.509
+Train (All):            total_drugs: 6318.000    median_rank: 159.000    MRR: 0.080    H@10: 0.149    H@100: 0.416    H@500: 0.742
+Val (All):              total_drugs: 2248.000    median_rank: 353.000    MRR: 0.060    H@10: 0.099    H@100: 0.276    H@500: 0.593
+Val (In Train):         total_drugs: 1941.000    median_rank: 312.000    MRR: 0.066    H@10: 0.110    H@100: 0.300    H@500: 0.629
+Val (Not in Train):     total_drugs: 307.000    median_rank: 819.500    MRR: 0.009    H@10: 0.013    H@100: 0.088    H@500: 0.321
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:16    Epoch (Evaluation): 0:03:11    Total: 3:19:28
+Current time: 2019-07-09 06:08:19 EDT-0400
+
+Epoch 22
+Train:    Avg loss: 0.521    Acc GE Anchor: 91.527    Acc Chem Anchor: 91.527    Acc GE Only: 91.527
+Val  :    Avg loss: 0.733    Acc GE Anchor: 91.609    Acc Chem Anchor: 91.609    Acc GE Only: 91.609
+Train (All):            total_drugs: 6318.000    median_rank: 147.000    MRR: 0.084    H@10: 0.156    H@100: 0.430    H@500: 0.753
+Val (All):              total_drugs: 2248.000    median_rank: 348.500    MRR: 0.058    H@10: 0.098    H@100: 0.277    H@500: 0.600
+Val (In Train):         total_drugs: 1941.000    median_rank: 297.500    MRR: 0.064    H@10: 0.109    H@100: 0.306    H@500: 0.632
+Val (Not in Train):     total_drugs: 307.000    median_rank: 741.500    MRR: 0.006    H@10: 0.013    H@100: 0.055    H@500: 0.357
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:15    Epoch (Evaluation): 0:03:17    Total: 3:29:00
+Current time: 2019-07-09 06:17:51 EDT-0400
+
+Epoch 23
+Train:    Avg loss: 0.531    Acc GE Anchor: 92.237    Acc Chem Anchor: 92.237    Acc GE Only: 92.237
+Val  :    Avg loss: 0.733    Acc GE Anchor: 92.229    Acc Chem Anchor: 92.229    Acc GE Only: 92.229
+Train (All):            total_drugs: 6318.000    median_rank: 146.000    MRR: 0.083    H@10: 0.154    H@100: 0.428    H@500: 0.754
+Val (All):              total_drugs: 2248.000    median_rank: 334.500    MRR: 0.064    H@10: 0.109    H@100: 0.285    H@500: 0.604
+Val (In Train):         total_drugs: 1941.000    median_rank: 303.000    MRR: 0.071    H@10: 0.120    H@100: 0.308    H@500: 0.628
+Val (Not in Train):     total_drugs: 307.000    median_rank: 641.500    MRR: 0.010    H@10: 0.026    H@100: 0.110    H@500: 0.422
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:17    Epoch (Evaluation): 0:03:13    Total: 3:38:30
+Current time: 2019-07-09 06:27:22 EDT-0400
+
+Epoch 24
+Train:    Avg loss: 0.517    Acc GE Anchor: 91.906    Acc Chem Anchor: 91.906    Acc GE Only: 91.906
+Val  :    Avg loss: 0.754    Acc GE Anchor: 91.322    Acc Chem Anchor: 91.322    Acc GE Only: 91.322
+Train (All):            total_drugs: 6318.000    median_rank: 140.000    MRR: 0.081    H@10: 0.158    H@100: 0.439    H@500: 0.770
+Val (All):              total_drugs: 2248.000    median_rank: 359.000    MRR: 0.058    H@10: 0.106    H@100: 0.275    H@500: 0.600
+Val (In Train):         total_drugs: 1941.000    median_rank: 310.500    MRR: 0.064    H@10: 0.117    H@100: 0.302    H@500: 0.630
+Val (Not in Train):     total_drugs: 307.000    median_rank: 764.000    MRR: 0.010    H@10: 0.019    H@100: 0.068    H@500: 0.373
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:17    Epoch (Evaluation): 0:03:19    Total: 3:48:06
+Current time: 2019-07-09 06:36:58 EDT-0400
+
+Epoch 25
+Train:    Avg loss: 0.521    Acc GE Anchor: 92.480    Acc Chem Anchor: 92.480    Acc GE Only: 92.480
+Val  :    Avg loss: 0.699    Acc GE Anchor: 92.668    Acc Chem Anchor: 92.668    Acc GE Only: 92.668
+Train (All):            total_drugs: 6318.000    median_rank: 126.000    MRR: 0.090    H@10: 0.168    H@100: 0.456    H@500: 0.785
+Val (All):              total_drugs: 2248.000    median_rank: 326.000    MRR: 0.065    H@10: 0.112    H@100: 0.296    H@500: 0.608
+Val (In Train):         total_drugs: 1941.000    median_rank: 288.000    MRR: 0.072    H@10: 0.124    H@100: 0.323    H@500: 0.637
+Val (Not in Train):     total_drugs: 307.000    median_rank: 670.000    MRR: 0.008    H@10: 0.026    H@100: 0.091    H@500: 0.386
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:17    Epoch (Evaluation): 0:03:11    Total: 3:57:34
+Current time: 2019-07-09 06:46:25 EDT-0400
+
+Epoch 26
+Train:    Avg loss: 0.513    Acc GE Anchor: 92.762    Acc Chem Anchor: 92.762    Acc GE Only: 92.762
+Val  :    Avg loss: 0.724    Acc GE Anchor: 92.161    Acc Chem Anchor: 92.161    Acc GE Only: 92.161
+Train (All):            total_drugs: 6318.000    median_rank: 116.000    MRR: 0.092    H@10: 0.175    H@100: 0.473    H@500: 0.801
+Val (All):              total_drugs: 2248.000    median_rank: 303.000    MRR: 0.069    H@10: 0.118    H@100: 0.305    H@500: 0.629
+Val (In Train):         total_drugs: 1941.000    median_rank: 268.000    MRR: 0.076    H@10: 0.131    H@100: 0.326    H@500: 0.656
+Val (Not in Train):     total_drugs: 307.000    median_rank: 631.000    MRR: 0.011    H@10: 0.019    H@100: 0.140    H@500: 0.422
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:17    Epoch (Evaluation): 0:03:11    Total: 4:07:03
+Current time: 2019-07-09 06:55:54 EDT-0400
+
+Epoch 27
+Train:    Avg loss: 0.514    Acc GE Anchor: 92.347    Acc Chem Anchor: 92.347    Acc GE Only: 92.347
+Val  :    Avg loss: 0.719    Acc GE Anchor: 91.257    Acc Chem Anchor: 91.257    Acc GE Only: 91.257
+Train (All):            total_drugs: 6318.000    median_rank: 115.500    MRR: 0.094    H@10: 0.176    H@100: 0.474    H@500: 0.802
+Val (All):              total_drugs: 2248.000    median_rank: 350.000    MRR: 0.064    H@10: 0.106    H@100: 0.277    H@500: 0.592
+Val (In Train):         total_drugs: 1941.000    median_rank: 302.000    MRR: 0.072    H@10: 0.119    H@100: 0.305    H@500: 0.630
+Val (Not in Train):     total_drugs: 307.000    median_rank: 879.000    MRR: 0.006    H@10: 0.010    H@100: 0.062    H@500: 0.305
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:17    Epoch (Evaluation): 0:03:12    Total: 4:16:32
+Current time: 2019-07-09 07:05:23 EDT-0400
+
+Epoch 28
+Train:    Avg loss: 0.505    Acc GE Anchor: 93.352    Acc Chem Anchor: 93.352    Acc GE Only: 93.352
+Val  :    Avg loss: 0.735    Acc GE Anchor: 92.484    Acc Chem Anchor: 92.484    Acc GE Only: 92.484
+Train (All):            total_drugs: 6318.000    median_rank: 103.000    MRR: 0.101    H@10: 0.187    H@100: 0.495    H@500: 0.818
+Val (All):              total_drugs: 2248.000    median_rank: 310.000    MRR: 0.065    H@10: 0.109    H@100: 0.299    H@500: 0.629
+Val (In Train):         total_drugs: 1941.000    median_rank: 273.000    MRR: 0.072    H@10: 0.123    H@100: 0.327    H@500: 0.663
+Val (Not in Train):     total_drugs: 307.000    median_rank: 698.000    MRR: 0.009    H@10: 0.010    H@100: 0.088    H@500: 0.370
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:19    Epoch (Evaluation): 0:03:11    Total: 4:26:01
+Current time: 2019-07-09 07:14:53 EDT-0400
+
+Epoch 29
+Train:    Avg loss: 0.516    Acc GE Anchor: 92.662    Acc Chem Anchor: 92.662    Acc GE Only: 92.662
+Val  :    Avg loss: 0.777    Acc GE Anchor: 93.632    Acc Chem Anchor: 93.632    Acc GE Only: 93.632
+Train (All):            total_drugs: 6318.000    median_rank: 105.000    MRR: 0.100    H@10: 0.188    H@100: 0.492    H@500: 0.807
+Val (All):              total_drugs: 2248.000    median_rank: 302.500    MRR: 0.064    H@10: 0.119    H@100: 0.310    H@500: 0.624
+Val (In Train):         total_drugs: 1941.000    median_rank: 261.500    MRR: 0.071    H@10: 0.130    H@100: 0.336    H@500: 0.654
+Val (Not in Train):     total_drugs: 307.000    median_rank: 665.000    MRR: 0.011    H@10: 0.036    H@100: 0.110    H@500: 0.396
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:17    Epoch (Evaluation): 0:03:13    Total: 4:35:31
+Current time: 2019-07-09 07:24:23 EDT-0400
+
+Epoch 30
+Train:    Avg loss: 0.513    Acc GE Anchor: 92.664    Acc Chem Anchor: 92.664    Acc GE Only: 92.664
+Val  :    Avg loss: 0.720    Acc GE Anchor: 92.332    Acc Chem Anchor: 92.332    Acc GE Only: 92.332
+Train (All):            total_drugs: 6318.000    median_rank: 98.000    MRR: 0.101    H@10: 0.188    H@100: 0.505    H@500: 0.830
+Val (All):              total_drugs: 2248.000    median_rank: 288.000    MRR: 0.064    H@10: 0.110    H@100: 0.309    H@500: 0.642
+Val (In Train):         total_drugs: 1941.000    median_rank: 241.000    MRR: 0.072    H@10: 0.123    H@100: 0.339    H@500: 0.678
+Val (Not in Train):     total_drugs: 307.000    median_rank: 806.500    MRR: 0.008    H@10: 0.010    H@100: 0.084    H@500: 0.367
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:17    Epoch (Evaluation): 0:03:12    Total: 4:45:00
+Current time: 2019-07-09 07:33:51 EDT-0400
+
+Epoch 31
+Train:    Avg loss: 0.517    Acc GE Anchor: 93.044    Acc Chem Anchor: 93.044    Acc GE Only: 93.044
+Val  :    Avg loss: 0.728    Acc GE Anchor: 91.972    Acc Chem Anchor: 91.972    Acc GE Only: 91.972
+Train (All):            total_drugs: 6318.000    median_rank: 95.000    MRR: 0.102    H@10: 0.191    H@100: 0.512    H@500: 0.839
+Val (All):              total_drugs: 2248.000    median_rank: 342.000    MRR: 0.062    H@10: 0.110    H@100: 0.287    H@500: 0.603
+Val (In Train):         total_drugs: 1941.000    median_rank: 287.500    MRR: 0.069    H@10: 0.123    H@100: 0.313    H@500: 0.635
+Val (Not in Train):     total_drugs: 307.000    median_rank: 774.500    MRR: 0.011    H@10: 0.013    H@100: 0.091    H@500: 0.357
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:16    Epoch (Evaluation): 0:03:12    Total: 4:54:28
+Current time: 2019-07-09 07:43:20 EDT-0400
+
+Epoch 32
+Train:    Avg loss: 0.502    Acc GE Anchor: 93.462    Acc Chem Anchor: 93.462    Acc GE Only: 93.462
+Val  :    Avg loss: 0.713    Acc GE Anchor: 93.625    Acc Chem Anchor: 93.625    Acc GE Only: 93.625
+Train (All):            total_drugs: 6318.000    median_rank: 86.000    MRR: 0.106    H@10: 0.200    H@100: 0.532    H@500: 0.850
+Val (All):              total_drugs: 2248.000    median_rank: 304.500    MRR: 0.066    H@10: 0.122    H@100: 0.308    H@500: 0.623
+Val (In Train):         total_drugs: 1941.000    median_rank: 259.500    MRR: 0.074    H@10: 0.135    H@100: 0.334    H@500: 0.655
+Val (Not in Train):     total_drugs: 307.000    median_rank: 688.000    MRR: 0.009    H@10: 0.026    H@100: 0.107    H@500: 0.380
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:17    Epoch (Evaluation): 0:03:14    Total: 5:03:58
+Current time: 2019-07-09 07:52:50 EDT-0400
+
+Epoch 33
+Train:    Avg loss: 0.493    Acc GE Anchor: 93.429    Acc Chem Anchor: 93.429    Acc GE Only: 93.429
+Val  :    Avg loss: 0.715    Acc GE Anchor: 91.892    Acc Chem Anchor: 91.892    Acc GE Only: 91.892
+Train (All):            total_drugs: 6318.000    median_rank: 86.000    MRR: 0.110    H@10: 0.201    H@100: 0.528    H@500: 0.851
+Val (All):              total_drugs: 2248.000    median_rank: 273.500    MRR: 0.068    H@10: 0.120    H@100: 0.321    H@500: 0.651
+Val (In Train):         total_drugs: 1941.000    median_rank: 240.500    MRR: 0.076    H@10: 0.134    H@100: 0.347    H@500: 0.680
+Val (Not in Train):     total_drugs: 307.000    median_rank: 592.500    MRR: 0.012    H@10: 0.016    H@100: 0.123    H@500: 0.435
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:17    Epoch (Evaluation): 0:03:11    Total: 5:13:26
+Current time: 2019-07-09 08:02:18 EDT-0400
+
+Epoch 34
+Train:    Avg loss: 0.500    Acc GE Anchor: 93.257    Acc Chem Anchor: 93.257    Acc GE Only: 93.257
+Val  :    Avg loss: 0.734    Acc GE Anchor: 92.542    Acc Chem Anchor: 92.542    Acc GE Only: 92.542
+Train (All):            total_drugs: 6318.000    median_rank: 80.000    MRR: 0.113    H@10: 0.209    H@100: 0.543    H@500: 0.856
+Val (All):              total_drugs: 2248.000    median_rank: 267.000    MRR: 0.068    H@10: 0.123    H@100: 0.313    H@500: 0.659
+Val (In Train):         total_drugs: 1941.000    median_rank: 234.500    MRR: 0.076    H@10: 0.137    H@100: 0.340    H@500: 0.683
+Val (Not in Train):     total_drugs: 307.000    median_rank: 522.500    MRR: 0.012    H@10: 0.016    H@100: 0.110    H@500: 0.477
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:14    Epoch (Evaluation): 0:03:11    Total: 5:22:51
+Current time: 2019-07-09 08:11:43 EDT-0400
+
+Epoch 35
+Train:    Avg loss: 0.497    Acc GE Anchor: 93.069    Acc Chem Anchor: 93.069    Acc GE Only: 93.069
+Val  :    Avg loss: 0.748    Acc GE Anchor: 93.004    Acc Chem Anchor: 93.004    Acc GE Only: 93.004
+Train (All):            total_drugs: 6318.000    median_rank: 76.000    MRR: 0.115    H@10: 0.212    H@100: 0.554    H@500: 0.865
+Val (All):              total_drugs: 2248.000    median_rank: 284.000    MRR: 0.071    H@10: 0.121    H@100: 0.315    H@500: 0.638
+Val (In Train):         total_drugs: 1941.000    median_rank: 240.500    MRR: 0.079    H@10: 0.135    H@100: 0.344    H@500: 0.675
+Val (Not in Train):     total_drugs: 307.000    median_rank: 745.500    MRR: 0.008    H@10: 0.013    H@100: 0.097    H@500: 0.357
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:16    Epoch (Evaluation): 0:03:11    Total: 5:32:19
+Current time: 2019-07-09 08:21:10 EDT-0400
+
+Epoch 36
+Train:    Avg loss: 0.490    Acc GE Anchor: 94.145    Acc Chem Anchor: 94.145    Acc GE Only: 94.145
+Val  :    Avg loss: 0.742    Acc GE Anchor: 93.849    Acc Chem Anchor: 93.849    Acc GE Only: 93.849
+Train (All):            total_drugs: 6318.000    median_rank: 78.000    MRR: 0.115    H@10: 0.214    H@100: 0.548    H@500: 0.866
+Val (All):              total_drugs: 2248.000    median_rank: 279.000    MRR: 0.070    H@10: 0.123    H@100: 0.329    H@500: 0.653
+Val (In Train):         total_drugs: 1941.000    median_rank: 237.500    MRR: 0.078    H@10: 0.136    H@100: 0.356    H@500: 0.687
+Val (Not in Train):     total_drugs: 307.000    median_rank: 644.500    MRR: 0.012    H@10: 0.023    H@100: 0.120    H@500: 0.396
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:14    Epoch (Evaluation): 0:03:08    Total: 5:41:41
+Current time: 2019-07-09 08:30:32 EDT-0400
+
+Epoch 37
+Train:    Avg loss: 0.493    Acc GE Anchor: 92.978    Acc Chem Anchor: 92.978    Acc GE Only: 92.978
+Val  :    Avg loss: 0.750    Acc GE Anchor: 94.179    Acc Chem Anchor: 94.179    Acc GE Only: 94.179
+Train (All):            total_drugs: 6318.000    median_rank: 70.000    MRR: 0.122    H@10: 0.227    H@100: 0.572    H@500: 0.881
+Val (All):              total_drugs: 2248.000    median_rank: 278.000    MRR: 0.069    H@10: 0.123    H@100: 0.325    H@500: 0.650
+Val (In Train):         total_drugs: 1941.000    median_rank: 232.500    MRR: 0.077    H@10: 0.137    H@100: 0.355    H@500: 0.681
+Val (Not in Train):     total_drugs: 307.000    median_rank: 627.000    MRR: 0.010    H@10: 0.016    H@100: 0.094    H@500: 0.412
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:11    Epoch (Evaluation): 0:03:09    Total: 5:51:01
+Current time: 2019-07-09 08:39:52 EDT-0400
+
+Epoch 38
+Train:    Avg loss: 0.488    Acc GE Anchor: 93.986    Acc Chem Anchor: 93.986    Acc GE Only: 93.986
+Val  :    Avg loss: 0.713    Acc GE Anchor: 92.041    Acc Chem Anchor: 92.041    Acc GE Only: 92.041
+Train (All):            total_drugs: 6318.000    median_rank: 68.000    MRR: 0.125    H@10: 0.230    H@100: 0.575    H@500: 0.883
+Val (All):              total_drugs: 2248.000    median_rank: 261.000    MRR: 0.072    H@10: 0.124    H@100: 0.330    H@500: 0.651
+Val (In Train):         total_drugs: 1941.000    median_rank: 212.500    MRR: 0.080    H@10: 0.138    H@100: 0.360    H@500: 0.699
+Val (Not in Train):     total_drugs: 307.000    median_rank: 830.500    MRR: 0.012    H@10: 0.019    H@100: 0.104    H@500: 0.282
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:24    Epoch (Evaluation): 0:03:10    Total: 6:00:35
+Current time: 2019-07-09 08:49:26 EDT-0400
+
+Epoch 39
+Train:    Avg loss: 0.494    Acc GE Anchor: 93.353    Acc Chem Anchor: 93.353    Acc GE Only: 93.353
+Val  :    Avg loss: 0.721    Acc GE Anchor: 92.334    Acc Chem Anchor: 92.334    Acc GE Only: 92.334
+Train (All):            total_drugs: 6318.000    median_rank: 67.000    MRR: 0.125    H@10: 0.233    H@100: 0.577    H@500: 0.890
+Val (All):              total_drugs: 2248.000    median_rank: 261.000    MRR: 0.069    H@10: 0.127    H@100: 0.334    H@500: 0.662
+Val (In Train):         total_drugs: 1941.000    median_rank: 218.500    MRR: 0.077    H@10: 0.142    H@100: 0.367    H@500: 0.699
+Val (Not in Train):     total_drugs: 307.000    median_rank: 688.500    MRR: 0.010    H@10: 0.013    H@100: 0.084    H@500: 0.377
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:24    Epoch (Evaluation): 0:03:20    Total: 6:10:20
+Current time: 2019-07-09 08:59:11 EDT-0400
+
+Epoch 40
+Train:    Avg loss: 0.491    Acc GE Anchor: 93.654    Acc Chem Anchor: 93.654    Acc GE Only: 93.654
+Val  :    Avg loss: 0.764    Acc GE Anchor: 92.276    Acc Chem Anchor: 92.276    Acc GE Only: 92.276
+Train (All):            total_drugs: 6318.000    median_rank: 62.000    MRR: 0.131    H@10: 0.239    H@100: 0.596    H@500: 0.897
+Val (All):              total_drugs: 2248.000    median_rank: 254.000    MRR: 0.070    H@10: 0.120    H@100: 0.336    H@500: 0.663
+Val (In Train):         total_drugs: 1941.000    median_rank: 203.000    MRR: 0.078    H@10: 0.134    H@100: 0.371    H@500: 0.711
+Val (Not in Train):     total_drugs: 307.000    median_rank: 825.500    MRR: 0.008    H@10: 0.013    H@100: 0.071    H@500: 0.295
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:21    Epoch (Evaluation): 0:03:12    Total: 6:19:52
+Current time: 2019-07-09 09:08:44 EDT-0400
+
+Epoch 41
+Train:    Avg loss: 0.489    Acc GE Anchor: 93.797    Acc Chem Anchor: 93.797    Acc GE Only: 93.797
+Val  :    Avg loss: 0.734    Acc GE Anchor: 92.697    Acc Chem Anchor: 92.697    Acc GE Only: 92.697
+Train (All):            total_drugs: 6318.000    median_rank: 59.000    MRR: 0.131    H@10: 0.245    H@100: 0.599    H@500: 0.899
+Val (All):              total_drugs: 2248.000    median_rank: 261.000    MRR: 0.070    H@10: 0.123    H@100: 0.333    H@500: 0.659
+Val (In Train):         total_drugs: 1941.000    median_rank: 216.000    MRR: 0.077    H@10: 0.138    H@100: 0.365    H@500: 0.699
+Val (Not in Train):     total_drugs: 307.000    median_rank: 701.500    MRR: 0.011    H@10: 0.013    H@100: 0.091    H@500: 0.360
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:20    Epoch (Evaluation): 0:03:16    Total: 6:29:28
+Current time: 2019-07-09 09:18:20 EDT-0400
+
+Epoch 42
+Train:    Avg loss: 0.491    Acc GE Anchor: 94.008    Acc Chem Anchor: 94.008    Acc GE Only: 94.008
+Val  :    Avg loss: 0.708    Acc GE Anchor: 92.190    Acc Chem Anchor: 92.190    Acc GE Only: 92.190
+Train (All):            total_drugs: 6318.000    median_rank: 60.000    MRR: 0.130    H@10: 0.240    H@100: 0.602    H@500: 0.902
+Val (All):              total_drugs: 2248.000    median_rank: 241.500    MRR: 0.071    H@10: 0.123    H@100: 0.337    H@500: 0.679
+Val (In Train):         total_drugs: 1941.000    median_rank: 205.500    MRR: 0.078    H@10: 0.137    H@100: 0.365    H@500: 0.721
+Val (Not in Train):     total_drugs: 307.000    median_rank: 693.500    MRR: 0.013    H@10: 0.019    H@100: 0.120    H@500: 0.367
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:17    Epoch (Evaluation): 0:03:09    Total: 6:38:54
+Current time: 2019-07-09 09:27:46 EDT-0400
+
+Epoch 43
+Train:    Avg loss: 0.496    Acc GE Anchor: 94.603    Acc Chem Anchor: 94.603    Acc GE Only: 94.603
+Val  :    Avg loss: 0.727    Acc GE Anchor: 92.556    Acc Chem Anchor: 92.556    Acc GE Only: 92.556
+Train (All):            total_drugs: 6318.000    median_rank: 56.000    MRR: 0.135    H@10: 0.249    H@100: 0.611    H@500: 0.906
+Val (All):              total_drugs: 2248.000    median_rank: 250.500    MRR: 0.069    H@10: 0.123    H@100: 0.337    H@500: 0.668
+Val (In Train):         total_drugs: 1941.000    median_rank: 201.000    MRR: 0.077    H@10: 0.136    H@100: 0.371    H@500: 0.713
+Val (Not in Train):     total_drugs: 307.000    median_rank: 855.000    MRR: 0.009    H@10: 0.023    H@100: 0.084    H@500: 0.325
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:17    Epoch (Evaluation): 0:03:16    Total: 6:48:28
+Current time: 2019-07-09 09:37:19 EDT-0400
+
+Epoch 44
+Train:    Avg loss: 0.481    Acc GE Anchor: 94.868    Acc Chem Anchor: 94.868    Acc GE Only: 94.868
+Val  :    Avg loss: 0.749    Acc GE Anchor: 91.798    Acc Chem Anchor: 91.798    Acc GE Only: 91.798
+Train (All):            total_drugs: 6318.000    median_rank: 55.000    MRR: 0.137    H@10: 0.255    H@100: 0.619    H@500: 0.909
+Val (All):              total_drugs: 2248.000    median_rank: 236.000    MRR: 0.073    H@10: 0.132    H@100: 0.355    H@500: 0.680
+Val (In Train):         total_drugs: 1941.000    median_rank: 192.000    MRR: 0.082    H@10: 0.147    H@100: 0.388    H@500: 0.717
+Val (Not in Train):     total_drugs: 307.000    median_rank: 665.500    MRR: 0.008    H@10: 0.013    H@100: 0.104    H@500: 0.399
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:13    Epoch (Evaluation): 0:03:11    Total: 6:57:52
+Current time: 2019-07-09 09:46:44 EDT-0400
+
+Epoch 45
+Train:    Avg loss: 0.474    Acc GE Anchor: 94.473    Acc Chem Anchor: 94.473    Acc GE Only: 94.473
+Val  :    Avg loss: 0.750    Acc GE Anchor: 92.988    Acc Chem Anchor: 92.988    Acc GE Only: 92.988
+Train (All):            total_drugs: 6318.000    median_rank: 54.000    MRR: 0.138    H@10: 0.254    H@100: 0.622    H@500: 0.913
+Val (All):              total_drugs: 2248.000    median_rank: 272.000    MRR: 0.071    H@10: 0.125    H@100: 0.332    H@500: 0.654
+Val (In Train):         total_drugs: 1941.000    median_rank: 220.000    MRR: 0.079    H@10: 0.139    H@100: 0.366    H@500: 0.703
+Val (Not in Train):     total_drugs: 307.000    median_rank: 835.500    MRR: 0.010    H@10: 0.016    H@100: 0.078    H@500: 0.286
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:06:18    Epoch (Evaluation): 0:03:12    Total: 7:07:22
+Current time: 2019-07-09 09:56:13 EDT-0400
+
+Epoch 46
+Train:    Avg loss: 0.487    Acc GE Anchor: 94.353    Acc Chem Anchor: 94.353    Acc GE Only: 94.353
+Val  :    Avg loss: 0.714    Acc GE Anchor: 91.784    Acc Chem Anchor: 91.784    Acc GE Only: 91.784

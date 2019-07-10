@@ -1,0 +1,155 @@
+
+Total GE Experiments: 29548 (Train)   2642 (Val)
+Total Drugs: 6318 (Train)   2248 (Val)
+Val Drugs not in Train:  307 (N)  13.7 (Percent)
+
+Epoch 1
+Train:    Avg loss: 2.071    Acc GE Anchor: 59.736    Acc Chem Anchor: 59.736
+Val  :    Avg loss: 0.536    Acc GE Anchor: 38.184    Acc Chem Anchor: 38.184
+Train (All):            median_rank: 2054.000    MRR: 0.012    H@10: 0.022    H@100: 0.071    H@500: 0.208
+Val (All):              median_rank: 862.000    MRR: 0.019    H@10: 0.031    H@100: 0.110    H@500: 0.334
+Val (In Train):         median_rank: 836.000    MRR: 0.021    H@10: 0.035    H@100: 0.121    H@500: 0.347
+Val (Not in Train):     median_rank: 1054.500    MRR: 0.002    H@10: 0.003    H@100: 0.026    H@500: 0.237
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:04:39    Epoch (Evaluation): 0:03:04    Total: 0:07:43
+Current time: 2019-07-09 19:06:39 EDT-0400
+
+Epoch 2
+Train:    Avg loss: 0.429    Acc GE Anchor: 69.944    Acc Chem Anchor: 69.944
+Val  :    Avg loss: 0.466    Acc GE Anchor: 44.658    Acc Chem Anchor: 44.658
+Train (All):            median_rank: 1494.000    MRR: 0.016    H@10: 0.029    H@100: 0.096    H@500: 0.268
+Val (All):              median_rank: 736.000    MRR: 0.024    H@10: 0.038    H@100: 0.123    H@500: 0.378
+Val (In Train):         median_rank: 689.000    MRR: 0.027    H@10: 0.043    H@100: 0.133    H@500: 0.397
+Val (Not in Train):     median_rank: 1028.500    MRR: 0.002    H@10: 0.000    H@100: 0.049    H@500: 0.237
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:04:26    Epoch (Evaluation): 0:03:05    Total: 0:15:15
+Current time: 2019-07-09 19:14:11 EDT-0400
+
+Epoch 3
+Train:    Avg loss: 0.495    Acc GE Anchor: 71.375    Acc Chem Anchor: 71.375
+Val  :    Avg loss: 1.120    Acc GE Anchor: 58.375    Acc Chem Anchor: 58.375
+Train (All):            median_rank: 1851.000    MRR: 0.007    H@10: 0.014    H@100: 0.076    H@500: 0.224
+Val (All):              median_rank: 875.000    MRR: 0.013    H@10: 0.024    H@100: 0.109    H@500: 0.332
+Val (In Train):         median_rank: 858.000    MRR: 0.014    H@10: 0.027    H@100: 0.116    H@500: 0.338
+Val (Not in Train):     median_rank: 1003.000    MRR: 0.004    H@10: 0.006    H@100: 0.058    H@500: 0.289
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:04:29    Epoch (Evaluation): 0:03:05    Total: 0:22:49
+Current time: 2019-07-09 19:21:45 EDT-0400
+
+Epoch 4
+Train:    Avg loss: 0.960    Acc GE Anchor: 63.827    Acc Chem Anchor: 63.827
+Val  :    Avg loss: 0.407    Acc GE Anchor: 41.456    Acc Chem Anchor: 41.456
+Train (All):            median_rank: 1981.500    MRR: 0.004    H@10: 0.009    H@100: 0.058    H@500: 0.206
+Val (All):              median_rank: 876.500    MRR: 0.011    H@10: 0.019    H@100: 0.092    H@500: 0.329
+Val (In Train):         median_rank: 831.500    MRR: 0.012    H@10: 0.020    H@100: 0.099    H@500: 0.348
+Val (Not in Train):     median_rank: 1148.000    MRR: 0.003    H@10: 0.006    H@100: 0.039    H@500: 0.188
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:04:25    Epoch (Evaluation): 0:03:08    Total: 0:30:22
+Current time: 2019-07-09 19:29:18 EDT-0400
+
+Epoch 5
+Train:    Avg loss: 0.392    Acc GE Anchor: 69.218    Acc Chem Anchor: 69.218
+Val  :    Avg loss: 0.489    Acc GE Anchor: 34.342    Acc Chem Anchor: 34.342
+Train (All):            median_rank: 1413.000    MRR: 0.018    H@10: 0.028    H@100: 0.096    H@500: 0.275
+Val (All):              median_rank: 757.000    MRR: 0.026    H@10: 0.039    H@100: 0.126    H@500: 0.380
+Val (In Train):         median_rank: 736.500    MRR: 0.029    H@10: 0.044    H@100: 0.135    H@500: 0.395
+Val (Not in Train):     median_rank: 863.000    MRR: 0.003    H@10: 0.000    H@100: 0.062    H@500: 0.273
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:04:22    Epoch (Evaluation): 0:03:03    Total: 0:37:46
+Current time: 2019-07-09 19:36:42 EDT-0400
+
+Epoch 6
+Train:    Avg loss: 0.388    Acc GE Anchor: 72.039    Acc Chem Anchor: 72.039
+Val  :    Avg loss: 0.418    Acc GE Anchor: 48.172    Acc Chem Anchor: 48.172
+Train (All):            median_rank: 1199.000    MRR: 0.021    H@10: 0.035    H@100: 0.119    H@500: 0.308
+Val (All):              median_rank: 687.500    MRR: 0.025    H@10: 0.042    H@100: 0.147    H@500: 0.408
+Val (In Train):         median_rank: 649.500    MRR: 0.028    H@10: 0.047    H@100: 0.161    H@500: 0.428
+Val (Not in Train):     median_rank: 941.000    MRR: 0.004    H@10: 0.010    H@100: 0.045    H@500: 0.256
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:04:26    Epoch (Evaluation): 0:03:05    Total: 0:45:17
+Current time: 2019-07-09 19:44:13 EDT-0400
+
+Epoch 7
+Train:    Avg loss: 0.379    Acc GE Anchor: 75.254    Acc Chem Anchor: 75.254
+Val  :    Avg loss: 0.418    Acc GE Anchor: 54.765    Acc Chem Anchor: 54.765
+Train (All):            median_rank: 1027.000    MRR: 0.022    H@10: 0.037    H@100: 0.132    H@500: 0.341
+Val (All):              median_rank: 653.000    MRR: 0.027    H@10: 0.044    H@100: 0.154    H@500: 0.416
+Val (In Train):         median_rank: 631.500    MRR: 0.029    H@10: 0.048    H@100: 0.165    H@500: 0.428
+Val (Not in Train):     median_rank: 803.000    MRR: 0.009    H@10: 0.010    H@100: 0.075    H@500: 0.331
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:04:25    Epoch (Evaluation): 0:03:03    Total: 0:52:45
+Current time: 2019-07-09 19:51:41 EDT-0400
+
+Epoch 8
+Train:    Avg loss: 0.389    Acc GE Anchor: 77.014    Acc Chem Anchor: 77.014
+Val  :    Avg loss: 0.447    Acc GE Anchor: 54.446    Acc Chem Anchor: 54.446
+Train (All):            median_rank: 858.000    MRR: 0.024    H@10: 0.042    H@100: 0.149    H@500: 0.382
+Val (All):              median_rank: 601.500    MRR: 0.028    H@10: 0.047    H@100: 0.165    H@500: 0.445
+Val (In Train):         median_rank: 575.500    MRR: 0.031    H@10: 0.053    H@100: 0.180    H@500: 0.463
+Val (Not in Train):     median_rank: 832.500    MRR: 0.007    H@10: 0.006    H@100: 0.055    H@500: 0.305
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:04:33    Epoch (Evaluation): 0:03:05    Total: 1:00:23
+Current time: 2019-07-09 19:59:19 EDT-0400
+
+Epoch 9
+Train:    Avg loss: 0.380    Acc GE Anchor: 78.521    Acc Chem Anchor: 78.521
+Val  :    Avg loss: 0.409    Acc GE Anchor: 62.884    Acc Chem Anchor: 62.884
+Train (All):            median_rank: 769.000    MRR: 0.027    H@10: 0.047    H@100: 0.160    H@500: 0.403
+Val (All):              median_rank: 595.500    MRR: 0.031    H@10: 0.052    H@100: 0.176    H@500: 0.458
+Val (In Train):         median_rank: 559.000    MRR: 0.034    H@10: 0.058    H@100: 0.191    H@500: 0.476
+Val (Not in Train):     median_rank: 819.500    MRR: 0.006    H@10: 0.010    H@100: 0.065    H@500: 0.325
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:04:27    Epoch (Evaluation): 0:03:04    Total: 1:07:54
+Current time: 2019-07-09 20:06:50 EDT-0400
+
+Epoch 10
+Train:    Avg loss: 0.377    Acc GE Anchor: 80.524    Acc Chem Anchor: 80.524
+Val  :    Avg loss: 0.428    Acc GE Anchor: 63.491    Acc Chem Anchor: 63.491
+Train (All):            median_rank: 707.000    MRR: 0.028    H@10: 0.050    H@100: 0.171    H@500: 0.422
+Val (All):              median_rank: 559.500    MRR: 0.031    H@10: 0.056    H@100: 0.178    H@500: 0.463
+Val (In Train):         median_rank: 548.000    MRR: 0.035    H@10: 0.062    H@100: 0.193    H@500: 0.472
+Val (Not in Train):     median_rank: 672.500    MRR: 0.004    H@10: 0.010    H@100: 0.065    H@500: 0.393
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:04:25    Epoch (Evaluation): 0:03:05    Total: 1:15:24
+Current time: 2019-07-09 20:14:20 EDT-0400
+
+Epoch 11
+Train:    Avg loss: 0.380    Acc GE Anchor: 80.383    Acc Chem Anchor: 80.383
+Val  :    Avg loss: 0.438    Acc GE Anchor: 59.053    Acc Chem Anchor: 59.053
+Train (All):            median_rank: 668.000    MRR: 0.031    H@10: 0.054    H@100: 0.183    H@500: 0.435
+Val (All):              median_rank: 520.500    MRR: 0.033    H@10: 0.059    H@100: 0.184    H@500: 0.484
+Val (In Train):         median_rank: 491.500    MRR: 0.037    H@10: 0.066    H@100: 0.202    H@500: 0.504
+Val (Not in Train):     median_rank: 899.500    MRR: 0.003    H@10: 0.003    H@100: 0.049    H@500: 0.334
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:04:25    Epoch (Evaluation): 0:03:03    Total: 1:22:52
+Current time: 2019-07-09 20:21:48 EDT-0400
+
+Epoch 12
+Train:    Avg loss: 0.370    Acc GE Anchor: 81.477    Acc Chem Anchor: 81.477
+Val  :    Avg loss: 0.408    Acc GE Anchor: 67.136    Acc Chem Anchor: 67.136
+Train (All):            median_rank: 583.000    MRR: 0.031    H@10: 0.054    H@100: 0.195    H@500: 0.466
+Val (All):              median_rank: 536.500    MRR: 0.037    H@10: 0.059    H@100: 0.192    H@500: 0.478
+Val (In Train):         median_rank: 506.000    MRR: 0.040    H@10: 0.066    H@100: 0.207    H@500: 0.495
+Val (Not in Train):     median_rank: 765.500    MRR: 0.011    H@10: 0.010    H@100: 0.078    H@500: 0.344
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:04:25    Epoch (Evaluation): 0:03:01    Total: 1:30:18
+Current time: 2019-07-09 20:29:14 EDT-0400
+
+Epoch 13
+Train:    Avg loss: 0.360    Acc GE Anchor: 82.868    Acc Chem Anchor: 82.868
+Val  :    Avg loss: 0.474    Acc GE Anchor: 63.101    Acc Chem Anchor: 63.101
+Train (All):            median_rank: 537.000    MRR: 0.033    H@10: 0.059    H@100: 0.205    H@500: 0.484
+Val (All):              median_rank: 513.500    MRR: 0.035    H@10: 0.059    H@100: 0.196    H@500: 0.492
+Val (In Train):         median_rank: 486.000    MRR: 0.040    H@10: 0.067    H@100: 0.212    H@500: 0.509
+Val (Not in Train):     median_rank: 820.500    MRR: 0.004    H@10: 0.003    H@100: 0.071    H@500: 0.367
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:04:25    Epoch (Evaluation): 0:03:03    Total: 1:37:47
+Current time: 2019-07-09 20:36:43 EDT-0400
+
+Epoch 14
+Train:    Avg loss: 0.356    Acc GE Anchor: 83.615    Acc Chem Anchor: 83.615
+Val  :    Avg loss: 0.418    Acc GE Anchor: 63.599    Acc Chem Anchor: 63.599
+Train (All):            median_rank: 507.000    MRR: 0.036    H@10: 0.066    H@100: 0.222    H@500: 0.497
+Val (All):              median_rank: 491.000    MRR: 0.038    H@10: 0.067    H@100: 0.202    H@500: 0.504
+Val (In Train):         median_rank: 449.500    MRR: 0.043    H@10: 0.075    H@100: 0.220    H@500: 0.527
+Val (Not in Train):     median_rank: 794.000    MRR: 0.003    H@10: 0.000    H@100: 0.071    H@500: 0.331
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:04:24    Epoch (Evaluation): 0:03:03    Total: 1:45:14
+Current time: 2019-07-09 20:44:10 EDT-0400
+
+Epoch 15
+Train:    Avg loss: 0.361    Acc GE Anchor: 83.623    Acc Chem Anchor: 83.623
+Val  :    Avg loss: 0.435    Acc GE Anchor: 65.756    Acc Chem Anchor: 65.756
+Train (All):            median_rank: 478.000    MRR: 0.037    H@10: 0.067    H@100: 0.223    H@500: 0.511
+Val (All):              median_rank: 461.000    MRR: 0.039    H@10: 0.067    H@100: 0.212    H@500: 0.523
+Val (In Train):         median_rank: 430.500    MRR: 0.043    H@10: 0.075    H@100: 0.227    H@500: 0.541
+Val (Not in Train):     median_rank: 706.000    MRR: 0.006    H@10: 0.010    H@100: 0.097    H@500: 0.383
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:04:26    Epoch (Evaluation): 0:03:02    Total: 1:52:43
+Current time: 2019-07-09 20:51:38 EDT-0400
+

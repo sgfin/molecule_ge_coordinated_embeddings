@@ -1,0 +1,25 @@
+
+Total GE Experiments: 29548 (Train)   2642 (Val)
+Total Drugs: 6318 (Train)   2248 (Val)
+Val Drugs not in Train:  307 (N)  13.7 (Percent)
+
+Epoch 1
+Train:    Avg loss: 1.187    Percent Correct: 55.167
+Val  :    Avg loss: 0.363    Percent Correct: 42.473
+Train (All):            median_rank: 1893.000    MRR: 0.011    H@10: 0.019    H@100: 0.078    H@500: 0.227
+Val (All):              median_rank: 860.000    MRR: 0.014    H@10: 0.023    H@100: 0.091    H@500: 0.329
+Val (In Train):         median_rank: 840.000    MRR: 0.016    H@10: 0.026    H@100: 0.099    H@500: 0.339
+Val (Not in Train):     median_rank: 1030.500    MRR: 0.002    H@10: 0.000    H@100: 0.032    H@500: 0.253
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:04:04    Epoch (Evaluation): 0:03:12    Total: 0:07:15
+Current time: 2019-07-09 21:15:08 EDT-0400
+
+Epoch 2
+Train:    Avg loss: 0.236    Percent Correct: 63.788
+Val  :    Avg loss: 0.361    Percent Correct: 43.208
+Train (All):            median_rank: 1553.000    MRR: 0.012    H@10: 0.022    H@100: 0.095    H@500: 0.265
+Val (All):              median_rank: 813.000    MRR: 0.016    H@10: 0.022    H@100: 0.117    H@500: 0.360
+Val (In Train):         median_rank: 774.500    MRR: 0.018    H@10: 0.024    H@100: 0.127    H@500: 0.383
+Val (Not in Train):     median_rank: 1067.500    MRR: 0.003    H@10: 0.003    H@100: 0.039    H@500: 0.182
+Time elapsed [hr:min:sec]:    Epoch (Training): 0:03:52    Epoch (Evaluation): 0:03:07    Total: 0:14:14
+Current time: 2019-07-09 21:22:07 EDT-0400
+
