@@ -15,7 +15,7 @@ def init_file_logger(filename, log_level=logging.DEBUG):
     logger.setLevel(log_level)
     fh = logging.FileHandler(filename)
     fh.setLevel(log_level)
-    formatter = logging.Formatter('\n%(asctime)s - %(levelname)s -\n %(message)s')
+    formatter = logging.Formatter('%(asctime)s : %(levelname)s : %(message)s\n')
     fh.setFormatter(formatter)
     logger.addHandler(fh)
     return logger

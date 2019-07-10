@@ -56,13 +56,13 @@ class FeedForwardTripletNet(nn.Module):
         self.embed_size = embed_size
         self.n_genes = n_genes
 
-        ge_layers = hidden_layers_ge.extend([embed_size])
+        ge_layers = hidden_layers_ge + [embed_size]
         self.ge_embed = SNN_Embedder(dim_sizes=ge_layers,
                                      n_genes=n_genes,
                                      dropout_prob=dropout_prob)
 
         self.chemprop_encoder = load_chemprop_model()
-        chem_layers = hidden_layers_chem.extend([embed_size])
+        chem_layers = hidden_layers_chem + [embed_size]
         self.chem_linear = SNN_Embedder(dim_sizes=chem_layers,
                                         n_genes=300, dropout_prob=dropout_prob)
 

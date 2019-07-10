@@ -11,9 +11,9 @@ def scale(df, m, s): return (df - m)/s
 
 class LincsTripletDataset(Dataset):
     def __init__(self, l1000_sigs_path="~/DBMI_server/repo/mdeg_collab/data/lincs_level3_all_perts.pkl",
-                 control_method = 'baseline_logFC',
-                 split = 'train', train_test_seed = 370,
-                 pert_time="24.0", pert_dose = "um@10.0", cell_id = "PC3",
+                 control_method='baseline_logFC',
+                 split='train', train_test_seed=370, train_split_frac=0.2,
+                 pert_time="24.0", pert_dose="um@10.0", cell_id="PC3",
                  rank_transform=False, perts_to_exclude=None, input_type="triplet_ge_first"
                 ):
         self.control_method = control_method
@@ -34,7 +34,7 @@ class LincsTripletDataset(Dataset):
         l1000_perts_plates = sorted(set(l1000_perts.index.get_level_values('plate').values))
 
         # Train-test split by plate
-        plates_train, plates_non_train = train_test_split(l1000_perts_plates, test_size=0.2,
+        plates_train, plates_non_train = train_test_split(l1000_perts_plates, test_size=train_split_frac,
                                                           random_state=train_test_seed)
         plates_val, plates_test = train_test_split(plates_non_train, test_size=0.5,
                                                    random_state=train_test_seed)
