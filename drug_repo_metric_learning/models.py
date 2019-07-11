@@ -11,7 +11,8 @@ from chemprop.models.model import build_model
 #feats = [rd_process(x)[1:] for x in smiles_list]
 #chemprop_model(smiles_list, feats)
 
-def load_chemprop_model(chemprop_model_path="/home/sgf2/DBMI_server/repo/chemprop/pcba/model_unoptimized.pt"):
+
+def load_chemprop_model(chemprop_model_path):
     chemprop_info = torch.load(chemprop_model_path)
     chemprop_model = build_model(chemprop_info['args'])
     chemprop_model.load_state_dict(chemprop_info['state_dict'])
@@ -50,7 +51,8 @@ class SNN_Embedder(FFANN_Embedder):
 class FeedForwardTripletNet(nn.Module):
     def __init__(self, embed_size=128, n_genes=978,
                  hidden_layers_ge=[1024, 512], hidden_layers_chem=[],
-                 input_type="triplet_ge_first",  dropout_prob=0):
+                 input_type="triplet_ge_first",  dropout_prob=0,
+                 chemprop_model_path="/home/sgf2/DBMI_server/repo/chemprop/pcba/model_unoptimized.pt"):
         super().__init__()
         self.input_type = input_type
         self.embed_size = embed_size
@@ -61,7 +63,7 @@ class FeedForwardTripletNet(nn.Module):
                                      n_genes=n_genes,
                                      dropout_prob=dropout_prob)
 
-        self.chemprop_encoder = load_chemprop_model()
+        self.chemprop_encoder = load_chemprop_model(chemprop_model_path)
         chem_layers = hidden_layers_chem + [embed_size]
         self.chem_linear = SNN_Embedder(dim_sizes=chem_layers,
                                         n_genes=300, dropout_prob=dropout_prob)
