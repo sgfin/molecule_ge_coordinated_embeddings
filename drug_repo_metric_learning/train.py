@@ -14,8 +14,10 @@ from ignite.metrics import RunningAverage
 
 import os
 import sys
+import pickle
 
 import numpy as np
+import pandas as pd
 from scipy.spatial.distance import cdist
 from scipy.stats.mstats import rankdata
 
@@ -36,8 +38,21 @@ def train_model(config, logger):
     # Dataset
     logger.debug("Building Dataset")
 
-    train_dataset = cf.initialize_from_config(config, 'dataset', datasets)
-    val_dataset = cf.initialize_from_config(config, 'dataset', datasets, split="val")
+    if "precomputed_train" in config['dataset']:
+        logger.debug("Loading Train from Disk")
+        train_dataset = pickle.load(open(config['dataset']["precomputed_train"], "rb"))
+    else:
+        train_dataset = cf.initialize_from_config(config, 'dataset', datasets)
+        if "save_train" in config['dataset']:
+            pickle.dump(train_dataset, open(config['dataset']["save_train"], "wb"))
+
+    if "precomputed_val" in config['dataset']:
+        logger.debug("Loading Val from Disk")
+        val_dataset = pickle.load(open(config['dataset']["precomputed_val"], "rb"))
+    else:
+        val_dataset = cf.initialize_from_config(config, 'dataset', datasets, split="val")
+        if "save_val" in config['dataset']:
+            pickle.dump(train_dataset, open(config['dataset']["save_val"], "wb"))
 
     train_loader = cf.initialize_from_config(config, 'data_loader', torch.utils.data, train_dataset, shuffle=True)
     val_loader = cf.initialize_from_config(config, 'data_loader', torch.utils.data, val_dataset)
@@ -47,12 +62,15 @@ def train_model(config, logger):
     ge_wrapper_val = cf.initialize_from_config(config, 'dataset_wrapper_ge', datasets, val_dataset)
     smiles_wrapper_train = cf.initialize_from_config(config, 'dataset_wrapper_smiles', datasets, train_dataset)
     smiles_wrapper_val = cf.initialize_from_config(config, 'dataset_wrapper_smiles', datasets, val_dataset)
+
     uniq_train_perts = set(smiles_wrapper_train.pert_smiles)
+    uniq_val_perts = set(smiles_wrapper_val.pert_smiles)
 
     ge_loader_train = cf.initialize_from_config(config, 'data_loader_singlet', torch.utils.data, ge_wrapper_train)
     ge_loader_val = cf.initialize_from_config(config, 'data_loader_singlet', torch.utils.data, ge_wrapper_val)
     smiles_loader_train = cf.initialize_from_config(config, 'data_loader_singlet', torch.utils.data, smiles_wrapper_train)
     smiles_loader_val = cf.initialize_from_config(config, 'data_loader_singlet', torch.utils.data, smiles_wrapper_val)
+
 
     print('\nTotal GE Experiments: {} (Train)   {} (Val)'
           .format(len(ge_wrapper_train), len(ge_wrapper_val) ))
@@ -67,7 +85,25 @@ def train_model(config, logger):
     # Set up models
     logger.info("\nBuilding Model")
 
-    model = cf.initialize_from_config(config, 'model', models, n_genes=train_dataset.n_gene_columns)
+    if 'rdkit_features' in config and config['rdkit_features']:
+        if 'rdkit_feats_path' in config:
+            logger.info("\nLoading RDKit Feats")
+            smiles_to_feats = pickle.load(open( config['rdkit_feats_path'], "rb" ))
+        else:
+            logger.info("\nFeaturizing using RDKit")
+            smiles_to_feats = datasets.smiles_to_rdkit_feats(list(uniq_train_perts.union(uniq_val_perts)))
+        model = cf.initialize_from_config(config, 'model', models, n_feats_genes=train_dataset.n_feats_genes,
+                                              smiles_to_feats=smiles_to_feats)
+
+        # Use train set to average out nan features from rdkit
+        smiles_to_feats_train = {x: smiles_to_feats[x] for x in uniq_train_perts}
+        rdkit_train_set_mean = pd.DataFrame.from_dict(smiles_to_feats_train).transpose().mean(axis=0).to_list()
+        for key in smiles_to_feats:
+            for i, v in enumerate(smiles_to_feats[key]):
+                if np.isnan(v):
+                    smiles_to_feats[key][i] = rdkit_train_set_mean[i]
+    else:
+        model = cf.initialize_from_config(config, 'model', models, n_feats_genes=train_dataset.n_feats_genes)
 
     loss_fun = cf.initialize_from_config(config, 'loss', losses)
     online_eval_metrics = config["loss"]["online_eval_metrics"]
@@ -83,16 +119,16 @@ def train_model(config, logger):
 
     # Ignite Trainer
 
+
     def step(engine, batch):
         model.train()
         optimizer.zero_grad()
         output = model(batch)
         loss, percentage_correct = loss_fun(*output)
         loss.backward()
+        if "grad_clip" in config["trainer"]:
+            torch.nn.utils.clip_grad_norm_(model.parameters(), config["trainer"]["grad_clip"])
         optimizer.step()
-
-        #logger.debug("Loss: ", loss.item())
-        #logger.debug("PC: ", percentage_correct)
 
         res = {'loss': loss.item()}
         if config["structure"] == "triplet":
@@ -185,8 +221,11 @@ def train_model(config, logger):
                 smiles = batch
                 start_ind = i * smiles_loader.batch_size
                 end_ind = start_ind + len(smiles)
-
-                chem_embeds = model.chem_linear(model.chemprop_encoder(smiles))
+                if 'rdkit_features' in config and config['rdkit_features']:
+                    feats = [smiles_to_feats[x] for x in smiles]
+                    chem_embeds = model.chem_linear(model.chemprop_encoder(smiles, feats))
+                else:
+                    chem_embeds = model.chem_linear(model.chemprop_encoder(smiles))
                 chem_embeddings[start_ind:end_ind, :] = chem_embeds.cpu().numpy()
 
         gex_chem_distances = cdist(gex_embeddings, chem_embeddings, metric='euclidean')
@@ -335,9 +374,10 @@ def train_model(config, logger):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('config_filepath',
+    parser.add_argument('-c', '--config_filepath',
+                        default="../experiments/quad_big_chemprop/config_quad_big_chemprop.json",
                         help='Path to config file used to define experiment '
-                             '(e.g. experiments/quad/config_quad.json). '
+                             '(default: ../experiments/quad/config_quad.json). '
                              'Logs and models will save in same folder.')
     parser.add_argument('--train_log_filename', default="training_output.txt",
                         help='Filename for training output (default: training_output.txt)')
@@ -347,6 +387,8 @@ if __name__ == "__main__":
                         help='Sets logger to level logging.INFO')
     args = parser.parse_args()
 
+
+
     # Logger
     if not args.debug_mode_off:
         logger_level = logging.DEBUG
@@ -355,6 +397,7 @@ if __name__ == "__main__":
 
     # Config
     config = cf.read_json(args.config_filepath)
+    config['device_num'] = 1
 
     # Create Output Folders
     config['exp_dir'] = os.path.join(config["trainer"]["base_exp_dir"], config["model_name"])

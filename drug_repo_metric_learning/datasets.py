@@ -6,6 +6,12 @@ import random
 from sklearn.model_selection import train_test_split
 from scipy.spatial.distance import cdist
 
+from descriptastorus.descriptors.rdNormalizedDescriptors import RDKit2DNormalized
+def smiles_to_rdkit_feats(smiles_list):
+    rd_process = RDKit2DNormalized().process
+    return {x:rd_process(x)[1:] for x in smiles_list}
+
+
 def scale(df, m, s): return (df - m)/s
 
 
@@ -87,11 +93,11 @@ class LincsTripletDataset(Dataset):
 
         # Output shape
         if self.control_method == "baseline":
-            self.n_gene_columns = 2 * self.l1000_perts.shape[1]
+            self.n_feats_genes = 2 * self.l1000_perts.shape[1]
         elif self.control_method == "baseline_logFC":
-            self.n_gene_columns = 3 * self.l1000_perts.shape[1]
+            self.n_feats_genes = 3 * self.l1000_perts.shape[1]
         elif self.control_method == "all":
-            self.n_gene_columns = 4 * self.l1000_perts.shape[1]
+            self.n_feats_genes = 4 * self.l1000_perts.shape[1]
 
     def __get_GE_sig__(self, idx):
         # Post-pert signature
@@ -155,7 +161,8 @@ class LincsTripletDataset(Dataset):
         return idx_pair
 
     def __get_smiles__(self, idx):
-        return self.l1000_perts.index.get_level_values('canonical_smiles').values[idx]
+        smile = self.l1000_perts.index.get_level_values('canonical_smiles').values[idx]
+        return smile
 
     def __getitem__(self, idx):
         idx_non_match = self.__get_second_smile_idx__(idx)
