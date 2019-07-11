@@ -52,7 +52,7 @@ def train_model(config, logger):
     else:
         val_dataset = cf.initialize_from_config(config, 'dataset', datasets, split="val")
         if "save_val" in config['dataset']:
-            pickle.dump(train_dataset, open(config['dataset']["save_val"], "wb"))
+            pickle.dump(val_dataset, open(config['dataset']["save_val"], "wb"))
 
     train_loader = cf.initialize_from_config(config, 'data_loader', torch.utils.data, train_dataset, shuffle=True)
     val_loader = cf.initialize_from_config(config, 'data_loader', torch.utils.data, val_dataset)
