@@ -1,0 +1,5 @@
+
+Total GE Experiments: 29548 (Train)   2642 (Val)
+Total Drugs: 6318 (Train)   2248 (Val)
+Val Drugs not in Train:  307 (N)  13.7 (Percent)
+

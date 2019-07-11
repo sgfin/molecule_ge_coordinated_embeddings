@@ -6,6 +6,42 @@ import shutil
 import torch
 
 import sys
+import math
+
+
+class RunningTracker:
+    """
+    Class for keeping track of some metric over time.
+    """
+    def __init__(self, init_val=0.0):
+        self.current = init_val
+        self.max = -math.inf
+        self.min = math.inf
+        self.total = 0.0
+        self.count = 0.0
+
+    def update(self, x):
+        self.count += 1
+        self.total += x
+        self.current = x
+        if x > self.max:
+            self.max = x
+        if x < self.min:
+            self.min = x
+
+    def get_current(self, *args, **kwargs):
+        return self.current
+
+    def get_max(self, *args, **kwargs):
+        return self.max
+
+    def get_min(self, *args, **kwargs):
+        return self.min
+
+    def get_avg(self, *args, **kwargs):
+        if self.count == 0:
+            return math.nan
+        return self.total / self.count
 
 
 def init_file_logger(filename, log_level=logging.DEBUG):
@@ -15,10 +51,11 @@ def init_file_logger(filename, log_level=logging.DEBUG):
     logger.setLevel(log_level)
     fh = logging.FileHandler(filename)
     fh.setLevel(log_level)
-    formatter = logging.Formatter('%(asctime)s : %(levelname)s : %(message)s\n')
+    formatter = logging.Formatter('%(asctime)s : %(levelname)s : %(message)s')
     fh.setFormatter(formatter)
     logger.addHandler(fh)
     return logger
+
 
 class CustomPrintOutput(object):
     """Class that can be used to turn "print" into a function that
@@ -44,6 +81,7 @@ class CustomPrintOutput(object):
     def flush(self):
         self.terminal.flush()
         self.log.flush()
+
 
 def save_checkpoint(state, is_best, checkpoint):
     """Saves model and training parameters at checkpoint + 'last.pth.tar'. If is_best==True, also saves

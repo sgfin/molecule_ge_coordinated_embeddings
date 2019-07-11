@@ -26,38 +26,12 @@ from pytz import timezone
 import logging
 import argparse
 
-###############
-# Globals
 
-val_mrr_total = 0.0; val_mrr_outsample = 0.0
-best_val_mrr = 0.0
-
-def get_val_mrr(engine):
-    return val_mrr_total
-
-def get_val_mrr_outsample(engine):
-    return val_mrr_outsample
-
-def main(config_path, logger_level, train_log_filepath, debug_log_filepath):
-    # Config
-    config = cf.read_json(config_path)
+def train_model(config, logger):
+    logger.info(dict(config))
 
     if config['device_num'] is not None:
         torch.cuda.set_device(config['device_num'])
-    config['exp_dir'] = os.path.join(config["trainer"]["base_exp_dir"], config["model_name"])
-
-    if not os.path.exists(config['exp_dir']):
-        os.mkdir(config['exp_dir'])
-
-    # Training Log
-    sys.stdout = utils.CustomPrintOutput(os.path.join(config['exp_dir'], train_log_filepath))
-
-    # Info/Debug Logger
-    log_filename = os.path.join(config['exp_dir'],  debug_log_filepath)
-    logger = utils.init_file_logger(log_filename, logger_level)
-    logger.info(dict(config))
-
-    ###################################################
 
     # Dataset
     logger.debug("Building Dataset")
@@ -186,6 +160,8 @@ def main(config_path, logger_level, train_log_filepath, debug_log_filepath):
     ###################################################
 
     # IR metrics
+    val_mrr_tracker = utils.RunningTracker()
+    val_mrr_outsample_tracker = utils.RunningTracker()
 
     # Method to compute MRR, H@K metrics
     def compute_ir_metrics(ge_wrapper, ge_loader, smiles_wrapper, smiles_loader,
@@ -298,15 +274,10 @@ def main(config_path, logger_level, train_log_filepath, debug_log_filepath):
             for i, res_dict in enumerate(ir_metrics):
                 print(val_print_labels[i] + "    ".join(['{}: {:.3f}'.format(k, res_dict[k]) for k in res_dict]))
 
-            global val_mrr_total
-            val_mrr_total = ir_metrics[0]['MRR']
+            val_mrr_tracker.update(ir_metrics[0]['MRR'])
+            val_mrr_outsample_tracker.update(ir_metrics[2]['MRR'])
 
-            global val_mrr_outsample
-            val_mrr_outsample = ir_metrics[2]['MRR']
-
-            #global best_val_mrr
-            #if ir_metrics['MRR'] > val_mrr:
-            #    best_val_mrr = ir_metrics['MRR']
+            #if val_mrr_tracker.get_current() == val_mrr_tracker.get_max():
             #    utils.save_checkpoint({'epoch': engine.state.epoch,
             #                           'configs': config,
             #                           'state_dict': model.state_dict(),
@@ -338,7 +309,7 @@ def main(config_path, logger_level, train_log_filepath, debug_log_filepath):
     best_model_saver = ModelCheckpoint(config["exp_dir"],
                                        filename_prefix="checkpoint",
                                        score_name="val_mrr",
-                                       score_function=get_val_mrr,
+                                       score_function=val_mrr_tracker.get_current,
                                        n_saved=5,
                                        atomic=True,
                                        create_dir=True,
@@ -348,7 +319,7 @@ def main(config_path, logger_level, train_log_filepath, debug_log_filepath):
     best_model_saver_outSamp = ModelCheckpoint(config["exp_dir"],
                                                filename_prefix="checkpoint",
                                                score_name="val_mrr_outsample",
-                                               score_function=get_val_mrr_outsample,
+                                               score_function=val_mrr_outsample_tracker.get_current,
                                                n_saved=5,
                                                atomic=True,
                                                create_dir=True,
@@ -364,7 +335,7 @@ def main(config_path, logger_level, train_log_filepath, debug_log_filepath):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', dest='config_filepath',
+    parser.add_argument('config_filepath',
                         help='Path to config file used to define experiment '
                              '(e.g. experiments/quad/config_quad.json). '
                              'Logs and models will save in same folder.')
@@ -376,9 +347,25 @@ if __name__ == "__main__":
                         help='Sets logger to level logging.INFO')
     args = parser.parse_args()
 
+    # Logger
     if not args.debug_mode_off:
-        logging_level = logging.DEBUG
+        logger_level = logging.DEBUG
     else:
-        logging_level = logging.INFO
+        logger_level = logging.INFO
 
-    main(args.config_filepath, logging_level, args.train_log_filename, args.debug_log_filename)
+    # Config
+    config = cf.read_json(args.config_filepath)
+
+    # Create Output Folders
+    config['exp_dir'] = os.path.join(config["trainer"]["base_exp_dir"], config["model_name"])
+    if not os.path.exists(config['exp_dir']):
+        os.mkdir(config['exp_dir'])
+
+    # Redirect Print
+    sys.stdout = utils.CustomPrintOutput(os.path.join(config['exp_dir'], args.train_log_filename))
+
+    # Logger
+    log_filename = os.path.join(config['exp_dir'], args.debug_log_filename)
+    logger = utils.init_file_logger(log_filename, logger_level)
+
+    train_model(config, logger)
