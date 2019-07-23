@@ -199,11 +199,11 @@ def train_model(config, logger):
     val_mrr_tracker = utils.RunningTracker()
     val_mrr_outsample_tracker = utils.RunningTracker()
 
-    # Method to compute MRR, H@K metrics
-    def compute_ir_metrics(ge_wrapper, ge_loader, smiles_wrapper, smiles_loader,
-                           split = "train", train_smiles = None):
+    # Embed all GE experiments and drugs
+    def get_embeddings(ge_wrapper, ge_loader, smiles_wrapper, smiles_loader):
         gex_embeddings = np.zeros([ge_wrapper.__len__(), model.embed_size])
         smiles_gex_labels = []
+        smiles_chem_labels = []
         chem_embeddings = np.zeros([smiles_wrapper.__len__(), model.embed_size])
         # smiles_strings = smiles_wrapper.pert_smiles
 
@@ -219,6 +219,7 @@ def train_model(config, logger):
 
             for i, batch in enumerate(smiles_loader):
                 smiles = batch
+                smiles_chem_labels.extend(batch)
                 start_ind = i * smiles_loader.batch_size
                 end_ind = start_ind + len(smiles)
                 if 'rdkit_features' in config and config['rdkit_features']:
@@ -228,44 +229,66 @@ def train_model(config, logger):
                     chem_embeds = model.chem_linear(model.chemprop_encoder(smiles))
                 chem_embeddings[start_ind:end_ind, :] = chem_embeds.cpu().numpy()
 
-        gex_chem_distances = cdist(gex_embeddings, chem_embeddings, metric='euclidean')
-        gex_chem_ranks = rankdata(gex_chem_distances, axis=1)
+        return gex_embeddings, chem_embeddings, np.array(smiles_gex_labels), np.array(smiles_chem_labels)
 
+    def get_ranks_first_match(gex_chem_ranks, smiles_gex_labels, smiles_chem_labels):
         rank_first_match = []
-        # rank_all_matches = [] # currently only one match is possible
         for i, sml in enumerate(smiles_gex_labels):
-            matches = np.where(smiles_wrapper.pert_smiles == sml)[0]
+            matches = np.where(smiles_chem_labels == sml)[0]
             ranks_matches = gex_chem_ranks[i, matches]
-            # rank_all_matches.append(ranks_matches)
             rank_first_match.append(np.min(ranks_matches))
         rank_first_match = np.array(rank_first_match).squeeze()
+        return rank_first_match
 
-        list_of_inds = [[i for i,j in enumerate(smiles_gex_labels)]]
-
-        if split == "val":
-            inds_in_train = [i for i, j in enumerate(smiles_gex_labels) if j in train_smiles]
-            inds_not_in_train = [i for i, j in enumerate(smiles_gex_labels) if j not in train_smiles]
-            list_of_inds.append(inds_in_train)
-            list_of_inds.append(inds_not_in_train)
-
-        ir_results = []
-        for inds in list_of_inds:
-            median_rank = np.median(rank_first_match[inds])
-            mrr = np.mean(1 / rank_first_match[inds])
-            hits_at_10 = np.mean([np.sum(results <= 10) for results in rank_first_match[inds]]) # can change to rank_all_matches
-            hits_at_100 = np.mean([np.sum(results <= 100) for results in rank_first_match[inds]])
-            hits_at_500 = np.mean([np.sum(results <= 500) for results in rank_first_match[inds]])
-
-            ir_results.append({
-                #"total_drugs": len(set(np.array(smiles_gex_labels)[inds])),
+    def prepare_metrics(rank_first_match, indices):
+        median_rank = np.median(rank_first_match[indices])
+        mrr = np.mean(1 / rank_first_match[indices])
+        hits_at_10 = np.mean(
+            [np.sum(results <= 10) for results in rank_first_match[indices]])  # can change to rank_all_matches
+        hits_at_100 = np.mean([np.sum(results <= 100) for results in rank_first_match[indices]])
+        hits_at_500 = np.mean([np.sum(results <= 500) for results in rank_first_match[indices]])
+        return {#"total_drugs": len(set(np.array(smiles_gex_labels)[inds])),
                 "median_rank": median_rank,
                 "MRR": mrr,
                 "H@10": hits_at_10,
                 "H@100": hits_at_100,
                 "H@500": hits_at_500
-            })
+            }
 
+    # Method to compute MRR, H@K metrics
+    def compute_ir_metrics(ge_wrapper, ge_loader, smiles_wrapper, smiles_loader,
+                           split="train", train_smiles=None):
+        gex_embeddings, chem_embeddings, smiles_gex_labels, smiles_chem_labels = get_embeddings(ge_wrapper, ge_loader,
+                                                                            smiles_wrapper, smiles_loader)
+        gex_chem_distances = cdist(gex_embeddings, chem_embeddings, metric='euclidean')
+        gex_chem_ranks = rankdata(gex_chem_distances, axis=1)
+        rank_first_match = get_ranks_first_match(gex_chem_ranks, smiles_gex_labels, smiles_chem_labels)
+
+        # smiles_wrapper.pert_smiles == smiles_chem_labels
+
+        list_of_inds = [[i for i,j in enumerate(smiles_gex_labels)]]
+        if split == "val":
+            ge_inds_in_train = [i for i, j in enumerate(smiles_gex_labels) if j in train_smiles]
+            ge_inds_not_in_train = [i for i, j in enumerate(smiles_gex_labels) if j not in train_smiles]
+            list_of_inds.append(ge_inds_in_train)
+            list_of_inds.append(ge_inds_not_in_train)
+
+            chem_inds_not_in_train = [i for i,j in enumerate(smiles_chem_labels) if j not in train_smiles]
+
+        ir_results = []
+        for inds in list_of_inds:
+            ir_results.append(prepare_metrics(rank_first_match, inds))
+
+        if split == "val":
+            ranks_subset = rankdata(gex_chem_ranks[:, chem_inds_not_in_train][ge_inds_not_in_train,:], axis=1)
+            rank_first_match = get_ranks_first_match(ranks_subset,
+                                                     smiles_gex_labels[ge_inds_not_in_train],
+                                                     smiles_chem_labels[chem_inds_not_in_train])
+            ir_results.append(prepare_metrics(rank_first_match,
+                                              [k for k in range(len(ge_inds_not_in_train))]
+                                              ))
         return ir_results
+
 
     ###################################################
 
@@ -309,7 +332,8 @@ def train_model(config, logger):
 
             ir_metrics = compute_ir_metrics(ge_wrapper_val, ge_loader_val, smiles_wrapper_val, smiles_loader_val,
                                             split='val', train_smiles=uniq_train_perts)
-            val_print_labels = ["Val (All):              ", "Val (In Train):         ", "Val (Not in Train):     "]
+            val_print_labels = ["Val (All):              ", "Val (In Train):         ",
+                                "Val (Not in Train):     ", "Val (No train, limited):"]
             for i, res_dict in enumerate(ir_metrics):
                 print(val_print_labels[i] + "    ".join(['{}: {:.3f}'.format(k, res_dict[k]) for k in res_dict]))
 
@@ -375,9 +399,9 @@ def train_model(config, logger):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--config_filepath',
-                        default="../experiments/quad_big_chemprop/config_quad_big_chemprop.json",
+                        default="../experiments/quad_test/config_quad_test.json",
                         help='Path to config file used to define experiment '
-                             '(default: ../experiments/quad/config_quad.json). '
+                             '(default: ../experiments/quad_test/config_quad_test.json). '
                              'Logs and models will save in same folder.')
     parser.add_argument('--train_log_filename', default="training_output.txt",
                         help='Filename for training output (default: training_output.txt)')
@@ -397,7 +421,7 @@ if __name__ == "__main__":
 
     # Config
     config = cf.read_json(args.config_filepath)
-    config['device_num'] = 1
+    #config['device_num'] = 1
 
     # Create Output Folders
     config['exp_dir'] = os.path.join(config["trainer"]["base_exp_dir"], config["model_name"])
