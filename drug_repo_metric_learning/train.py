@@ -411,8 +411,6 @@ if __name__ == "__main__":
                         help='Sets logger to level logging.INFO')
     args = parser.parse_args()
 
-
-
     # Logger
     if not args.debug_mode_off:
         logger_level = logging.DEBUG
