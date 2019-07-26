@@ -124,7 +124,10 @@ def train_model(config, logger):
         model.train()
         optimizer.zero_grad()
         output = model(batch)
-        loss, percentage_correct = loss_fun(*output)
+        if config["structure"] == "singlet":
+            loss = loss_fun(*output)
+        else:
+            loss, percentage_correct = loss_fun(*output)
         loss.backward()
         if "grad_clip" in config["trainer"]:
             torch.nn.utils.clip_grad_norm_(model.parameters(), config["trainer"]["grad_clip"])
@@ -133,7 +136,7 @@ def train_model(config, logger):
         res = {'loss': loss.item()}
         if config["structure"] == "triplet":
             res['percent_correct'] = percentage_correct
-        else:
+        elif config["structure"] in ["quadruplet", "quintuplet"]:
             res['pc_geFirst'] = percentage_correct[0]
             res['pc_chemFirst'] = percentage_correct[1]
             if config["structure"] == "quintuplet":
@@ -144,7 +147,7 @@ def train_model(config, logger):
     RunningAverage(output_transform=lambda x: x['loss']).attach(trainer, 'loss')
     if config["structure"] == "triplet":
         RunningAverage(output_transform=lambda x: x['percent_correct']).attach(trainer, 'percent_correct')
-    else:
+    elif config["structure"] in ["quadruplet", "quintuplet"]:
         RunningAverage(output_transform=lambda x: x['pc_geFirst']).attach(trainer, 'pc_geFirst')
         RunningAverage(output_transform=lambda x: x['pc_chemFirst']).attach(trainer, 'pc_chemFirst')
         if config["structure"] == "quintuplet":
@@ -165,12 +168,15 @@ def train_model(config, logger):
         model.eval()
         with torch.no_grad():
             output = model(batch)
-            loss, percentage_correct = loss_fun(*output)
+            if config["structure"] == "singlet":
+                loss = loss_fun(*output)
+            else:
+                loss, percentage_correct = loss_fun(*output)
 
             res = {'loss': loss.item()}
             if config["structure"] == "triplet":
                 res['percent_correct'] = percentage_correct
-            else:
+            elif config["structure"] in ["quadruplet", "quintuplet"]:
                 res['pc_geFirst'] = percentage_correct[0]
                 res['pc_chemFirst'] = percentage_correct[1]
                 if config["structure"] == "quintuplet":
@@ -181,7 +187,7 @@ def train_model(config, logger):
     RunningAverage(output_transform=lambda x: x['loss']).attach(evaluator, 'loss')
     if config["structure"] == "triplet":
         RunningAverage(output_transform=lambda x: x['percent_correct']).attach(evaluator, 'percent_correct')
-    else:
+    elif config["structure"] in ["quadruplet", "quintuplet"]:
         RunningAverage(output_transform=lambda x: x['pc_geFirst']).attach(evaluator, 'pc_geFirst')
         RunningAverage(output_transform=lambda x: x['pc_chemFirst']).attach(evaluator, 'pc_chemFirst')
         if config["structure"] == "quintuplet":
@@ -260,7 +266,7 @@ def train_model(config, logger):
                            split="train", train_smiles=None):
         gex_embeddings, chem_embeddings, smiles_gex_labels, smiles_chem_labels = get_embeddings(ge_wrapper, ge_loader,
                                                                             smiles_wrapper, smiles_loader)
-        gex_chem_distances = cdist(gex_embeddings, chem_embeddings, metric='euclidean')
+        gex_chem_distances = cdist(gex_embeddings, chem_embeddings, metric=config['retrieval']['metric'])
         gex_chem_ranks = rankdata(gex_chem_distances, axis=1)
         rank_first_match = get_ranks_first_match(gex_chem_ranks, smiles_gex_labels, smiles_chem_labels)
 
@@ -399,7 +405,7 @@ def train_model(config, logger):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--config_filepath',
-                        default="../experiments/quad_test/config_quad_test.json",
+                        default="../experiments/singlet/config.json",
                         help='Path to config file used to define experiment '
                              '(default: ../experiments/quad_test/config_quad_test.json). '
                              'Logs and models will save in same folder.')

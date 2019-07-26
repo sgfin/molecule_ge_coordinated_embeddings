@@ -85,3 +85,82 @@ class QuintupletMarginLoss(nn.Module):
             return loss_total, (perc_correct_ge_first, perc_correct_chem_first, perc_correct_all_ge)
         else:
             return loss_total
+
+
+################################
+
+class CCALoss(nn.Module):
+    # Adapted from https://github.com/usc-sail/mica-deep-mcca/blob/master/objectives.py
+    def __init__(self, use_all_singular_values=True, k=50):
+        super().__init__()
+        self.r1 = 1e-4
+        self.r2 = 1e-4
+        self.eps = 1e-12
+        self.use_all_singular_values = use_all_singular_values
+        if not self.use_all_singular_values:
+            self.k = k
+
+    def forward(self, ge, chem):
+        ge = ge.t()
+        chem = chem.t()
+        o1 = o2 = ge.shape[0]
+        m = ge.shape[1]
+
+        ge_bar = ge - (1.0 / m) * torch.mm(ge, torch.ones([m, m]).cuda())
+        chem_bar = chem - (1.0 / m) * torch.mm(chem, torch.ones([m, m]).cuda())
+
+        SigmaHat12 = (1.0 / (m - 1)) * torch.mm(ge_bar, chem_bar.t())
+        SigmaHat11 = (1.0 / (m - 1)) * torch.mm(ge_bar, ge_bar.t()) + self.r1 * torch.eye(o1).cuda()
+        SigmaHat22 = (1.0 / (m - 1)) * torch.mm(chem_bar, chem_bar.t()) + self.r2 * torch.eye(o2).cuda()
+
+        # Calculating the root inverse of covariance matrices by using eigen decomposition
+        D1, V1 = torch.symeig(SigmaHat11, eigenvectors=True)
+        D2, V2 = torch.symeig(SigmaHat22, eigenvectors=True)
+
+        # Added to increase stability
+        posInd1 = torch.gt(D1, self.eps).nonzero()[0]
+        D1 = D1[posInd1]
+        V1 = V1[:, posInd1]
+        posInd2 = torch.gt(D2, self.eps).nonzero()[0]
+        D2 = D2[posInd2]
+        V2 = V2[:, posInd2]
+
+        SigmaHat11RootInv = torch.mm(torch.mm(V1, torch.diag(D1 ** -0.5)), V1.t())
+        SigmaHat22RootInv = torch.mm(torch.mm(V2, torch.diag(D2 ** -0.5)), V2.t())
+
+        Tval = torch.mm(torch.mm(SigmaHat11RootInv, SigmaHat12), SigmaHat22RootInv)
+
+        if self.use_all_singular_values:
+            # all singular values are used to calculate the correlation
+            corr = torch.sqrt(torch.trace(torch.mm(Tval.t(), Tval)))
+        else:
+            # just the top outdim_size singular values are used
+            U, V = torch.symeig(torch.mm(Tval.t(), Tval), eigenvectors=True)
+            U = U[torch.gt(U, self.eps).nonzero()[0]]
+            U = U.sort()
+            corr = torch.sum(torch.sqrt(U[0:self.k]))
+        return -corr
+
+
+class TripletCCALoss(nn.Module):
+    def __init__(self, percent_correct=True, *args, **kwargs):
+        super().__init__()
+        self.percent_correct = percent_correct
+        self.triplet_margin = TripletMarginLoss_WU(percent_correct=percent_correct, *args, **kwargs)
+        self.cca_loss = CCALoss()
+
+    def forward(self, anchors, positives, negatives):
+        loss_cca = self.cca_loss(anchors, positives)
+        res_triplet = self.triplet_margin(anchors, positives, negatives)
+
+        if self.percent_correct:
+            loss_trip, perc_correct = res_triplet
+        else:
+            loss_trip = res_triplet
+
+        loss_total = loss_cca + loss_trip
+
+        if self.percent_correct:
+            return loss_total, perc_correct
+        else:
+            return loss_total

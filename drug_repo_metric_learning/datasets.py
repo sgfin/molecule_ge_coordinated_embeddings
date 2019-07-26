@@ -253,7 +253,12 @@ class LincsContrastiveDataset(LincsTripletDataset):
 
         return (ge_sigs, pair), label
 
+class LincsSingletDataset(LincsTripletDataset):
+    def __init__(self, input_type="singlet", *args, **kwargs):
+        super().__init__(*args, input_type=input_type, **kwargs)
 
+    def __getitem__(self, idx):
+        return self.__get_GE_sig__(idx), self.__get_smiles__(idx)
 
 #####
 
@@ -261,7 +266,7 @@ class LincsSingletGEWrapperDataset(Dataset):
     """
     Little wrapper to spit out GE singlets alone
     """
-    def __init__(self, lincs_dataset, return_smiles_label=True ):
+    def __init__(self, lincs_dataset, return_smiles_label=True):
         super().__init__()
         self.lincs_dataset = lincs_dataset
         self.return_smiles_label = return_smiles_label
