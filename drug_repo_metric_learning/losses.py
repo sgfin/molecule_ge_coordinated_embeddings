@@ -158,9 +158,9 @@ class TripletCCALoss(nn.Module):
         else:
             loss_trip = res_triplet
 
-        loss_total = loss_cca + loss_trip
+        loss_total = loss_cca + 2*loss_trip
 
         if self.percent_correct:
-            return loss_total, perc_correct
+            return loss_total, (perc_correct, loss_cca, loss_trip)
         else:
             return loss_total

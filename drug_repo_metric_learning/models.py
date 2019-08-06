@@ -17,7 +17,9 @@ def load_chemprop_model(chemprop_model_path):
 class FFANN_Embedder(nn.Module):
     # Written by Matthew, but Sam is adding n_feats as a parameter
     def __init__(
-        self, dim_sizes, n_feats = 978, dropout_input=False, dropout_prob=0, act=nn.SELU, dropout=nn.AlphaDropout
+        self, dim_sizes, n_feats=978, linear_bias=True,
+            dropout_prob=0, act=nn.SELU, dropout=nn.AlphaDropout,
+            dropout_input=False
     ):
         super().__init__()
         assert type(dropout_input) is bool, "Must pass boolean for dropout_input"
@@ -25,7 +27,7 @@ class FFANN_Embedder(nn.Module):
         layers = [dropout(dropout_prob)] if dropout_input else []
         in_features = n_feats
         for i,dim in enumerate(dim_sizes):
-            layers.extend([nn.Linear(in_features, dim)])
+            layers.extend([nn.Linear(in_features, dim, bias=linear_bias)])
             if i < len(dim_sizes)-1:
                 layers.extend([act(), dropout(dropout_prob)])
             in_features = dim
@@ -38,14 +40,17 @@ class FFANN_Embedder(nn.Module):
 
 class SNN_Embedder(FFANN_Embedder):
     # Written by Matthew McDermott
-    def __init__(self, dim_sizes, n_feats=978, dropout_prob=0):
-        super().__init__(dim_sizes, n_feats=n_feats, dropout_prob=dropout_prob, act=nn.SELU, dropout=nn.AlphaDropout)
+    def __init__(self, dim_sizes, n_feats=978, dropout_prob=0, act=nn.SELU, linear_bias=True):
+        super().__init__(dim_sizes, n_feats=n_feats,
+                         dropout_prob=dropout_prob, act=act, dropout=nn.AlphaDropout,
+                         linear_bias=linear_bias)
 
 
 class FeedForwardGExChemNet(nn.Module):
     def __init__(self, embed_size=128, n_feats_genes=978,
                  hidden_layers_ge=[1024, 512], hidden_layers_chem=[],
-                 input_type="singlet", dropout_prob=0,
+                 dropout_prob=0, act=None, linear_bias=True,
+                 input_type="singlet",
                  chemprop_model_path="/home/sgf2/DBMI_server/repo/chemprop/pcba/model_unoptimized.pt",
                  pretrained_model_path=None,
                  smiles_to_feats=None):
@@ -55,12 +60,18 @@ class FeedForwardGExChemNet(nn.Module):
         self.smiles_to_feats = smiles_to_feats
         self.rdkit = smiles_to_feats is not None
 
+        if act == "sigmoid":
+            act = nn.Sigmoid
+        else:
+            act = nn.SELU
+
         if pretrained_model_path is None:
             # GE Embedder
             ge_layers = hidden_layers_ge + [embed_size]
             self.ge_embed = SNN_Embedder(dim_sizes=ge_layers,
                                          n_feats=n_feats_genes,
-                                         dropout_prob=dropout_prob)
+                                         dropout_prob=dropout_prob,
+                                         act=act, linear_bias=linear_bias)
 
             # Chemprop Embedder
             self.chemprop_encoder = load_chemprop_model(chemprop_model_path)
@@ -71,7 +82,8 @@ class FeedForwardGExChemNet(nn.Module):
                 n_feats_chemprop = 300
             self.chem_linear = SNN_Embedder(dim_sizes=chem_layers,
                                             n_feats=n_feats_chemprop,
-                                            dropout_prob=dropout_prob)
+                                            dropout_prob=dropout_prob,
+                                            act=act, linear_bias=linear_bias)
         else:
             model = torch.load(pretrained_model_path)
             self.ge_embed = model.ge_embed

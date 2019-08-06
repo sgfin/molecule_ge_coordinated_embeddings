@@ -6,6 +6,7 @@ import utils
 
 import torch
 from torch.utils.data import DataLoader
+import torch.nn as nn
 
 from ignite.engine import Engine, Events
 from ignite.handlers import ModelCheckpoint, Timer
@@ -141,6 +142,11 @@ def train_model(config, logger):
             res['pc_chemFirst'] = percentage_correct[1]
             if config["structure"] == "quintuplet":
                 res['pc_geOnly'] = percentage_correct[2]
+        elif config["structure"] == "triplet_cca":
+            res['percent_correct'] = percentage_correct[0]
+            res['loss_cca'] = percentage_correct[1]
+            res['loss_trip'] = percentage_correct[2]
+
         return res
 
     trainer = Engine(step)
@@ -152,6 +158,10 @@ def train_model(config, logger):
         RunningAverage(output_transform=lambda x: x['pc_chemFirst']).attach(trainer, 'pc_chemFirst')
         if config["structure"] == "quintuplet":
             RunningAverage(output_transform=lambda x: x['pc_geOnly']).attach(trainer, 'pc_geOnly')
+    elif config["structure"] == "triplet_cca":
+        RunningAverage(output_transform=lambda x: x['percent_correct']).attach(trainer, 'percent_correct')
+        RunningAverage(output_transform=lambda x: x['loss_cca']).attach(trainer, 'loss_cca')
+        RunningAverage(output_transform=lambda x: x['loss_trip']).attach(trainer, 'loss_trip')
 
     pbar = tqdm_logger.ProgressBar()
     pbar.attach(trainer, metric_names=online_eval_metrics)
@@ -181,6 +191,10 @@ def train_model(config, logger):
                 res['pc_chemFirst'] = percentage_correct[1]
                 if config["structure"] == "quintuplet":
                     res['pc_geOnly'] = percentage_correct[2]
+            elif config["structure"] == "triplet_cca":
+                res['percent_correct'] = percentage_correct[0]
+                res['loss_cca'] = percentage_correct[1]
+                res['loss_trip'] = percentage_correct[2]
             return res
 
     evaluator = Engine(online_evaluation)
@@ -192,6 +206,10 @@ def train_model(config, logger):
         RunningAverage(output_transform=lambda x: x['pc_chemFirst']).attach(evaluator, 'pc_chemFirst')
         if config["structure"] == "quintuplet":
             RunningAverage(output_transform=lambda x: x['pc_geOnly']).attach(evaluator, 'pc_geOnly')
+    elif config["structure"] == "triplet_cca":
+        RunningAverage(output_transform=lambda x: x['percent_correct']).attach(evaluator, 'percent_correct')
+        RunningAverage(output_transform=lambda x: x['loss_cca']).attach(evaluator, 'loss_cca')
+        RunningAverage(output_transform=lambda x: x['loss_trip']).attach(evaluator, 'loss_trip')
 
     pbar_evaluator = tqdm_logger.ProgressBar()
     pbar_evaluator.attach(evaluator, metric_names=online_eval_metrics)
@@ -302,7 +320,7 @@ def train_model(config, logger):
 
     def format_online_log_results(metrics, name):
         res_string = "{}:    Avg loss: {:.3f}    ".format(name, metrics['loss'])
-        if config["structure"] == "triplet":
+        if config["structure"] in ["triplet"]:
             res_string += "Percent Correct: {:.3f}".format(metrics['percent_correct'])
         elif config["structure"] == "quadruplet":
             res_string += "Acc GE Anchor: {:.3f}    Acc Chem Anchor: {:.3f}".format(
@@ -310,6 +328,9 @@ def train_model(config, logger):
         elif config["structure"] == "quintuplet":
             res_string += "Acc GE Anchor: {:.3f}    Acc Chem Anchor: {:.3f}    Acc GE Only: {:.3f}".format(
                 metrics['pc_geFirst'], metrics['pc_chemFirst'], metrics['pc_geOnly'])
+        elif config["structure"] == "triplet_cca":
+            res_string += "Percent Correct: {:.3f}    Loss CCA: {:.3f}    Loss Triplet: {:.3f}".format(
+                metrics['percent_correct'], metrics['loss_cca'], metrics['loss_trip'])
         return res_string
 
 
@@ -405,7 +426,7 @@ def train_model(config, logger):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--config_filepath',
-                        default="../experiments/singlet/config.json",
+                        default="../experiments/singlet_no_pret_corr/config.json",
                         help='Path to config file used to define experiment '
                              '(default: ../experiments/quad_test/config_quad_test.json). '
                              'Logs and models will save in same folder.')
