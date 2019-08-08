@@ -39,7 +39,6 @@ class LincsTripletDataset(Dataset):
                                        '& canonical_smiles not in ["-666", "restricted", @nan] ')
         l1000_perts_plates = sorted(set(l1000_perts.index.get_level_values('plate').values))
 
-        # Train-test split by plate
         plates_train, plates_non_train = train_test_split(l1000_perts_plates, test_size=train_split_frac,
                                                           random_state=train_test_seed)
         plates_val, plates_test = train_test_split(plates_non_train, test_size=0.5,
