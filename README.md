@@ -1,1 +1,1 @@
-# drug_repo_metric_learning
+# molecule_ge_coordinated_embeddings
