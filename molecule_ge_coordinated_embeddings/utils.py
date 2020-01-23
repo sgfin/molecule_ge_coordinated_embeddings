@@ -1,12 +1,16 @@
+import hashlib, logging, math, os, shutil, sys, torch
 
-import logging
-import os
-import shutil
+def __nested_sorted_repr(c):
+    if type(c) in (set, frozenset): return tuple(sorted(c))
+    if type(c) is dict: return tuple(sorted([(k, __nested_sorted_repr(v)) for k, v in c.items()]))
+    if type(c) in (tuple, list): return tuple([__nested_sorted_repr(e) for e in c])
+    else: return c
 
-import torch
-
-import sys
-import math
+def hash_dict(d): return hash_repr(__nested_sorted_repr(d))
+def hash_repr(tup):
+    m = hashlib.new('md5')
+    m.update(repr(tup).encode('utf-8'))
+    return m.hexdigest()
 
 
 class RunningTracker:

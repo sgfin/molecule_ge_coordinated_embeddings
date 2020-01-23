@@ -55,22 +55,32 @@ def train_model(config, logger):
         if "save_val" in config['dataset']:
             pickle.dump(val_dataset, open(config['dataset']["save_val"], "wb"))
 
-    train_loader = cf.initialize_from_config(config, 'data_loader', torch.utils.data, train_dataset, shuffle=True)
+    train_loader = cf.initialize_from_config(
+        config, 'data_loader', torch.utils.data, train_dataset, shuffle=True
+    )
     val_loader = cf.initialize_from_config(config, 'data_loader', torch.utils.data, val_dataset)
 
     # Wrappers for embedding evaluation
     ge_wrapper_train = cf.initialize_from_config(config, 'dataset_wrapper_ge', datasets, train_dataset)
     ge_wrapper_val = cf.initialize_from_config(config, 'dataset_wrapper_ge', datasets, val_dataset)
-    smiles_wrapper_train = cf.initialize_from_config(config, 'dataset_wrapper_smiles', datasets, train_dataset)
+    smiles_wrapper_train = cf.initialize_from_config(
+        config, 'dataset_wrapper_smiles', datasets, train_dataset
+    )
     smiles_wrapper_val = cf.initialize_from_config(config, 'dataset_wrapper_smiles', datasets, val_dataset)
 
     uniq_train_perts = set(smiles_wrapper_train.pert_smiles)
     uniq_val_perts = set(smiles_wrapper_val.pert_smiles)
 
-    ge_loader_train = cf.initialize_from_config(config, 'data_loader_singlet', torch.utils.data, ge_wrapper_train)
+    ge_loader_train = cf.initialize_from_config(
+        config, 'data_loader_singlet', torch.utils.data, ge_wrapper_train
+    )
     ge_loader_val = cf.initialize_from_config(config, 'data_loader_singlet', torch.utils.data, ge_wrapper_val)
-    smiles_loader_train = cf.initialize_from_config(config, 'data_loader_singlet', torch.utils.data, smiles_wrapper_train)
-    smiles_loader_val = cf.initialize_from_config(config, 'data_loader_singlet', torch.utils.data, smiles_wrapper_val)
+    smiles_loader_train = cf.initialize_from_config(
+        config, 'data_loader_singlet', torch.utils.data, smiles_wrapper_train
+    )
+    smiles_loader_val = cf.initialize_from_config(
+        config, 'data_loader_singlet', torch.utils.data, smiles_wrapper_val
+    )
 
 
     print('\nTotal GE Experiments: {} (Train)   {} (Val)'

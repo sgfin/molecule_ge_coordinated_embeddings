@@ -49,7 +49,7 @@ class SNN_Embedder(FFANN_Embedder):
 class FeedForwardGExChemNet(nn.Module):
     def __init__(self, embed_size=128, n_feats_genes=978,
                  hidden_layers_ge=[1024, 512], hidden_layers_chem=[],
-                 dropout_prob=0, act=None, linear_bias=True,
+                 dropout_prob=0, act="selu", linear_bias=True,
                  input_type="singlet",
                  chemprop_model_path="/home/sgf2/DBMI_server/repo/chemprop/pcba/model_unoptimized.pt",
                  pretrained_model_path=None,
@@ -60,18 +60,23 @@ class FeedForwardGExChemNet(nn.Module):
         self.smiles_to_feats = smiles_to_feats
         self.rdkit = smiles_to_feats is not None
 
-        if act == "sigmoid":
-            act = nn.Sigmoid
+        assert act in ("sigmoid", "relu", "tanh", "selu"), "Unsupported activation: %s!" % act
+
+        Embedder = FFANN_Embedder
+        if act == "sigmoid": act = nn.Sigmoid
+        elif act == "relu": act = nn.ReLU
+        elif act == "tanh": act = nn.Tanh
         else:
             act = nn.SELU
+            Embedder = SNN_Embedder
 
         if pretrained_model_path is None:
             # GE Embedder
             ge_layers = hidden_layers_ge + [embed_size]
-            self.ge_embed = SNN_Embedder(dim_sizes=ge_layers,
-                                         n_feats=n_feats_genes,
-                                         dropout_prob=dropout_prob,
-                                         act=act, linear_bias=linear_bias)
+            self.ge_embed = Embedder(
+                dim_sizes=ge_layers, n_feats=n_feats_genes, dropout_prob=dropout_prob, act=act,
+                linear_bias=linear_bias
+            )
 
             # Chemprop Embedder
             self.chemprop_encoder = load_chemprop_model(chemprop_model_path)
@@ -80,10 +85,10 @@ class FeedForwardGExChemNet(nn.Module):
                 n_feats_chemprop = 2400
             else:
                 n_feats_chemprop = 300
-            self.chem_linear = SNN_Embedder(dim_sizes=chem_layers,
-                                            n_feats=n_feats_chemprop,
-                                            dropout_prob=dropout_prob,
-                                            act=act, linear_bias=linear_bias)
+            self.chem_linear = Embedder(
+                dim_sizes=chem_layers, n_feats=n_feats_chemprop, dropout_prob=dropout_prob, act=act,
+                linear_bias=linear_bias
+            )
         else:
             model = torch.load(pretrained_model_path)
             self.ge_embed = model.ge_embed
@@ -115,6 +120,7 @@ class FeedForwardTripletNet(FeedForwardGExChemNet):
     def forward(self, input):
         if self.input_type == "triplet_chem_first":
             smiles = list(input[0])
+            print("smiles:", smiles)
             if self.rdkit:
                 feats = [self.smiles_to_feats[x] for x in smiles]
                 chem_encod = self.chemprop_encoder(smiles, feats)
@@ -156,7 +162,8 @@ class FeedForwardTripletNet(FeedForwardGExChemNet):
 
 class FeedForwardQuadrupletNet(FeedForwardGExChemNet):
     def __init__(self, *args, **kwargs):
-        super().__init__(input_type="quadruplet", *args, **kwargs)
+        kwargs['input_type'] = 'quadruplet'
+        super().__init__(*args, **kwargs)
 
     def forward(self, input):
         anchor_ge, non_match_ge, anchor_chem, non_match_chem = input
@@ -179,7 +186,8 @@ class FeedForwardQuadrupletNet(FeedForwardGExChemNet):
 
 class FeedForwardQuintupletNet(FeedForwardGExChemNet):
     def __init__(self, *args, **kwargs):
-        super().__init__(input_type="quintuplet", *args, **kwargs)
+        kwargs['input_type'] = 'quintuplet'
+        super().__init__(*args, **kwargs)
 
     def forward(self, input):
         anchor_ge, match_ge, non_match_ge, anchor_chem, non_match_chem = input

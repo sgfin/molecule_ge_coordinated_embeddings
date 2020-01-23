@@ -13,5 +13,5 @@ def write_json(content, fname):
 
 def initialize_from_config(config, name, module, *args, **kwargs):
     module_name = config[name]['type']
-    module_args = dict(config[name]['args'])
+    module_args = dict(config[name]['args']) if 'args' in config[name] else {}
     return getattr(module, module_name)(*args, **kwargs, **module_args)

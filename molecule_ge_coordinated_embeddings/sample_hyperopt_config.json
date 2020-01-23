@@ -1,0 +1,31 @@
+{
+  "structure": {"method": "choice", "params": [
+    "triplet", "quadruplet", "quintuplet", "triplet_cca"
+  ]},
+  "input_type": {"method": "choice", "params": [
+    "triplet_ge_first", "triplet_ge_only", "triplet_chem_first"
+  ]},
+  "dataset_rank_transform": {"method": "choice", "params": [true, false]},
+  "epochs": {"method": "quniform", "params": [20, 300]},
+  "batch_size": {"method": "quniform", "params": [16, 2048]},
+  "lr": {"method": "lognormal", "params": [-7, 0.5]},
+  "metric": {"method": "choice", "params": ["euclidean", "correlation"]},
+
+  "num_hidden_layers_ge": {"method": "quniform", "params": [0, 4]},
+  "hidden_layers_ge_base": {"method": "quniform", "params": [32, 2048]},
+  "hidden_layers_ge_growth": {"method": "loguniform", "params": [-1.1, 1.1]},
+
+  "num_hidden_layers_chem": {"method": "quniform", "params": [0, 4]},
+  "hidden_layers_chem_base": {"method": "quniform", "params": [32, 2048]},
+  "hidden_layers_chem_growth": {"method": "loguniform", "params": [-1.1, 1.1]},
+
+  "embed_size": {"method": "quniform", "params": [32, 512]},
+  "dropout_prob": {"method":"uniform", "params": [0, 0.5]},
+  "act": {"method": "choice", "params": ["sigmoid", "tanh", "relu", "selu"]},
+  "linear_bias": {"method": "choice", "params": [true, false]},
+
+  "chemprop_model_path": {"method": "choice", "params": [
+    "/crimea/molecule_ge_embedder/chemprop_models/model_optimized.pt",
+    "/crimea/molecule_ge_embedder/chemprop_models/model_unoptimized.pt"
+  ]}
+}
