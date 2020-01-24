@@ -363,10 +363,10 @@ def train_model(config, logger):
     def log_IR_results(engine):
         if engine.state.epoch > config['trainer']['wait_before_save_models']:
             ir_metrics = compute_ir_metrics(ge_wrapper_train, ge_loader_train, smiles_wrapper_train, smiles_loader_train)
-            print("Train:            " + "    ".join(['{}: {:.3f}'.format(k, ir_metrics[0][k]) for k in ir_metrics[0]]))
+            print("Train:    " + "    ".join(['{}: {:.3f}'.format(k, ir_metrics[0][k]) for k in ir_metrics[0]]))
 
             ir_metrics = compute_ir_metrics(ge_wrapper_val, ge_loader_val, smiles_wrapper_val, smiles_loader_val)
-            print("Val  :            " + "    ".join(['{}: {:.3f}'.format(k, ir_metrics[0][k]) for k in ir_metrics[0]]))
+            print("Val  :    " + "    ".join(['{}: {:.3f}'.format(k, ir_metrics[0][k]) for k in ir_metrics[0]]))
 
             #ir_metrics = compute_ir_metrics(ge_wrapper_val, ge_loader_val, smiles_wrapper_val, smiles_loader_val,
             #                                split='val', train_smiles=uniq_train_perts)
