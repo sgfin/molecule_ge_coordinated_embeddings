@@ -216,7 +216,8 @@ class LincsQuadrupletDataset(LincsTripletDataset):
         margin loss with anchor_chem vs anchor_ge/non_match_ge
         """
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, input_type="quadruplet", **kwargs)
+        kwargs['input_type'] = 'quadruplet'
+        super().__init__(*args, **kwargs)
 
     def __getitem__(self, idx):
         idx_non_match = self.__get_second_smile_idx__(idx)
@@ -236,7 +237,8 @@ class LincsQuintupletDataset(LincsTripletDataset):
     margin loss with anchor_ge vs match_ge/non_match_ge
     """
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, input_type="quintuplet", **kwargs)
+        kwargs['input_type'] = 'quintuplet'
+        super().__init__(*args, **kwargs)
 
     def __getitem__(self, idx):
         idx_chem_non_match = self.__get_second_smile_idx__(idx)
