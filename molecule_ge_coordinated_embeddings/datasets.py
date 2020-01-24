@@ -36,6 +36,10 @@ class LincsTripletDataset(Dataset):
             self.cells_train = ["HEPG2","HA1E","HCC515","VCAP","A375","PC3","MCF7"]
             self.cells_val = ["A549"]
             self.cells_test = ["HT29"]
+        elif cell_id:
+            self.cells_train = [cell_id]
+            self.cells_val = [cell_id]
+            self.cells_test = [cell_id]
         else:
             self.cells_train = ["HEPG2","HA1E","HCC515","VCAP","A375","PC3","MCF7","A549", "HT29"]
             self.cells_val = self.cells_train
