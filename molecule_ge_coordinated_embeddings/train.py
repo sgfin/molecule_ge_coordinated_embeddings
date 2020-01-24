@@ -366,7 +366,7 @@ def train_model(config, logger):
             print("Train:            " + "    ".join(['{}: {:.3f}'.format(k, ir_metrics[0][k]) for k in ir_metrics[0]]))
 
             ir_metrics = compute_ir_metrics(ge_wrapper_val, ge_loader_val, smiles_wrapper_val, smiles_loader_val)
-            print("Val:            " + "    ".join(['{}: {:.3f}'.format(k, ir_metrics[0][k]) for k in ir_metrics[0]]))
+            print("Val  :            " + "    ".join(['{}: {:.3f}'.format(k, ir_metrics[0][k]) for k in ir_metrics[0]]))
 
             #ir_metrics = compute_ir_metrics(ge_wrapper_val, ge_loader_val, smiles_wrapper_val, smiles_loader_val,
             #                                split='val', train_smiles=uniq_train_perts)
