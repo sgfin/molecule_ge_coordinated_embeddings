@@ -21,7 +21,7 @@ class LincsTripletDataset(Dataset):
                  split_cell_id = True,
                  split_perts = False,
                  pert_time="6.0", pert_dose="um@10.0",
-                 #cell_id= None, #"PC3",
+                 cell_id= None, #"PC3",
                  rank_transform=False, perts_to_exclude=None, input_type="triplet_ge_first"
                 ):
         self.control_method = control_method
