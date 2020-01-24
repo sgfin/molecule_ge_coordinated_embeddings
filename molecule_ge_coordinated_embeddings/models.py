@@ -51,7 +51,7 @@ class FeedForwardGExChemNet(nn.Module):
                  hidden_layers_ge=[1024, 512], hidden_layers_chem=[],
                  dropout_prob=0, act=None, linear_bias=True,
                  input_type="singlet",
-                 chemprop_model_path="/home/sgf2/DBMI_server/repo/chemprop/pcba/model_unoptimized.pt",
+                 chemprop_model_path= "/home/sgf2/DBMI_server/drug_repo/chemprop/pcba/model_unoptimized.pt",
                  pretrained_model_path=None,
                  smiles_to_feats=None):
         super().__init__()
@@ -71,7 +71,8 @@ class FeedForwardGExChemNet(nn.Module):
             self.ge_embed = SNN_Embedder(dim_sizes=ge_layers,
                                          n_feats=n_feats_genes,
                                          dropout_prob=dropout_prob,
-                                         act=act, linear_bias=linear_bias)
+                                         act=act,
+                                         linear_bias=linear_bias)
 
             # Chemprop Embedder
             self.chemprop_encoder = load_chemprop_model(chemprop_model_path)

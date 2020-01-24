@@ -119,8 +119,6 @@ def train_model(config, logger):
     ###################################################
 
     # Ignite Trainer
-
-
     def step(engine, batch):
         model.train()
         optimizer.zero_grad()
@@ -426,9 +424,9 @@ def train_model(config, logger):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--config_filepath',
-                        default="../experiments/singlet_no_pret_corr/config.json",
+                        default="../experiments/test_experiment/example_config_triplet.json",
                         help='Path to config file used to define experiment '
-                             '(default: ../experiments/quad_test/config_quad_test.json). '
+                             '(default: ../experiments/test_experiment/example_config_triplet.json). '
                              'Logs and models will save in same folder.')
     parser.add_argument('--train_log_filename', default="training_output.txt",
                         help='Filename for training output (default: training_output.txt)')
