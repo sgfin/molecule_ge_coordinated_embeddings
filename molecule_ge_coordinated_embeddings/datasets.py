@@ -6,6 +6,9 @@ import random
 from sklearn.model_selection import train_test_split
 from scipy.spatial.distance import cdist
 
+from rdkit import DataStructs
+from rdkit.Chem.Fingerprints import FingerprintMols
+from rdkit.Chem import MolFromSmiles,AllChem
 from descriptastorus.descriptors.rdNormalizedDescriptors import RDKit2DNormalized
 def smiles_to_rdkit_feats(smiles_list):
     rd_process = RDKit2DNormalized().process
@@ -22,7 +25,9 @@ class LincsTripletDataset(Dataset):
                  split_perts = False,
                  pert_time="6.0", pert_dose="um@10.0",
                  cell_id= None, #"PC3",
-                 rank_transform=False, perts_to_exclude=None, input_type="triplet_ge_first"
+                 rank_transform=False, perts_to_exclude=None, input_type="triplet_ge_first",
+                 sampling_dist = "expression",
+                 pert_tanimoto_dist_path = "/home/sgf2/DBMI_server/drug_repo/data/lincs_perts_tanimoto_df.pkl"
                 ):
         self.control_method = control_method
         self.perts_to_exclude = perts_to_exclude
@@ -110,10 +115,20 @@ class LincsTripletDataset(Dataset):
         self.l1000_perts = l1000_perts
         self.l1000_controls = l1000_controls
 
-        # Create distance matrix  -- could try other forms of similarity (tanimoto, etc.)
-        pert_mean_sigs = self.l1000_perts.groupby('canonical_smiles').mean()
-        self.pert_smiles = pert_mean_sigs.index.get_level_values('canonical_smiles').values
-        self.pert_dist = cdist(pert_mean_sigs, pert_mean_sigs, metric='correlation')
+        # Create distance matrix
+        if sampling_dist == "expression":
+            pert_mean_sigs = self.l1000_perts.groupby('canonical_smiles').mean()
+            self.pert_smiles = pert_mean_sigs.index.get_level_values('canonical_smiles').values
+            self.pert_dist = cdist(pert_mean_sigs, pert_mean_sigs, metric='correlation')
+        elif pert_tanimoto_dist_path:
+            self.pert_smiles = np.array(sorted(self.l1000_perts.index.get_level_values('canonical_smiles').unique().values))
+            self.pert_dist = pd.read_pickle(pert_tanimoto_dist_path).loc[self.pert_smiles, self.pert_smiles].values
+        else:
+            self.pert_smiles = self.l1000_perts.index.get_level_values('canonical_smiles').unique().values
+            smiles_to_fps_arr = {x:np.array(list(FingerprintMols.FingerprintMol(MolFromSmiles(x)).ToBitString())) for x in self.pert_smiles}
+            pert_fps = pd.DataFrame([smiles_to_fps_arr[p] for p in self.pert_smiles])
+            self.pert_dist = cdist(pert_fps, pert_fps, metric='jaccard')
+
         self.pert_dist_min = np.min(self.pert_dist)
         self.pert_dist_max = np.max(self.pert_dist)
 
