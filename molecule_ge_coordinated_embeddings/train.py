@@ -287,8 +287,42 @@ def train_model(config, logger):
                 "H@500": hits_at_500
             }
 
+    def compute_ir_metrics_from_embeddings(gex_embeddings, chem_embeddings, smiles_gex_labels, smiles_chem_labels, ir_results):
+        gex_chem_distances = cdist(gex_embeddings, chem_embeddings, metric=config['retrieval']['metric'])
+        gex_chem_ranks = rankdata(gex_chem_distances, axis=1)
+        rank_first_match = get_ranks_first_match(gex_chem_ranks, smiles_gex_labels, smiles_chem_labels)
+
+        list_of_inds = [[i for i,j in enumerate(smiles_gex_labels)]]
+        for inds in list_of_inds:
+            ir_results.append(prepare_metrics(rank_first_match, inds))
+        return ir_results
+
+    def compute_grouped_embeddings(embeddings, labels):
+        embeds_to_avg = pd.DataFrame(embeddings, index = labels)
+        embeds_to_avg.index.name = "canonical_smiles"
+        embeds_to_avg = embeds_to_avg.groupby('canonical_smiles').mean()
+        embeddings_avg = embeds_to_avg.values
+        smiles_labels_avg = embeds_to_avg.index.values
+        return embeddings_avg, smiles_labels_avg
+
     # Method to compute MRR, H@K metrics
     def compute_ir_metrics(ge_wrapper, ge_loader, smiles_wrapper, smiles_loader #,split="train",train_smiles=None
+                           ):
+        ir_results = []
+        # Sample Level Scores
+        gex_embeddings, chem_embeddings, smiles_gex_labels, smiles_chem_labels = get_embeddings(ge_wrapper, ge_loader,
+                                                                            smiles_wrapper, smiles_loader)
+        ir_results = compute_ir_metrics_from_embeddings(gex_embeddings, chem_embeddings, smiles_gex_labels, smiles_chem_labels, ir_results)
+
+        # Pert Level Scores
+        gex_embeddings_avg, smiles_gex_labels_avg = compute_grouped_embeddings(gex_embeddings, smiles_gex_labels)
+        chem_embeddings_avg, smiles_chem_labels_avg = compute_grouped_embeddings(chem_embeddings, smiles_chem_labels)
+        ir_results = compute_ir_metrics_from_embeddings(gex_embeddings_avg, chem_embeddings_avg, smiles_gex_labels_avg, smiles_chem_labels_avg, ir_results)
+
+        return ir_results
+
+    # Method to compute MRR, H@K metrics
+    def compute_ir_metrics_old(ge_wrapper, ge_loader, smiles_wrapper, smiles_loader #,split="train",train_smiles=None
                            ):
         gex_embeddings, chem_embeddings, smiles_gex_labels, smiles_chem_labels = get_embeddings(ge_wrapper, ge_loader,
                                                                             smiles_wrapper, smiles_loader)
@@ -297,26 +331,9 @@ def train_model(config, logger):
         rank_first_match = get_ranks_first_match(gex_chem_ranks, smiles_gex_labels, smiles_chem_labels)
 
         list_of_inds = [[i for i,j in enumerate(smiles_gex_labels)]]
-        #if split == "val":
-        #    ge_inds_in_train = [i for i, j in enumerate(smiles_gex_labels) if j in train_smiles]
-        #    ge_inds_not_in_train = [i for i, j in enumerate(smiles_gex_labels) if j not in train_smiles]
-        #    list_of_inds.append(ge_inds_in_train)
-        #    list_of_inds.append(ge_inds_not_in_train)
-
-        #    chem_inds_not_in_train = [i for i,j in enumerate(smiles_chem_labels) if j not in train_smiles]
-
         ir_results = []
         for inds in list_of_inds:
             ir_results.append(prepare_metrics(rank_first_match, inds))
-
-        #if split == "val":
-        #    ranks_subset = rankdata(gex_chem_ranks[:, chem_inds_not_in_train][ge_inds_not_in_train,:], axis=1)
-        #    rank_first_match = get_ranks_first_match(ranks_subset,
-        #                                             smiles_gex_labels[ge_inds_not_in_train],
-        #                                             smiles_chem_labels[chem_inds_not_in_train])
-        #    ir_results.append(prepare_metrics(rank_first_match,
-        #                                      [k for k in range(len(ge_inds_not_in_train))]
-        #                                      ))
         return ir_results
 
 
@@ -356,22 +373,18 @@ def train_model(config, logger):
         res_string = format_online_log_results(metrics, "Val  ")
         print(res_string)
 
-
     @trainer.on(Events.EPOCH_COMPLETED)
     def log_IR_results(engine):
         if engine.state.epoch > config['trainer']['wait_before_save_models']:
             ir_metrics = compute_ir_metrics(ge_wrapper_train, ge_loader_train, smiles_wrapper_train, smiles_loader_train)
-            print("Train:    " + "    ".join(['{}: {:.3f}'.format(k, ir_metrics[0][k]) for k in ir_metrics[0]]))
+            print_labels = ["Train (Samp):    ", "Train (Pert):    "]
+            for i, res_dict in enumerate(ir_metrics):
+                print(print_labels[i] + "    ".join(['{}: {:.3f}'.format(k, res_dict[k]) for k in res_dict]))
 
             ir_metrics = compute_ir_metrics(ge_wrapper_val, ge_loader_val, smiles_wrapper_val, smiles_loader_val)
-            print("Val  :    " + "    ".join(['{}: {:.3f}'.format(k, ir_metrics[0][k]) for k in ir_metrics[0]]))
-
-            #ir_metrics = compute_ir_metrics(ge_wrapper_val, ge_loader_val, smiles_wrapper_val, smiles_loader_val,
-            #                                split='val', train_smiles=uniq_train_perts)
-            #val_print_labels = ["Val (All):              ", "Val (In Train):         ",
-            #                    "Val (Not in Train):     ", "Val (No train, limited):"]
-            #for i, res_dict in enumerate(ir_metrics):
-            #    print(val_print_labels[i] + "    ".join(['{}: {:.3f}'.format(k, res_dict[k]) for k in res_dict]))
+            print_labels = ["Val   (Samp):    ", "Val   (Pert):    "]
+            for i, res_dict in enumerate(ir_metrics):
+                print(print_labels[i] + "    ".join(['{}: {:.3f}'.format(k, res_dict[k]) for k in res_dict]))
 
             val_mrr_tracker.update(ir_metrics[0]['MRR'])
             #val_mrr_outsample_tracker.update(ir_metrics[2]['MRR'])
