@@ -192,7 +192,9 @@ REMAPPING_PARAMS = {
     ("retrieval", "metric"):                  ("metric", str),
     ("dataset", "args", "input_type"):        ("input_type", str),
     ("dataset", "args", "rank_transform"):    ("dataset_rank_transform", bool),
+    ("dataset", "args", "l1000_sigs_path"):   ("l1000_sigs_path", str),
     ("structure",):                           ("structure", str),
+    ("rdkit_features",):                      ("rdkit_features", bool),
     ("model", "args", "input_type"):          ("input_type", str),
     ("model", "args", "embed_size"):          ("embed_size", int),
     ("model", "args", "dropout_prob"):        ("dropout_prob", float),
@@ -203,7 +205,6 @@ REMAPPING_PARAMS = {
 }
 
 STRUCTURE_TO_MDL_TYPES = {
-    "singlet":     ("????", "LincsSingletDataset", "????"),
     "triplet":     ("FeedForwardTripletNet", "LincsTripletDataset", "TripletMarginLoss_WU"),
     "triplet_cca": ("FeedForwardTripletNet", "LincsTripletDataset", "TripletCCALoss"),
     "quadruplet":  ("FeedForwardQuadrupletNet", "LincsQuadrupletDataset", "QuadrupletMarginLoss"),
@@ -232,6 +233,11 @@ class ObjectiveFntr:
         params = copy.deepcopy(self.constant_params)
         params.update(variable_params)
 
+        #chemprop_path, chemprop_args = params["chemprop_model_path"]
+        #params.update(chempropr_args)
+        #params["chemprop_model_path"] = chemprop_path
+        params["rdkit_features"] = params["chemprop_model_path"].endswith("model_optimized.pt")
+
         assert params['structure'] != 'singlet', "I don't know how to map this parameter yet!"
 
         model_type, dataset_type, loss_type = STRUCTURE_TO_MDL_TYPES[params['structure']]
@@ -254,6 +260,7 @@ class ObjectiveFntr:
         config["loss"]["type"] = loss_type
 
         for dest_keys, (src_key, type_fn) in REMAPPING_PARAMS.items():
+            if src_key not in params: continue # Sometimes we fall back on the baseline...
             c = config
             for k in dest_keys[:-1]:
                 if k not in c: c[k] = {}
@@ -294,7 +301,7 @@ class ObjectiveFntr:
 
             val_all_line = all_lines[-7].strip()
             assert val_all_line.startswith("Val (All):"), "Wrong line! read: %s" % val_all_line
-            median_rank_chunk = val_all_line.split(':')[2].strip()
+            median_rank_chunk = val_all_line.split(':')[2].strip().split(' ')[0].strip()
             val_all_median_rank = float(median_rank_chunk)
 
             loss = val_all_median_rank

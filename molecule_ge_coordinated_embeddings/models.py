@@ -120,7 +120,6 @@ class FeedForwardTripletNet(FeedForwardGExChemNet):
     def forward(self, input):
         if self.input_type == "triplet_chem_first":
             smiles = list(input[0])
-            print("smiles:", smiles)
             if self.rdkit:
                 feats = [self.smiles_to_feats[x] for x in smiles]
                 chem_encod = self.chemprop_encoder(smiles, feats)
