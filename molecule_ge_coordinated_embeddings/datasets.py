@@ -47,7 +47,7 @@ class LincsTripletDataset(Dataset):
         if self.split_cell_id:
             self.cells_val = ["A549"]
             self.cells_test = ["HT29"]
-            self.cells_train = [cl for cl in all_cell_lines if ((cl not in self.cells_val )and cl not in self.cells_test)]
+            self.cells_train = [cl for cl in all_cell_lines if ((cl not in self.cells_val ) and (cl not in self.cells_test))]
 
         elif cell_id:
             self.cells_train = [cell_id]
