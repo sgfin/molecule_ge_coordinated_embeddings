@@ -6,6 +6,9 @@ import random
 from sklearn.model_selection import train_test_split
 from scipy.spatial.distance import cdist
 
+from rdkit import DataStructs
+from rdkit.Chem.Fingerprints import FingerprintMols
+from rdkit.Chem import MolFromSmiles,AllChem
 from descriptastorus.descriptors.rdNormalizedDescriptors import RDKit2DNormalized
 def smiles_to_rdkit_feats(smiles_list):
     rd_process = RDKit2DNormalized().process
@@ -14,64 +17,93 @@ def smiles_to_rdkit_feats(smiles_list):
 
 def scale(df, m, s): return (df - m)/s
 
-
 class LincsTripletDataset(Dataset):
-    def __init__(self, l1000_sigs_path="~/DBMI_server/repo/mdeg_collab/data/lincs_level3_all_perts.pkl",
+    def __init__(self, l1000_sigs_path="/home/sgf2/DBMI_server/drug_repo/data/lincs_level3_all_perts.pkl",
                  control_method='baseline_logFC',
                  split='train', train_test_seed=370, train_split_frac=0.2,
-                 pert_time="24.0", pert_dose="um@10.0", cell_id="PC3",
-                 rank_transform=False, perts_to_exclude=None, input_type="triplet_ge_first"
+                 split_cell_id = True,
+                 split_perts = False,
+                 pert_time="6.0", pert_dose="um@10.0",
+                 cell_id= None, #"PC3",
+                 rank_transform=False, perts_to_exclude=None, input_type="triplet_ge_first",
+                 sampling_dist = "expression",
+                 pert_tanimoto_dist_path = "/home/sgf2/DBMI_server/drug_repo/data/lincs_perts_tanimoto_df.pkl"
                 ):
         self.control_method = control_method
         self.perts_to_exclude = perts_to_exclude
         self.pert_time = pert_time
         self.pert_dose = pert_dose
-        self.cell_id = cell_id if isinstance(cell_id, list) else [cell_id]
         self.input_type = input_type
+        self.split_cell_id = split_cell_id
+        self.split_perts = split_perts
 
-        # Define cell lines for splits
+        if self.split_cell_id:
+            self.cells_train = ["HEPG2","HA1E","HCC515","VCAP","A375","PC3","MCF7"]
+            self.cells_val = ["A549"]
+            self.cells_test = ["HT29"]
+        elif cell_id:
+            self.cells_train = [cell_id]
+            self.cells_val = [cell_id]
+            self.cells_test = [cell_id]
+        else:
+            self.cells_train = ["HEPG2","HA1E","HCC515","VCAP","A375","PC3","MCF7","A549", "HT29"]
+            self.cells_val = self.cells_train
+            self.cells_test = self.cells_train
+
+        # Load Data
         l1000_sigs = pd.read_pickle(l1000_sigs_path)
         nan = np.nan
         l1000_perts = l1000_sigs.query('pert_time == @pert_time ' +
                                        '& pert_dose == @pert_dose ' +
-                                       '& cell_id in @self.cell_id ' +
                                        '& pert_type == "trt_cp" ' +
                                        '& canonical_smiles not in ["-666", "restricted", @nan] ')
-        l1000_perts_plates = sorted(set(l1000_perts.index.get_level_values('plate').values))
+        l1000_pert_ids = l1000_perts.index.get_level_values("pert_id").unique().values
 
-        plates_train, plates_non_train = train_test_split(l1000_perts_plates, test_size=train_split_frac,
-                                                          random_state=train_test_seed)
-        plates_val, plates_test = train_test_split(plates_non_train, test_size=0.5,
-                                                   random_state=train_test_seed)
+        if self.split_perts:
+            perts_train, perts_non_train = train_test_split(l1000_pert_ids, test_size=train_split_frac,
+                                                              random_state=train_test_seed)
+            perts_val, perts_test = train_test_split(perts_non_train, test_size=0.5,
+                                                       random_state=train_test_seed)
+            self.perts_train = perts_train
+            self.perts_val = perts_val
+            self.perts_test = perts_test
+        else:
+            self.perts_train = l1000_pert_ids
+            self.perts_val = self.perts_train
+            self.perts_test = self.perts_train
+
+
+        # Need to load train set no matter what, for normalization
+        l1000_perts_train = l1000_perts.query('pert_id in @self.perts_train' +
+                                            '& cell_id in @self.cells_train ')
+        l1000_controls_train = l1000_sigs.query('pert_time == @self.pert_time' +
+                                              '& cell_id in @self.cells_train ' +
+                                              '& pert_type in ["ctl_vehicle", "ctl_untrt"] ')
 
         if split == 'train':
-            l1000_perts = l1000_perts.query('plate in @plates_train')
-            l1000_controls = l1000_sigs.query('pert_time == @pert_time' +
-                                              '& cell_id in @self.cell_id ' +
-                                              '& pert_type in ["ctl_vehicle", "ctl_untrt"] ' +
-                                              '& plate in @plates_train')
+            l1000_perts = l1000_perts_train
+            l1000_controls = l1000_controls_train
+
         elif split == 'val':
-            l1000_perts = l1000_perts.query('plate in @plates_val')
-            l1000_controls = l1000_sigs.query('pert_time == @pert_time' +
-                                              '& cell_id in @self.cell_id ' +
-                                              '& pert_type in ["ctl_vehicle", "ctl_untrt"] ' +
-                                              '& plate in @plates_val')
+            l1000_perts = l1000_perts.query('pert_id in @self.perts_val' +
+                                            '& cell_id in @self.cells_val ')
+            l1000_controls = l1000_sigs.query('pert_time == @self.pert_time' +
+                                              '& cell_id in @self.cells_val ' +
+                                              '& pert_type in ["ctl_vehicle", "ctl_untrt"] ')
         else:
-            l1000_perts = l1000_perts.query('plate in @plates_test')
-            l1000_controls = l1000_sigs.query('pert_time == @pert_time' +
-                                              '& cell_id in @self.cell_id ' +
-                                              '& pert_type in ["ctl_vehicle", "ctl_untrt"] ' +
-                                              '& plate in @plates_test')
+            l1000_perts = l1000_perts.query('pert_id in @self.perts_test' +
+                                            '& cell_id in @self.cells_test ')
+            l1000_controls = l1000_sigs.query('pert_time == @self.pert_time' +
+                                              '& cell_id in @self.cells_test ' +
+                                              '& pert_type in ["ctl_vehicle", "ctl_untrt"] ')
 
         # Save raw values for fold-change
         self.l1000_perts_raw = l1000_perts
         self.l1000_controls_raw = l1000_controls
 
         # Standardize measurements
-        l1000_on_train_plates = l1000_sigs.query('pert_time == @pert_time ' +
-                                                 '& cell_id in @self.cell_id ' +
-                                                 '& plate in @plates_train')
-        mu, sigma = l1000_on_train_plates.mean(axis=0), l1000_on_train_plates.std(axis=0)
+        l1000_training_data = pd.concat([l1000_perts_train, l1000_controls_train])
+        mu, sigma = l1000_training_data.mean(axis=0), l1000_training_data.std(axis=0)
         l1000_perts, l1000_controls = [scale(d, mu, sigma) for d in (l1000_perts, l1000_controls)]
 
         # Rank transformation -- currently scales ranks uniformly between 0 and 1; consider adjusting
@@ -83,10 +115,20 @@ class LincsTripletDataset(Dataset):
         self.l1000_perts = l1000_perts
         self.l1000_controls = l1000_controls
 
-        # Create distance matrix,
-        pert_mean_sigs = self.l1000_perts.groupby('canonical_smiles').mean()
-        self.pert_smiles = pert_mean_sigs.index.get_level_values('canonical_smiles').values
-        self.pert_dist = cdist(pert_mean_sigs, pert_mean_sigs, metric='correlation')
+        # Create distance matrix
+        if sampling_dist == "expression":
+            pert_mean_sigs = self.l1000_perts.groupby('canonical_smiles').mean()
+            self.pert_smiles = pert_mean_sigs.index.get_level_values('canonical_smiles').values
+            self.pert_dist = cdist(pert_mean_sigs, pert_mean_sigs, metric='correlation')
+        elif pert_tanimoto_dist_path:
+            self.pert_smiles = np.array(sorted(self.l1000_perts.index.get_level_values('canonical_smiles').unique().values))
+            self.pert_dist = pd.read_pickle(pert_tanimoto_dist_path).loc[self.pert_smiles, self.pert_smiles].values
+        else:
+            self.pert_smiles = self.l1000_perts.index.get_level_values('canonical_smiles').unique().values
+            smiles_to_fps_arr = {x:np.array(list(FingerprintMols.FingerprintMol(MolFromSmiles(x)).ToBitString())) for x in self.pert_smiles}
+            pert_fps = pd.DataFrame([smiles_to_fps_arr[p] for p in self.pert_smiles])
+            self.pert_dist = cdist(pert_fps, pert_fps, metric='jaccard')
+
         self.pert_dist_min = np.min(self.pert_dist)
         self.pert_dist_max = np.max(self.pert_dist)
 
