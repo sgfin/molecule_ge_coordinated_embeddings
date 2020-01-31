@@ -22,10 +22,12 @@ class LincsTripletDataset(Dataset):
                  control_method='baseline_logFC',
                  split='train', train_test_seed=370, train_split_frac=0.2,
                  split_cell_id = True,
+                 exclude_neuro_lines = True,
                  split_perts = False,
                  pert_time="6.0", pert_dose="um@10.0",
-                 cell_id= None, #"PC3",
-                 rank_transform=False, perts_to_exclude=None, input_type="triplet_ge_first",
+                 perts_to_exclude=None,
+                 rank_transform=False,
+                 input_type="triplet_ge_first",
                  sampling_dist = "expression",
                  pert_tanimoto_dist_path = "/home/sgf2/DBMI_server/drug_repo/data/lincs_perts_tanimoto_df.pkl"
                 ):
@@ -37,16 +39,22 @@ class LincsTripletDataset(Dataset):
         self.split_cell_id = split_cell_id
         self.split_perts = split_perts
 
+        if exclude_neuro_lines:
+            all_cell_lines = ["HEPG2","HA1E","HCC515","VCAP","A375","PC3","MCF7","A549", "HT29"]
+        else:
+            all_cell_lines = ["HEPG2","HA1E","HCC515","VCAP","A375","PC3","MCF7","A549", "HT29", "NEU", "NPC", "FIBRNPC"]
+
         if self.split_cell_id:
-            self.cells_train = ["HEPG2","HA1E","HCC515","VCAP","A375","PC3","MCF7"]
             self.cells_val = ["A549"]
             self.cells_test = ["HT29"]
+            self.cells_train = [cl for cl in all_cell_lines if ((cl not in self.cells_val ) and (cl not in self.cells_test))]
+
         elif cell_id:
             self.cells_train = [cell_id]
             self.cells_val = [cell_id]
             self.cells_test = [cell_id]
         else:
-            self.cells_train = ["HEPG2","HA1E","HCC515","VCAP","A375","PC3","MCF7","A549", "HT29"]
+            self.cells_train = all_cell_lines
             self.cells_val = self.cells_train
             self.cells_test = self.cells_train
 
