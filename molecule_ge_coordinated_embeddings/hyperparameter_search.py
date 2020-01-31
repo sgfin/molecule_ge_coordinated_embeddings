@@ -338,7 +338,7 @@ class ObjectiveFntr:
             train.train_model(config, logger)
 
             # Getting scores:
-            filepath = os.path.join(config['exp_dir'], 'ir_metrics_%d.json' % (config["trainer"]["epochs"]-1))
+            filepath = os.path.join(config['exp_dir'], 'ir_metrics_%d.json' % config["trainer"]["epochs"])
             with open(filepath, mode='r') as f: metrics = json.loads(f.read())
 
             val_all_median_rank = metrics['Val   (Pert):']['median_rank']
