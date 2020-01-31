@@ -166,7 +166,6 @@ def make_list_param(size, base, growth, type_fn=int, minimum=4):
 
 BASE_CONFIG = {
     "device_num": 0,
-    "loss": {"online_eval_metrics": ["loss", "percent_correct"]},
     "trainer": {"wait_before_save_models": 0},
     "optimizer": {"type": "Adam"},
     "dataset_wrapper_ge": {"type": "LincsSingletGEWrapperDataset"},
@@ -182,6 +181,24 @@ BASE_CONFIG = {
         },
     },
 }
+
+PATH_TEMPLATE = "/crimea/molecule_ge_embedder/datasets/pre_made/{l1000_path}_{input_type}_{rank}_{split}.pkl"
+def get_dataset_filepath(config):
+    input_type = config['dataset']['args']['input_type']
+    rank       = config['dataset']['args']['rank_transform']
+    l1000_path = config['dataset']['args']['l1000_sigs_path'].split('/')[-1]
+    structure  = config['structure']
+
+    if structure == 'quadruplet': input_type = 'quadruplet'
+    if structure == 'quintuplet': input_type = 'quintuplet'
+
+    return (
+        PATH_TEMPLATE.format(
+            l1000_path=l1000_path.replace('.pkl', ''), rank=rank, input_type=input_type, split='train'
+        ), PATH_TEMPLATE.format(
+            l1000_path=l1000_path.replace('.pkl', ''), rank=rank, input_type=input_type, split='val'
+        ),
+    )
 
 # This stores information mapping final config destinations (nested dictionary keys) to hyperopt flat param
 # keys and the appropriate type conversion functions.
@@ -202,6 +219,9 @@ REMAPPING_PARAMS = {
     ("model", "args", "linear_bias"):         ("linear_bias", bool),
     # Constant params also are remapped here:
     ("model", "args", "chemprop_model_path"): ("chemprop_model_path", str),
+    ("loss", "args", "beta"):                 ("beta", float),
+    ("loss", "args", "margin"):               ("margin", float),
+    ("loss", "online_eval_metrics"):          ("online_eval_metrics", list),
 }
 
 STRUCTURE_TO_MDL_TYPES = {
@@ -209,6 +229,12 @@ STRUCTURE_TO_MDL_TYPES = {
     "triplet_cca": ("FeedForwardTripletNet", "LincsTripletDataset", "TripletCCALoss"),
     "quadruplet":  ("FeedForwardQuadrupletNet", "LincsQuadrupletDataset", "QuadrupletMarginLoss"),
     "quintuplet":  ("FeedForwardQuintupletNet", "LincsQuintupletDataset", "QuintupletMarginLoss"),
+}
+STRUCTURE_TO_ONLINE_EVAL_METRICS = {
+    "triplet":     ['loss', 'percent_correct'],
+    "triplet_cca": ['loss', 'percent_correct'],
+    "quadruplet":  ['loss', 'pc_geFirst', 'pc_chemFirst'],
+    "quintuplet":  ['loss', 'pc_geFirst', 'pc_chemFirst', 'pc_geOnly'],
 }
 
 class ObjectiveFntr:
@@ -255,9 +281,11 @@ class ObjectiveFntr:
                 ),
             },
         }
+        config["loss"] = {"type": loss_type}
 
         config["dataset"]["type"] = dataset_type
-        config["loss"]["type"] = loss_type
+
+        params['online_eval_metrics'] = STRUCTURE_TO_ONLINE_EVAL_METRICS[params['structure']]
 
         for dest_keys, (src_key, type_fn) in REMAPPING_PARAMS.items():
             if src_key not in params: continue # Sometimes we fall back on the baseline...
@@ -266,6 +294,12 @@ class ObjectiveFntr:
                 if k not in c: c[k] = {}
                 c = c[k]
             c[dest_keys[-1]] = type_fn(params[src_key])
+
+        train_final_path, val_final_path = get_dataset_filepath(config)
+        if os.path.exists(train_final_path): config['dataset']["precomputed_train"] = train_final_path
+        else: config['dataset']['save_train'] = train_final_path
+        if os.path.exists(val_final_path): config['dataset']["precomputed_val"] = val_final_path
+        else: config['dataset']['save_val'] = val_final_path
 
         return config
 
@@ -296,13 +330,18 @@ class ObjectiveFntr:
             train.train_model(config, logger)
 
             # Getting scores:
-            with open(train_log_filepath, mode='r') as f:
-                all_lines = f.readlines()
+            filepath = os.path.join(config['exp_dir'], 'ir_metrics_%d.json' % (config["trainer"]["epochs"]-1))
+            with open(filepath, mode='r') as f: metrics = json.loads(f.read())
 
-            val_all_line = all_lines[-7].strip()
-            assert val_all_line.startswith("Val (All):"), "Wrong line! read: %s" % val_all_line
-            median_rank_chunk = val_all_line.split(':')[2].strip().split(' ')[0].strip()
-            val_all_median_rank = float(median_rank_chunk)
+            val_all_median_rank = metrics['Val   (Pert):']['median_rank']
+
+            #with open(train_log_filepath, mode='r') as f:
+            #    all_lines = f.readlines()
+
+            #val_all_line = all_lines[-9].strip()
+            #assert val_all_line.startswith("Val (Pert):"), "Wrong line! read: %s" % val_all_line
+            #median_rank_chunk = val_all_line.split(':')[2].strip().split(' ')[0].strip()
+            #val_all_median_rank = float(median_rank_chunk)
 
             loss = val_all_median_rank
             loss_variance = np.NaN

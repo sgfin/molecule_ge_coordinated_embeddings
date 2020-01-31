@@ -18,7 +18,7 @@ class FFANN_Embedder(nn.Module):
     # Written by Matthew, but Sam is adding n_feats as a parameter
     def __init__(
         self, dim_sizes, n_feats=978, linear_bias=True,
-            dropout_prob=0, act=nn.SELU, dropout=nn.AlphaDropout,
+            dropout_prob=0, act=nn.ReLU, dropout=nn.Dropout,
             dropout_input=False
     ):
         super().__init__()

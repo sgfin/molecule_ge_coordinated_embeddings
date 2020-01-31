@@ -13,6 +13,7 @@ from ignite.handlers import ModelCheckpoint, Timer
 from ignite.contrib.handlers import tqdm_logger
 from ignite.metrics import RunningAverage
 
+import json
 import os
 import sys
 import pickle
@@ -376,18 +377,24 @@ def train_model(config, logger):
     @trainer.on(Events.EPOCH_COMPLETED)
     def log_IR_results(engine):
         if engine.state.epoch > config['trainer']['wait_before_save_models']:
+            metrics = {}
             ir_metrics = compute_ir_metrics(ge_wrapper_train, ge_loader_train, smiles_wrapper_train, smiles_loader_train)
             print_labels = ["Train (Samp):    ", "Train (Pert):    "]
             for i, res_dict in enumerate(ir_metrics):
+                metrics[print_labels[i].strip()] = res_dict
                 print(print_labels[i] + "    ".join(['{}: {:.3f}'.format(k, res_dict[k]) for k in res_dict]))
 
             ir_metrics = compute_ir_metrics(ge_wrapper_val, ge_loader_val, smiles_wrapper_val, smiles_loader_val)
             print_labels = ["Val   (Samp):    ", "Val   (Pert):    "]
             for i, res_dict in enumerate(ir_metrics):
                 print(print_labels[i] + "    ".join(['{}: {:.3f}'.format(k, res_dict[k]) for k in res_dict]))
+                metrics[print_labels[i].strip()] = res_dict
 
             val_mrr_tracker.update(ir_metrics[0]['MRR'])
             #val_mrr_outsample_tracker.update(ir_metrics[2]['MRR'])
+
+            filepath = os.path.join(config['exp_dir'], 'ir_metrics_%d.json' % engine.state.epoch)
+            with open(filepath, mode='w') as f: f.write(json.dumps(metrics))
 
 
     @trainer.on(Events.EPOCH_COMPLETED)
