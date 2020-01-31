@@ -166,7 +166,10 @@ def make_list_param(size, base, growth, type_fn=int, minimum=4):
 
 BASE_CONFIG = {
     "device_num": 0,
-    "trainer": {"wait_before_save_models": 0},
+    "trainer": {
+        "wait_before_save_models": 0,
+        "save_train_ir_metrics": False,
+    },
     "optimizer": {"type": "Adam"},
     "dataset_wrapper_ge": {"type": "LincsSingletGEWrapperDataset"},
     "dataset_wrapper_smiles": {"type": "LincsSingletSmilesWrapperDataset"},

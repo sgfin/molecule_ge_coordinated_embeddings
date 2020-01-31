@@ -376,14 +376,23 @@ def train_model(config, logger):
 
     @trainer.on(Events.EPOCH_COMPLETED)
     def log_IR_results(engine):
-        if engine.state.epoch > config['trainer']['wait_before_save_models']:
-            metrics = {}
+        if engine.state.epoch <= config['trainer']['wait_before_save_models']: return
+
+        #is_last_epoch = engine.state.epoch == config['trainer']['epochs']
+        save_train = (
+            ('save_train_ir_metrics' not in config['trainer']) or config['trainer']['save_train_ir_metrics']
+        )
+        save_val = True
+
+        metrics = {}
+        if save_train:
             ir_metrics = compute_ir_metrics(ge_wrapper_train, ge_loader_train, smiles_wrapper_train, smiles_loader_train)
             print_labels = ["Train (Samp):    ", "Train (Pert):    "]
             for i, res_dict in enumerate(ir_metrics):
                 metrics[print_labels[i].strip()] = res_dict
                 print(print_labels[i] + "    ".join(['{}: {:.3f}'.format(k, res_dict[k]) for k in res_dict]))
 
+        if save_val:
             ir_metrics = compute_ir_metrics(ge_wrapper_val, ge_loader_val, smiles_wrapper_val, smiles_loader_val)
             print_labels = ["Val   (Samp):    ", "Val   (Pert):    "]
             for i, res_dict in enumerate(ir_metrics):
@@ -393,6 +402,7 @@ def train_model(config, logger):
             val_mrr_tracker.update(ir_metrics[0]['MRR'])
             #val_mrr_outsample_tracker.update(ir_metrics[2]['MRR'])
 
+        if metrics:
             filepath = os.path.join(config['exp_dir'], 'ir_metrics_%d.json' % engine.state.epoch)
             with open(filepath, mode='w') as f: f.write(json.dumps(metrics))
 
