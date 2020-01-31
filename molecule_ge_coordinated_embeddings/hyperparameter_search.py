@@ -178,15 +178,20 @@ BASE_CONFIG = {
     "dataset": {
         "args": {
             "l1000_sigs_path": "/crimea/molecule_ge_embedder/datasets/lincs_level3_all_perts.pkl",
+            "pert_tanimoto_dist_path": "/crimea/molecule_ge_embedder/datasets/lincs_perts_tanimoto_df.pkl",
         },
     },
 }
 
-PATH_TEMPLATE = "/crimea/molecule_ge_embedder/datasets/pre_made/{l1000_path}_{input_type}_{rank}_{split}.pkl"
+PATH_TEMPLATE = (
+    "/crimea/molecule_ge_embedder/datasets/pre_made/{l1000_path}_{input_type}_{rank}_{split}"
+    "_{sampling_dist}.pkl"
+)
 def get_dataset_filepath(config):
     input_type = config['dataset']['args']['input_type']
     rank       = config['dataset']['args']['rank_transform']
     l1000_path = config['dataset']['args']['l1000_sigs_path'].split('/')[-1]
+    sampling_dist = config['dataset']['args']['sampling_dist']
     structure  = config['structure']
 
     if structure == 'quadruplet': input_type = 'quadruplet'
@@ -194,9 +199,11 @@ def get_dataset_filepath(config):
 
     return (
         PATH_TEMPLATE.format(
-            l1000_path=l1000_path.replace('.pkl', ''), rank=rank, input_type=input_type, split='train'
+            l1000_path=l1000_path.replace('.pkl', ''), rank=rank, input_type=input_type, split='train',
+            sampling_dist=sampling_dist,
         ), PATH_TEMPLATE.format(
-            l1000_path=l1000_path.replace('.pkl', ''), rank=rank, input_type=input_type, split='val'
+            l1000_path=l1000_path.replace('.pkl', ''), rank=rank, input_type=input_type, split='val',
+            sampling_dist=sampling_dist,
         ),
     )
 
@@ -210,6 +217,7 @@ REMAPPING_PARAMS = {
     ("dataset", "args", "input_type"):        ("input_type", str),
     ("dataset", "args", "rank_transform"):    ("dataset_rank_transform", bool),
     ("dataset", "args", "l1000_sigs_path"):   ("l1000_sigs_path", str),
+    ("dataset", "args", "sampling_dist"):     ("sampling_dist", str),
     ("structure",):                           ("structure", str),
     ("rdkit_features",):                      ("rdkit_features", bool),
     ("model", "args", "input_type"):          ("input_type", str),
