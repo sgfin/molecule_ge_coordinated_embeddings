@@ -173,7 +173,7 @@ BASE_CONFIG = {
     "data_loader": {"type": "DataLoader"},
     "data_loader_singlet": {
         "type": "DataLoader",
-        "args": {"batch_size": 2934},
+        "args": {"batch_size": 1024},
     },
     "dataset": {
         "args": {
