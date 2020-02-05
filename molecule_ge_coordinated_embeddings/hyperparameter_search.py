@@ -1,14 +1,15 @@
 # Generic Imports
 import copy, itertools, json, math, os, pickle, shutil, sys, time
 import numpy as np
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
-from hyperopt import fmin, hp, pyll, tpe, STATUS_OK, STATUS_FAIL, Trials
+from datetime import datetime
+from hyperopt import fmin, hp, pyll, tpe, STATUS_OK, STATUS_FAIL, Trials, JOB_STATE_DONE
 from hyperopt.mongoexp import MongoTrials
 from tqdm import tqdm
 
 # Molecule GE Embedder Imports
-import train, utils, args
+from . import train, utils, args
 import logging
 
 def null_and_raise(*args, **kwargs):
@@ -30,6 +31,161 @@ HYP_CONFIG_FILENAME = 'hyperparameter_search_config.json'
 CONFIG_FILENAME = 'experiment_config.json'
 PARAMS_FILENAME = 'hyperopt_params.pkl'
 
+def merge_dicts(*dicts):
+    out_d = {}
+    for d in dicts:
+        for k, v in d.items():
+            if k in out_d and type(v) is dict and type(out_d[k]) is dict: out_d[k] = merge_dicts(out_d[k], v)
+            else: out_d[k] = v
+    return out_d
+
+def get_errors(analysis_dirs):
+    return merge_dicts(*(get_errors_single(d) for d in analysis_dirs))
+
+def trained_until(run_dir, run_name, num_epochs):
+    return os.path.isfile(os.path.join(run_dir, 'ir_metrics_%d.json' % num_epochs))
+    #files = os.listdir(run_dir)
+    #return any(
+    #    f.startswith('checkpoint_%s_%d_val_mrr' % (run_name, num_epochs)) for f in files
+    #)
+
+def get_errors_single(analysis_dir):
+    errors = {}
+    for run_name in os.listdir(analysis_dir):
+        run_dir = os.path.join(analysis_dir, run_name)
+        error_filepath = os.path.join(run_dir, 'error.pkl')
+        if not os.path.isfile(os.path.join(run_dir, 'error.pkl')): continue
+        error_time = datetime.fromtimestamp(os.path.getmtime(error_filepath))
+
+        try:
+            with open(error_filepath, mode='rb') as f: error = pickle.load(f)
+
+            params_filepath = os.path.join(run_dir, PARAMS_FILENAME)
+            config_filepath = os.path.join(run_dir, CONFIG_FILENAME)
+
+            if os.path.isfile(params_filepath):
+                with open(params_filepath, mode='rb') as f: raw_params = pickle.load(f)
+            else: raw_params = None
+
+            if os.path.isfile(config_filepath):
+                with open(config_filepath, mode='r') as f: config = json.load(f)
+
+                num_epochs = config['trainer']['epochs']
+                completed_training = trained_until(run_dir, run_name, num_epochs)
+            else: config, completed_training = None, None
+
+            errors[run_name] = (error, error_time, completed_training, raw_params, config)
+        except Exception as e:
+            print("Can't parse errors!", e)
+            errors[run_name] = (True, error_time, None, None, None)
+    return errors
+
+def read_many_dirs(search_dirs, **kwargs):
+    all_configs, all_results, all_args, all_params, all_trials = {}, [], [], [], None
+    for d in search_dirs:
+        config, results, args, params, trials = read_or_recreate_trials(d, **kwargs)
+        all_configs[d] = config
+        all_results.append(results)
+        all_args.append(args)
+        all_params.append(params)
+
+        if all_trials is None: all_trials = trials
+        else:
+            for t in ts.trials: all_trials.insert_trial_doc(t)
+    all_trials.refresh()
+    return all_configs,merge_dicts(*all_results),merge_dicts(*all_args),merge_dicts(*all_params),all_trials
+
+def read_or_recreate_trials(hyperparameter_search_dir, tqdm=None, overwrite=False):
+    config = read_config(hyperparameter_search_dir)[0]
+
+    filepath = os.path.join(hyperparameter_search_dir, HYP_CONFIG_FILENAME)
+    with open(filepath, mode='r') as f: raw_config = json.load(f)
+
+    all_params, all_results, all_configs = {}, {}, {}
+
+    run_names = [r for r in os.listdir(hyperparameter_search_dir) if r != 'trials.pkl']
+    run_names_rng = run_names if tqdm is None else tqdm(run_names)
+
+    for run_name in run_names:
+        run_dir = os.path.join(hyperparameter_search_dir, run_name)
+        if not os.path.isdir(run_dir):
+            print(run_dir)
+            continue
+
+        if os.path.isfile(os.path.join(run_dir, 'error.pkl')): continue
+
+        config_filepath = os.path.join(run_dir, CONFIG_FILENAME)
+        if not os.path.isfile(config_filepath): continue
+        with open(config_filepath, mode='r') as f: config = json.load(f)
+        all_configs[run_name] = config
+
+        params_filepath = os.path.join(run_dir, PARAMS_FILENAME)
+        if os.path.isfile(params_filepath):
+            with open(params_filepath, mode='rb') as f: constant, variable = pickle.load(f)
+            all_params[run_name] = constant
+            all_params[run_name].update(variable)
+        else:
+            raise NotImplementedError
+
+        num_epochs = config['trainer']['epochs']
+        completed_training = trained_until(run_dir, run_name, num_epochs)
+        if not completed_training:
+            print("Run %s still training (or errored and didn't report)" % run_name)
+            print(run_name, num_epochs)
+            print(os.listdir(run_dir))
+            continue
+
+        tuning_results_filename = os.path.join(run_dir, 'ir_metrics_%d.json' % num_epochs)
+        assert os.path.isfile(tuning_results_filename), "Missing tuning results for %s" % run_dir
+
+        with open(tuning_results_filename, mode='r') as f: all_results[run_name] = json.load(f)
+
+    trials_filepath = os.path.join(hyperparameter_search_dir, 'trials.pkl')
+    if os.path.exists(trials_filepath) and not overwrite:
+        print("Reloading trials!")
+        with open(trials_filepath, mode='rb') as f: trials = pickle.load(f)
+        return config, all_results, all_configs, all_params, trials
+
+    # Rebuild Trials
+    # TODO(mmd): Something wrong in misc.idxs...
+    trials = Trials(exp_key = 'exp') #hyperparameter_search_dir
+    for run_name in all_results:
+        configs = all_configs[run_name]
+        params = all_params[run_name]
+
+        loss = all_results[run_name]['Val   (Pert):']['median_rank']
+        loss_variance, test_loss, test_loss_variance = np.NaN, np.NaN, np.NaN
+
+        result = {
+            'status': STATUS_OK,
+            'loss': loss,
+            'loss_variance': loss_variance,
+            'test_loss': test_loss,
+            'test_loss_variance': test_loss_variance,
+        }
+        spec = params
+
+        a = trials.insert_trial_doc({
+            'tid': run_name,
+            'spec': spec,
+            'result': result,
+            'misc': {
+                'tid': run_name,
+                'cmd': '',
+                'idxs': [],
+                'vals': {k: [v] for k, v in spec.items()},
+            },
+            'state': JOB_STATE_DONE,
+            'owner': '',
+            'book_time': 0,
+            'refresh_time': 0,
+            'exp_key': 'exp',# hyperparameter_search_dir,
+        })
+
+    trials.refresh()
+
+    return config, all_results, all_configs, all_params, trials
+
 def read_config(search_dir):
     """
     Reads a json hyperparameter search config, e.g.:
@@ -48,7 +204,7 @@ def read_config(search_dir):
 def read_raw_config_from_dir(search_dir):
     filepath = os.path.join(search_dir, HYP_CONFIG_FILENAME)
 
-    with open(filepath, mode='r') as f: raw_config = json.loads(f.read())
+    with open(filepath, mode='r') as f: raw_config = json.load(f)
     return raw_config
 
 def read_config_blob(raw_config):
@@ -77,86 +233,86 @@ def read_config_blob(raw_config):
 
     return hyperopt_space, constant_params
 
-#def get_samples_of_config(search_dir, N=1000, overwrite=False, tqdm=None):
-#    params_samples_filepath = os.path.join(search_dir, 'config_samples.pkl')
-#    if not overwrite and os.path.isfile(params_samples_filepath):
-#        with open(params_samples_filepath, mode='rb') as f: return pickle.load(f)
-#
-#    cfg, _ = read_config(search_dir)
-#    items = tqdm(cfg.items()) if tqdm is not None else cfg.items()
-#    samples = {p: [pyll.stochastic.sample(g) for _ in range(N)] for p, g in items}
-#
-#    with open(params_samples_filepath, mode='wb') as f: pickle.dump(samples, f)
-#
-#    return samples
-#
-#def plot_config(search_dir, N=1000, overwrite=False, tqdm=None):
-#    samples = get_samples_of_config(search_dir, N=N, overwrite=overwrite, tqdm=tqdm)
-#
-#    plot_samples_set(samples)
-#
-#def flatten_samples(samples):
-#    new_samples = {}
-#    nested_keys = []
-#    for k, v in samples.items():
-#        if type(v[0]) is not tuple: new_samples[k] = v
-#        else: nested_keys.append(k)
-#
-#    if not nested_keys: return samples
-#
-#    N = len(samples[nested_keys[0]])
-#    keys_to_add = set(nested_keys)
-#    for k in nested_keys: 
-#        for i in range(N): keys_to_add.update(samples[k][i][1].keys())
-#    for k in keys_to_add: new_samples[k] = [np.NaN for _ in range(N)]
-#
-#    for i in range(N):
-#        for k in nested_keys:
-#            s, v = samples[k][i]
-#            new_samples[k][i] = s
-#            for k2, v2 in v.items(): new_samples[k2][i] = v2
-#
-#    for k, v in new_samples.items():
-#        if len(set(v)) == 1: new_samples.pop(k)
-#
-#    return new_samples
-#
-#def plot_samples_set(samples):
-#    samples = flatten_samples(samples)
-#
-#    W = math.floor(math.sqrt(len(samples)))
-#    H = math.ceil(len(samples) / W)
-#
-#    fig, axes = plt.subplots(nrows=H, ncols=W, figsize=(7*W, 7*H))
-#    axes = itertools.chain.from_iterable(axes)
-#
-#    for (p, vals), pdf_ax in zip(samples.items(), axes):
-#        vals = [v for v in vals if not (type(v) is float and np.isnan(v))]
-#        if p == 'pooling_stride': vals = [0 if str(v).lower() == 'none' else v for v in vals]
-#        if len(set(type(v) for v in vals)) > 1:
-#            print(p, vals)
-#            raise NotImplementedError
-#
-#        pdf_ax.set_title(p)
-#        pdf_ax.set_xlabel(p)
-#        pdf_ax.set_ylabel('Count of bucketed parameter value')
-#
-#        cdf_ax = pdf_ax.twinx()
-#        cdf_ax.set_ylim(0, 1)
-#        cdf_ax.set_ylabel('CDF of parameter value')
-#        cdf_ax.grid(False)
-#
-#        X = sorted(list(vals))
-#        if len(set(X)) < 100:
-#            # X might be oversampled.
-#            X = sorted(list(set(X)))
-#            Y = [len([x2 for x2 in vals if x2 == x]) for x in X]
-#            pdf_ax.bar(X, Y, alpha=0.5)
-#        else:
-#            pdf_ax.hist(vals, bins=50, alpha=0.5)
-#
-#        cdfs = [i/len(X) for i, x in enumerate(X)]
-#        cdf_ax.plot(X, cdfs)
+def get_samples_of_config(search_dir, N=1000, overwrite=False, tqdm=None):
+    params_samples_filepath = os.path.join(search_dir, 'config_samples.pkl')
+    if not overwrite and os.path.isfile(params_samples_filepath):
+        with open(params_samples_filepath, mode='rb') as f: return pickle.load(f)
+
+    cfg, _ = read_config(search_dir)
+    items = tqdm(cfg.items()) if tqdm is not None else cfg.items()
+    samples = {p: [pyll.stochastic.sample(g) for _ in range(N)] for p, g in items}
+
+    with open(params_samples_filepath, mode='wb') as f: pickle.dump(samples, f)
+
+    return samples
+
+def plot_config(search_dir, N=1000, overwrite=False, tqdm=None):
+    samples = get_samples_of_config(search_dir, N=N, overwrite=overwrite, tqdm=tqdm)
+
+    plot_samples_set(samples)
+
+def flatten_samples(samples):
+    new_samples = {}
+    nested_keys = []
+    for k, v in samples.items():
+        if type(v[0]) is not tuple: new_samples[k] = v
+        else: nested_keys.append(k)
+
+    if not nested_keys: return samples
+
+    N = len(samples[nested_keys[0]])
+    keys_to_add = set(nested_keys)
+    for k in nested_keys: 
+        for i in range(N): keys_to_add.update(samples[k][i][1].keys())
+    for k in keys_to_add: new_samples[k] = [np.NaN for _ in range(N)]
+
+    for i in range(N):
+        for k in nested_keys:
+            s, v = samples[k][i]
+            new_samples[k][i] = s
+            for k2, v2 in v.items(): new_samples[k2][i] = v2
+
+    for k, v in new_samples.items():
+        if len(set(v)) == 1: new_samples.pop(k)
+
+    return new_samples
+
+def plot_samples_set(samples):
+    samples = flatten_samples(samples)
+
+    W = math.floor(math.sqrt(len(samples)))
+    H = math.ceil(len(samples) / W)
+
+    fig, axes = plt.subplots(nrows=H, ncols=W, figsize=(7*W, 7*H))
+    axes = itertools.chain.from_iterable(axes)
+
+    for (p, vals), pdf_ax in zip(samples.items(), axes):
+        vals = [v for v in vals if not (type(v) is float and np.isnan(v))]
+        if p == 'pooling_stride': vals = [0 if str(v).lower() == 'none' else v for v in vals]
+        if len(set(type(v) for v in vals)) > 1:
+            print(p, vals)
+            raise NotImplementedError
+
+        pdf_ax.set_title(p)
+        pdf_ax.set_xlabel(p)
+        pdf_ax.set_ylabel('Count of bucketed parameter value')
+
+        cdf_ax = pdf_ax.twinx()
+        cdf_ax.set_ylim(0, 1)
+        cdf_ax.set_ylabel('CDF of parameter value')
+        cdf_ax.grid(False)
+
+        X = sorted(list(vals))
+        if len(set(X)) < 100:
+            # X might be oversampled.
+            X = sorted(list(set(X)))
+            Y = [len([x2 for x2 in vals if x2 == x]) for x in X]
+            pdf_ax.bar(X, Y, alpha=0.5)
+        else:
+            pdf_ax.hist(vals, bins=50, alpha=0.5)
+
+        cdfs = [i/len(X) for i, x in enumerate(X)]
+        cdf_ax.plot(X, cdfs)
 
 def make_list_param(size, base, growth, type_fn=int, minimum=4):
     try: return [max(type_fn(base * (growth**i)), minimum) for i in range(int(size))]
@@ -342,7 +498,7 @@ class ObjectiveFntr:
 
             # Getting scores:
             filepath = os.path.join(config['exp_dir'], 'ir_metrics_%d.json' % config["trainer"]["epochs"])
-            with open(filepath, mode='r') as f: metrics = json.loads(f.read())
+            with open(filepath, mode='r') as f: metrics = json.load(f)
 
             val_all_median_rank = metrics['Val   (Pert):']['median_rank']
 

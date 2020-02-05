@@ -1,8 +1,8 @@
-import datasets as datasets
-import models as models
-import losses as losses
-import config as cf
-import utils
+from . import datasets as datasets
+from . import models as models
+from . import losses as losses
+from . import config as cf
+from . import utils
 
 import torch
 from torch.utils.data import DataLoader
