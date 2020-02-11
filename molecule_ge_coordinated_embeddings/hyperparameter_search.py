@@ -9,7 +9,11 @@ from hyperopt.mongoexp import MongoTrials
 from tqdm import tqdm
 
 # Molecule GE Embedder Imports
-from . import train, utils, args
+# THIS IS TERRIBLE!
+try:
+    from . import train, utils, args
+except:
+    import train, utils, args
 import logging
 
 def null_and_raise(*args, **kwargs):
@@ -332,11 +336,12 @@ BASE_CONFIG = {
     "data_loader": {"type": "DataLoader"},
     "data_loader_singlet": {
         "type": "DataLoader",
-        "args": {"batch_size": 1024},
+        "args": {"batch_size": 128},
     },
     "dataset": {
         "args": {
-            "l1000_sigs_path": "/crimea/molecule_ge_embedder/datasets/lincs_level3_all_perts.pkl",
+            "l1000_sigs_path": \
+                "/crimea/molecule_ge_embedder/datasets/lincs_level3_perts_shared_8_cellLines.pkl",
             "pert_tanimoto_dist_path": "/crimea/molecule_ge_embedder/datasets/lincs_perts_tanimoto_df.pkl",
         },
     },
@@ -369,26 +374,26 @@ def get_dataset_filepath(config):
 # This stores information mapping final config destinations (nested dictionary keys) to hyperopt flat param
 # keys and the appropriate type conversion functions.
 REMAPPING_PARAMS = {
-    ("data_loader", "args", "batch_size"):    ("batch_size", int),
-    ("optimizer", "args", "lr"):              ("lr", float),
-    ("trainer", "epochs"):                    ("epochs", int),
-    ("retrieval", "metric"):                  ("metric", str),
-    ("dataset", "args", "input_type"):        ("input_type", str),
-    ("dataset", "args", "rank_transform"):    ("dataset_rank_transform", bool),
-    ("dataset", "args", "l1000_sigs_path"):   ("l1000_sigs_path", str),
-    ("dataset", "args", "sampling_dist"):     ("sampling_dist", str),
-    ("structure",):                           ("structure", str),
-    ("rdkit_features",):                      ("rdkit_features", bool),
-    ("model", "args", "input_type"):          ("input_type", str),
-    ("model", "args", "embed_size"):          ("embed_size", int),
-    ("model", "args", "dropout_prob"):        ("dropout_prob", float),
-    ("model", "args", "act"):                 ("act", str),
-    ("model", "args", "linear_bias"):         ("linear_bias", bool),
+    ("data_loader", "args", "batch_size"):      ("batch_size", int),
+    ("optimizer", "args", "lr"):                ("lr", float),
+    ("trainer", "epochs"):                      ("epochs", int),
+    ("retrieval", "metric"):                    ("metric", str),
+    ("dataset", "args", "input_type"):          ("input_type", str),
+    ("dataset", "args", "rank_transform"):      ("dataset_rank_transform", bool),
+    ("dataset", "args", "l1000_sigs_path"):     ("l1000_sigs_path", str),
+    ("dataset", "args", "sampling_dist"):       ("sampling_dist", str),
+    ("structure",):                             ("structure", str),
+    ("rdkit_features",):                        ("rdkit_features", bool),
+    ("model", "args", "input_type"):            ("input_type", str),
+    ("model", "args", "embed_size"):            ("embed_size", int),
+    ("model", "args", "dropout_prob"):          ("dropout_prob", float),
+    ("model", "args", "act"):                   ("act", str),
+    ("model", "args", "linear_bias"):           ("linear_bias", bool),
     # Constant params also are remapped here:
-    ("model", "args", "chemprop_model_path"): ("chemprop_model_path", str),
-    ("loss", "args", "beta"):                 ("beta", float),
-    ("loss", "args", "margin"):               ("margin", float),
-    ("loss", "online_eval_metrics"):          ("online_eval_metrics", list),
+    ("model", "args", "molecule_encoder_path"): ("molecule_encoder_path", str),
+    ("loss", "args", "beta"):                   ("beta", float),
+    ("loss", "args", "margin"):                 ("margin", float),
+    ("loss", "online_eval_metrics"):            ("online_eval_metrics", list),
 }
 
 STRUCTURE_TO_MDL_TYPES = {
@@ -403,6 +408,11 @@ STRUCTURE_TO_ONLINE_EVAL_METRICS = {
     "quadruplet":  ['loss', 'pc_geFirst', 'pc_chemFirst'],
     "quintuplet":  ['loss', 'pc_geFirst', 'pc_chemFirst', 'pc_geOnly'],
 }
+
+MODEL_KWARGS_INT_KEYS = [
+    "hidden_size", "node_embedding_dim", "out_dim", "num_layers", "num_heads", "dist_channels", 
+    "QK_dims", "node_conv_layers_per", "node_conv_kernel_size",
+]
 
 class ObjectiveFntr:
     def __init__(
@@ -426,10 +436,25 @@ class ObjectiveFntr:
         params = copy.deepcopy(self.constant_params)
         params.update(variable_params)
 
-        #chemprop_path, chemprop_args = params["chemprop_model_path"]
+        #chemprop_path, chemprop_args = params["molecule_encoder_path"]
         #params.update(chempropr_args)
-        #params["chemprop_model_path"] = chemprop_path
-        params["rdkit_features"] = params["chemprop_model_path"].endswith("model_optimized.pt")
+        #params["molecule_encoder_path"] = chemprop_path
+
+        use_dan, model_kwargs = params.pop("use_dan")
+        if use_dan:
+            params["molecule_encoder_path"] = "%s_atoms_and_bonds.pkl"%params["l1000_sigs_path"][:-4]
+            hidden_size_per_head = model_kwargs.pop('hidden_size_per_head')
+            model_kwargs['hidden_size'] = model_kwargs['num_heads'] * hidden_size_per_head
+            for k in MODEL_KWARGS_INT_KEYS:
+                if k in model_kwargs: model_kwargs[k] = int(model_kwargs[k])
+            if model_kwargs['agg_strategy'] == 'first': model_kwargs['do_add_aggregation_node'] = True
+            if model_kwargs['node_embedding_dim'] > model_kwargs['hidden_size']:
+                model_kwargs['node_embedding_dim'] = model_kwargs['hidden_size'] - 1
+            #model_kwargs['agg_strategy'] = AGG_STRATEGY_MAP[model_kwargs['agg_strategy']]
+
+        else: params["molecule_encoder_path"] = model_kwargs["molecule_encoder_path"]
+
+        params["rdkit_features"] = params["molecule_encoder_path"].endswith("model_optimized.pt")
 
         assert params['structure'] != 'singlet', "I don't know how to map this parameter yet!"
 
@@ -448,8 +473,9 @@ class ObjectiveFntr:
                 ),
             },
         }
-        config["loss"] = {"type": loss_type}
+        if use_dan: config["model"]["args"]["molecule_encoder_kwargs"] = model_kwargs
 
+        config["loss"] = {"type": loss_type}
         config["dataset"]["type"] = dataset_type
 
         params['online_eval_metrics'] = STRUCTURE_TO_ONLINE_EVAL_METRICS[params['structure']]

@@ -1,8 +1,11 @@
-from . import datasets as datasets
-from . import models as models
-from . import losses as losses
-from . import config as cf
-from . import utils
+try:
+    from . import datasets as datasets
+    from . import models as models
+    from . import losses as losses
+    from . import config as cf
+    from . import utils
+except:
+    import datasets, models, losses, config as cf, utils
 
 import torch
 from torch.utils.data import DataLoader
@@ -98,6 +101,7 @@ def train_model(config, logger):
     logger.info("\nBuilding Model")
 
     if 'rdkit_features' in config and config['rdkit_features']:
+        assert 'molecule_encoder_kwargs' not in config['model']['args'], "Not yet supported."
         if 'rdkit_feats_path' in config:
             logger.info("\nLoading RDKit Feats")
             smiles_to_feats = pickle.load(open( config['rdkit_feats_path'], "rb" ))

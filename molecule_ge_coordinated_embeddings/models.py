@@ -1,9 +1,37 @@
-import torch
-import torch.nn as nn
-import sys
+import os, pickle, torch, sys, torch.nn as nn
 
 sys.path.append('/home/sgf2/DBMI_server/repo/chemprop')
+sys.path.append('/scratch/mmd/drug_attention_network')
 from chemprop.models.model import build_model
+
+from drug_attention_network.data import *
+from drug_attention_network.model import *
+
+def load_molecule_encoder(model_path, model_kwargs):
+    assert os.path.isfile(model_path), "%s does not exist at all." % model_path
+    if model_path.endswith('.pt'): return load_chemprop_model(model_path)
+    else: return load_dan(model_path, model_kwargs)
+
+def load_dan(vocab_path, model_kwargs):
+    with open(vocab_path, mode='rb') as f: all_atoms, all_bonds = pickle.load(f)
+    all_atoms_idx_map = {atom: i for i, (atom, _) in enumerate(all_atoms.most_common())}
+    all_atoms_vocab = [atom for atom, _ in all_atoms.most_common()]
+
+    all_bonds_idx_map = {atom: i for i, (atom, _) in enumerate(all_bonds.most_common())}
+    all_bonds_vocab = [atom for atom, _ in all_bonds.most_common()]
+
+    # TODO(mmd): Write this to a file!
+    F = SMILES_Featurizer(
+        all_atoms_idx_map, all_bonds_idx_map, tqdm=None, leave=False, use_cuda = torch.cuda.is_available(),
+    )
+    node_vocab_size = len(all_atoms_vocab) + len(all_bonds_vocab)
+
+    return LiteMolecularTransformer(
+        **model_kwargs,
+        node_vocab_size = node_vocab_size,
+        pre_featurized = False,
+        featurizer = F,
+    )
 
 def load_chemprop_model(chemprop_model_path):
     chemprop_info = torch.load(chemprop_model_path)
@@ -51,10 +79,12 @@ class FeedForwardGExChemNet(nn.Module):
                  hidden_layers_ge=[1024, 512], hidden_layers_chem=[],
                  dropout_prob=0, act="selu", linear_bias=True,
                  input_type="singlet",
-                 chemprop_model_path="/home/sgf2/DBMI_server/repo/chemprop/pcba/model_unoptimized.pt",
+                 molecule_encoder_path="/home/sgf2/DBMI_server/repo/chemprop/pcba/model_unoptimized.pt",
+                 molecule_encoder_kwargs=None,
                  pretrained_model_path=None,
                  smiles_to_feats=None):
         super().__init__()
+        if not molecule_encoder_kwargs: molecule_encoder_kwargs = {}
         self.input_type = input_type
         self.embed_size = embed_size
         self.smiles_to_feats = smiles_to_feats
@@ -79,7 +109,7 @@ class FeedForwardGExChemNet(nn.Module):
             )
 
             # Chemprop Embedder
-            self.chemprop_encoder = load_chemprop_model(chemprop_model_path)
+            self.chemprop_encoder = load_molecule_encoder(molecule_encoder_path, molecule_encoder_kwargs)
             chem_layers = hidden_layers_chem + [embed_size]
             if self.rdkit:
                 n_feats_chemprop = 2400
