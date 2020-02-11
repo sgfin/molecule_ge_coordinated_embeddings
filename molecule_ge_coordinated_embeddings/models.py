@@ -5,14 +5,15 @@ import sys
 sys.path.append('/home/sgf2/DBMI_server/repo/chemprop')
 from chemprop.models.model import build_model
 
-def load_chemprop_model(chemprop_model_path):
+
+def load_chemprop_model(chemprop_model_path, load_weights = True):
     chemprop_info = torch.load(chemprop_model_path)
     chemprop_model = build_model(chemprop_info['args'])
-    chemprop_model.load_state_dict(chemprop_info['state_dict'])
+    if load_weights:
+        chemprop_model.load_state_dict(chemprop_info['state_dict'])
     chemprop_encoder = chemprop_model.encoder
     chemprop_encoder.cuda()
     return chemprop_encoder
-
 
 class FFANN_Embedder(nn.Module):
     # Written by Matthew, but Sam is adding n_feats as a parameter
@@ -51,14 +52,16 @@ class FeedForwardGExChemNet(nn.Module):
                  hidden_layers_ge=[1024, 512], hidden_layers_chem=[],
                  dropout_prob=0, act="selu", linear_bias=True,
                  input_type="singlet",
-                 chemprop_model_path="/home/sgf2/DBMI_server/repo/chemprop/pcba/model_unoptimized.pt",
+                 chemprop_model_path="/home/sgf2/DBMI_server/drug_repo/chemprop/pcba/model_unoptimized.pt",
                  pretrained_model_path=None,
+                 load_chemprop_weights=True,
                  smiles_to_feats=None):
         super().__init__()
         self.input_type = input_type
         self.embed_size = embed_size
         self.smiles_to_feats = smiles_to_feats
         self.rdkit = smiles_to_feats is not None
+        self.load_chemprop_weights = load_chemprop_weights
 
         assert act in ("sigmoid", "relu", "tanh", "selu"), "Unsupported activation: %s!" % act
 
@@ -79,7 +82,7 @@ class FeedForwardGExChemNet(nn.Module):
             )
 
             # Chemprop Embedder
-            self.chemprop_encoder = load_chemprop_model(chemprop_model_path)
+            self.chemprop_encoder = load_chemprop_model(chemprop_model_path, self.load_chemprop_weights)
             chem_layers = hidden_layers_chem + [embed_size]
             if self.rdkit:
                 n_feats_chemprop = 2400

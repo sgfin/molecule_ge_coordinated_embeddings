@@ -29,6 +29,7 @@ class LincsTripletDataset(Dataset):
                  rank_transform=False,
                  input_type="triplet_ge_first",
                  sampling_dist = "expression",
+                 force_ge_from_diff_cellid = True,
                  pert_tanimoto_dist_path = "/home/sgf2/DBMI_server/drug_repo/data/lincs_perts_tanimoto_df.pkl"
                 ):
         self.control_method = control_method
@@ -38,6 +39,7 @@ class LincsTripletDataset(Dataset):
         self.input_type = input_type
         self.split_cell_id = split_cell_id
         self.split_perts = split_perts
+        self.force_ge_from_diff_cellid = force_ge_from_diff_cellid
 
         if exclude_neuro_lines:
             all_cell_lines = ["HEPG2","HA1E","HCC515","VCAP","A375","PC3","MCF7","A549", "HT29"]
@@ -192,6 +194,15 @@ class LincsTripletDataset(Dataset):
         indices_matches = set(np.where(self.l1000_perts.index.get_level_values("canonical_smiles").values == smile)[0])
         if len(indices_matches) > 1:
             indices_matches = indices_matches - {idx}
+
+        # Try to match with new cell types    
+        if self.force_ge_from_diff_cellid:
+            cellid = self.l1000_perts.index.get_level_values("cell_id")[idx]
+            indices_diff_cell_id = set(np.where(self.l1000_perts.index.get_level_values("cell_id").values != cellid)[0])
+            same_ge_new_cell_id = indices_matches.intersection(indices_diff_cell_id)
+            if len(same_ge_new_cell_id):
+                indices_matches = same_ge_new_cell_id
+
         return random.sample(indices_matches, 1)[0]
 
     def __get_second_smile_idx__(self, idx):
@@ -236,6 +247,46 @@ class LincsTripletDataset(Dataset):
         return self.l1000_perts.shape[0]
 
 
+class LincsTripletDataset_DrugIndex(LincsTripletDataset):
+    """Idea here is to do a
+        margin loss with anchor_ge vs anchor_chem/non_match_chem
+        and additionally do a
+        margin loss with anchor_chem vs anchor_ge/non_match_ge
+        """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def __sample_ge_idx_given_smiles(self, smile):
+        indices_matches = set(np.where(self.l1000_perts.index.get_level_values("canonical_smiles").values == smile)[0])
+        return random.sample(indices_matches, 1)[0]
+
+    def __getitem__(self, idx):
+        # Hacky -- just convert the idx into a matching ge's index and run from there.
+        smile = self.pert_smiles[idx]
+        idx = self.__sample_ge_idx_given_smiles(smile)
+
+        # Same as before
+        idx_non_match = self.__get_second_smile_idx__(idx)
+        if self.input_type == "triplet_ge_first":
+            anchor = self.__get_GE_sig__(idx)
+            match = self.__get_smiles__(idx)
+            non_match = self.__get_smiles__(idx_non_match)
+        elif self.input_type == "triplet_ge_only":
+            anchor = self.__get_GE_sig__(idx)
+            match = self.__get_GE_sig__(self.__get_ge_match_idx__(idx))
+            non_match = self.__get_GE_sig__(idx_non_match)
+        elif self.input_type == "triplet_chem_first":
+            anchor = self.__get_smiles__(idx)
+            match = self.__get_GE_sig__(idx)
+            non_match = self.__get_GE_sig__(idx_non_match)
+        else:
+            raise NotImplementedError
+        return anchor, match, non_match
+
+    def __len__(self):
+        return len(self.pert_smiles)
+
+
 class LincsQuadrupletDataset(LincsTripletDataset):
     """Idea here is to do a
         margin loss with anchor_ge vs anchor_chem/non_match_chem
@@ -247,6 +298,32 @@ class LincsQuadrupletDataset(LincsTripletDataset):
         super().__init__(*args, **kwargs)
 
     def __getitem__(self, idx):
+        idx_non_match = self.__get_second_smile_idx__(idx)
+
+        anchor_ge = self.__get_GE_sig__(idx)
+        non_match_ge = self.__get_GE_sig__(idx_non_match)
+        anchor_chem = self.__get_smiles__(idx)
+        non_match_chem = self.__get_smiles__(idx_non_match)
+
+        return anchor_ge, non_match_ge, anchor_chem, non_match_chem
+
+
+class LincsQuadrupletDataset_DrugIndex(LincsTripletDataset_DrugIndex):
+    """Idea here is to do a
+        margin loss with anchor_ge vs anchor_chem/non_match_chem
+        and additionally do a
+        margin loss with anchor_chem vs anchor_ge/non_match_ge
+        """
+    def __init__(self, *args, **kwargs):
+        kwargs['input_type'] = 'quadruplet'
+        super().__init__(*args, **kwargs)
+
+    def __getitem__(self, idx):
+        # Hacky -- just convert the idx into a matching ge's index and run from there.
+        smile = self.pert_smiles[idx]
+        idx = self.__sample_ge_idx_given_smiles(smile)
+
+        # Same as above
         idx_non_match = self.__get_second_smile_idx__(idx)
 
         anchor_ge = self.__get_GE_sig__(idx)
@@ -329,7 +406,7 @@ class LincsSingletGEWrapperDataset(Dataset):
             return self.lincs_dataset.__get_GE_sig__(idx)
 
     def __len__(self):
-        return len(self.lincs_dataset)
+        return self.lincs_dataset.l1000_perts.shape[0]
 
 
 class LincsSingletSmilesWrapperDataset(Dataset):

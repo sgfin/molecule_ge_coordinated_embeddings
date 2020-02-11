@@ -229,7 +229,7 @@ def train_model(config, logger):
 
     # IR metrics
     val_mrr_tracker = utils.RunningTracker()
-    #val_mrr_outsample_tracker = utils.RunningTracker()
+    val_median_tracker = utils.RunningTracker()
 
     # Embed all GE experiments and drugs
     def get_embeddings(ge_wrapper, ge_loader, smiles_wrapper, smiles_loader):
@@ -376,18 +376,21 @@ def train_model(config, logger):
     @trainer.on(Events.EPOCH_COMPLETED)
     def log_IR_results(engine):
         if engine.state.epoch > config['trainer']['wait_before_save_models']:
-            ir_metrics = compute_ir_metrics(ge_wrapper_train, ge_loader_train, smiles_wrapper_train, smiles_loader_train)
-            print_labels = ["Train (Samp):    ", "Train (Pert):    "]
-            for i, res_dict in enumerate(ir_metrics):
-                print(print_labels[i] + "    ".join(['{}: {:.3f}'.format(k, res_dict[k]) for k in res_dict]))
+            if 'ir_results_interval' in config['trainer'] and ((engine.state.epoch-2) % config['trainer']['ir_results_interval'] != 0):
+                return
+            else:    
+                ir_metrics = compute_ir_metrics(ge_wrapper_train, ge_loader_train, smiles_wrapper_train, smiles_loader_train)
+                print_labels = ["Train (Samp):    ", "Train (Pert):    "]
+                for i, res_dict in enumerate(ir_metrics):
+                    print(print_labels[i] + "    ".join(['{}: {:.3f}'.format(k, res_dict[k]) for k in res_dict]))
 
-            ir_metrics = compute_ir_metrics(ge_wrapper_val, ge_loader_val, smiles_wrapper_val, smiles_loader_val)
-            print_labels = ["Val   (Samp):    ", "Val   (Pert):    "]
-            for i, res_dict in enumerate(ir_metrics):
-                print(print_labels[i] + "    ".join(['{}: {:.3f}'.format(k, res_dict[k]) for k in res_dict]))
+                ir_metrics = compute_ir_metrics(ge_wrapper_val, ge_loader_val, smiles_wrapper_val, smiles_loader_val)
+                print_labels = ["Val   (Samp):    ", "Val   (Pert):    "]
+                for i, res_dict in enumerate(ir_metrics):
+                    print(print_labels[i] + "    ".join(['{}: {:.3f}'.format(k, res_dict[k]) for k in res_dict]))
 
-            val_mrr_tracker.update(ir_metrics[0]['MRR'])
-            #val_mrr_outsample_tracker.update(ir_metrics[2]['MRR'])
+                val_mrr_tracker.update(ir_metrics[1]['MRR'])
+                val_median_tracker.update(ir_metrics[1]['median_rank'])
 
 
     @trainer.on(Events.EPOCH_COMPLETED)
@@ -410,6 +413,13 @@ def train_model(config, logger):
 
     ###################################################
 
+    def custom_event_filter(engine, event):
+        if event < config['trainer']['wait_before_save_models']:
+            return False
+        if 'ir_results_interval' in config['trainer']:
+            return (event % config['trainer']['ir_results_interval'] == 0)
+        return True
+
     # Model Checkpoint
     best_model_saver = ModelCheckpoint(config["exp_dir"],
                                        filename_prefix="checkpoint",
@@ -417,19 +427,21 @@ def train_model(config, logger):
                                        score_function=val_mrr_tracker.get_current,
                                        n_saved=5,
                                        atomic=True,
-                                       create_dir=True,
-                                       save_as_state_dict = False)
-    trainer.add_event_handler(Events.EPOCH_COMPLETED, best_model_saver, {config["model_name"]: model})
+                                       create_dir=True #,
+                                       #save_as_state_dict = False
+                                       )
+    trainer.add_event_handler(Events.EPOCH_COMPLETED(event_filter=custom_event_filter), best_model_saver, {config["model_name"]: model})
 
-    #best_model_saver_outSamp = ModelCheckpoint(config["exp_dir"],
-    #                                           filename_prefix="checkpoint",
-    #                                           score_name="val_mrr_outsample",
-    #                                           score_function=val_mrr_outsample_tracker.get_current,
-    #                                           n_saved=5,
-    #                                           atomic=True,
-    #                                           create_dir=True,
-    #                                           save_as_state_dict = False)
-    #trainer.add_event_handler(Events.EPOCH_COMPLETED, best_model_saver_outSamp, {config["model_name"]: model})
+    best_model_saver_median = ModelCheckpoint(config["exp_dir"],
+                                              filename_prefix="checkpoint",
+                                              score_name="val_median",
+                                              score_function=val_median_tracker.get_current,
+                                              n_saved=5,
+                                              atomic=True,
+                                              create_dir=True #,
+                                              #save_as_state_dict = False
+                                              )
+    trainer.add_event_handler(Events.EPOCH_COMPLETED(event_filter=custom_event_filter), best_model_saver_median, {config["model_name"]: model})
 
     ###################################################
 
