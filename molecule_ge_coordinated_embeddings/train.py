@@ -1,8 +1,11 @@
-import datasets as datasets
-import models as models
-import losses as losses
-import config as cf
-import utils
+try:
+    from . import datasets as datasets
+    from . import models as models
+    from . import losses as losses
+    from . import config as cf
+    from . import utils
+except:
+    import datasets, models, losses, config as cf, utils
 
 import torch
 from torch.utils.data import DataLoader
@@ -13,6 +16,7 @@ from ignite.handlers import ModelCheckpoint, Timer
 from ignite.contrib.handlers import tqdm_logger
 from ignite.metrics import RunningAverage
 
+import json
 import os
 import sys
 import pickle
@@ -97,6 +101,7 @@ def train_model(config, logger):
     logger.info("\nBuilding Model")
 
     if 'rdkit_features' in config and config['rdkit_features']:
+        assert 'molecule_encoder_kwargs' not in config['model']['args'], "Not yet supported."
         if 'rdkit_feats_path' in config:
             logger.info("\nLoading RDKit Feats")
             smiles_to_feats = pickle.load(open( config['rdkit_feats_path'], "rb" ))
@@ -375,22 +380,37 @@ def train_model(config, logger):
 
     @trainer.on(Events.EPOCH_COMPLETED)
     def log_IR_results(engine):
-        if engine.state.epoch > config['trainer']['wait_before_save_models']:
-            if 'ir_results_interval' in config['trainer'] and ((engine.state.epoch-2) % config['trainer']['ir_results_interval'] != 0):
-                return
-            else:    
-                ir_metrics = compute_ir_metrics(ge_wrapper_train, ge_loader_train, smiles_wrapper_train, smiles_loader_train)
-                print_labels = ["Train (Samp):    ", "Train (Pert):    "]
-                for i, res_dict in enumerate(ir_metrics):
-                    print(print_labels[i] + "    ".join(['{}: {:.3f}'.format(k, res_dict[k]) for k in res_dict]))
+        if engine.state.epoch <= config['trainer']['wait_before_save_models']: return
+        if 'ir_results_interval' in config['trainer'] and ((engine.state.epoch-2) % config['trainer']['ir_results_interval'] != 0): return
 
-                ir_metrics = compute_ir_metrics(ge_wrapper_val, ge_loader_val, smiles_wrapper_val, smiles_loader_val)
-                print_labels = ["Val   (Samp):    ", "Val   (Pert):    "]
-                for i, res_dict in enumerate(ir_metrics):
-                    print(print_labels[i] + "    ".join(['{}: {:.3f}'.format(k, res_dict[k]) for k in res_dict]))
+        #is_last_epoch = engine.state.epoch == config['trainer']['epochs']
+        save_train = (
+            ('save_train_ir_metrics' not in config['trainer']) or config['trainer']['save_train_ir_metrics']
+        )
+        save_val = True
 
-                val_mrr_tracker.update(ir_metrics[1]['MRR'])
-                val_median_tracker.update(ir_metrics[1]['median_rank'])
+        metrics = {}
+            
+        if save_train:
+            ir_metrics = compute_ir_metrics(ge_wrapper_train, ge_loader_train, smiles_wrapper_train, smiles_loader_train)
+            print_labels = ["Train (Samp):    ", "Train (Pert):    "]
+            for i, res_dict in enumerate(ir_metrics):
+                metrics[print_labels[i].strip()] = res_dict
+                print(print_labels[i] + "    ".join(['{}: {:.3f}'.format(k, res_dict[k]) for k in res_dict]))
+
+        if save_val:
+            ir_metrics = compute_ir_metrics(ge_wrapper_val, ge_loader_val, smiles_wrapper_val, smiles_loader_val)
+            print_labels = ["Val   (Samp):    ", "Val   (Pert):    "]
+            for i, res_dict in enumerate(ir_metrics):
+                print(print_labels[i] + "    ".join(['{}: {:.3f}'.format(k, res_dict[k]) for k in res_dict]))
+                metrics[print_labels[i].strip()] = res_dict
+
+            val_mrr_tracker.update(ir_metrics[1]['MRR'])
+            val_median_tracker.update(ir_metrics[1]['median_rank'])
+
+        if metrics:
+            filepath = os.path.join(config['exp_dir'], 'ir_metrics_%d.json' % engine.state.epoch)
+            with open(filepath, mode='w') as f: f.write(json.dumps(metrics))
 
 
     @trainer.on(Events.EPOCH_COMPLETED)

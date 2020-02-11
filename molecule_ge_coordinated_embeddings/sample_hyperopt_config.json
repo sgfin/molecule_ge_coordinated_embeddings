@@ -1,13 +1,13 @@
 {
   "structure": {"method": "choice", "params": [
-    "triplet", "quadruplet", "quintuplet", "triplet_cca"
+    "triplet", "quadruplet", "quintuplet"
   ]},
   "input_type": {"method": "choice", "params": [
     "triplet_ge_first", "triplet_ge_only", "triplet_chem_first"
   ]},
   "dataset_rank_transform": {"method": "choice", "params": [true, false]},
-  "epochs": {"method": "quniform", "params": [20, 300]},
-  "batch_size": {"method": "quniform", "params": [16, 2048]},
+  "epochs": {"method": "quniform", "params": [10, 30]},
+  "batch_size": {"method": "quniform", "params": [16, 512]},
   "lr": {"method": "lognormal", "params": [-7, 0.5]},
   "metric": {"method": "choice", "params": ["euclidean", "correlation"]},
 
