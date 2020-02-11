@@ -1,6 +1,7 @@
 import os, pickle, torch, sys, torch.nn as nn
 
-sys.path.append('/home/sgf2/DBMI_server/repo/chemprop')
+sys.path.append('/home/sgf2/DBMI_server/drug_repo/chemprop')
+sys.path.append('/home/sgf2/DBMI_server/drug_repo/drug_attention_network')
 sys.path.append('/scratch/mmd/drug_attention_network')
 from chemprop.models.model import build_model
 
