@@ -34,13 +34,13 @@
   "use_dan": {
     "method": "nested_choice", "params": [
       [true, {
-        "node_embedding_dim": {"method": "quniform", "params": [2, 100]},
-        "hidden_size_per_head": {"method": "quniform", "params": [10, 75]},
-        "out_dim": {"method": "quniform", "constant": 300},
+        "node_embedding_dim": {"method": "quniform", "params": [2, 50]},
+        "hidden_size_per_head": {"method": "quniform", "params": [10, 25]},
+        "out_dim": {"method": "choice", "params": [300]},
         "num_layers": {"method": "quniform", "params": [1, 12]},
         "num_heads": {"method": "quniform", "params": [1, 12]},
         "dist_channels": {"method": "choice", "params": [3]},
-        "QK_dims": {"method": "quniform", "params": [2, 100]},
+        "QK_dims": {"method": "quniform", "params": [2, 50]},
         "node_conv_layers_per": {"method": "quniform", "params": [1, 3]},
         "node_conv_kernel_size": {"method": "quniform", "params": [1, 4]},
         "do_add_aggregation_node": {"method": "choice", "params": [true, false]},
