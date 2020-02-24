@@ -34,14 +34,17 @@ def load_dan(vocab_path, model_kwargs):
         featurizer = F,
     )
 
-def load_chemprop_model(chemprop_model_path, load_weights = False):
-    chemprop_info = torch.load(chemprop_model_path)
-    chemprop_model = build_model(chemprop_info['args'])
+def load_chemprop_model(chemprop_model_path, load_weights = False, return_raw=False, use_cuda=True):
+    if use_cuda: chemprop_info = torch.load(chemprop_model_path)
+    else: chemprop_info = torch.load(chemprop_model_path, map_location=torch.device('cpu'))
+    args = chemprop_info['args']
+    chemprop_model = build_model(args)
     if load_weights:
         chemprop_model.load_state_dict(chemprop_info['state_dict'])
     chemprop_encoder = chemprop_model.encoder
-    chemprop_encoder.cuda()
-    return chemprop_encoder
+    if use_cuda: chemprop_encoder.cuda()
+    if return_raw: return chemprop_info, chemprop_model, args
+    else: return chemprop_encoder
 
 class FFANN_Embedder(nn.Module):
     # Written by Matthew, but Sam is adding n_feats as a parameter

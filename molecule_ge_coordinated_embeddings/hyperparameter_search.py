@@ -394,6 +394,7 @@ REMAPPING_PARAMS = {
     ("loss", "args", "beta"):                   ("beta", float),
     ("loss", "args", "margin"):                 ("margin", float),
     ("loss", "online_eval_metrics"):            ("online_eval_metrics", list),
+    ("dataset", "args", "split_perts"):         ("split_perts", bool),
 }
 
 STRUCTURE_TO_MDL_TYPES = {
